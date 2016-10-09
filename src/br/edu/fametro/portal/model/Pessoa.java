@@ -57,4 +57,26 @@ public abstract class Pessoa {
 	public void setGenero(Genero genero) {
 		this.genero = genero;
 	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (cpf.equals(((Pessoa) obj).getCpf()))
+			return true;
+		else if (rg.equals(((Pessoa) obj).getRg()))
+			return true;
+		else
+			return false;
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String buffer = new String();
+		buffer += "Nome: " + nome + "\n";
+		buffer += "RG: " + rg + "\n";
+		buffer += "CPF: " + cpf + "\n";
+		buffer += "Data de Nascimento: " + nascimento + "\n";
+		buffer += "Gênero: " + genero.name() + "\n";
+		return buffer;
+	}
 }

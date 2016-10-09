@@ -2,13 +2,16 @@ package br.edu.fametro.portal.model;
 
 import java.util.Date;
 
-public class Secretario extends Pessoa {
+public class Secretario extends Pessoa implements AcessaSistema {
 	private String matricula; // RegistroAcademico ex:2016123456
-	private Usuario acesso;
+	private Usuario usuario;
 
 	public Secretario(String nome, String rg, String cpf, Date nascimento, Genero genero) {
 		super(nome, rg, cpf, nascimento, genero);
-		// TODO Auto-generated constructor stub
+		matricula = Sistema.geraMatricula();
+		System.out.print("PAS");
+		usuario = Sistema.geraPrimeiroAcesso(matricula);
+		System.out.println("SOU");
 	}
 
 	public String getMatricula() {
@@ -19,11 +22,27 @@ public class Secretario extends Pessoa {
 		this.matricula = matricula;
 	}
 
-	public Usuario getAcesso() {
-		return acesso;
+	public Usuario getUsuario() {
+		return usuario;
 	}
 
-	public void setAcesso(Usuario acesso) {
-		this.acesso = acesso;
+	public void setUsuario(Usuario acesso) {
+		this.usuario = acesso;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		// TODO Auto-generated method stub
+		return super.equals(obj);
+	}
+
+	@Override
+	public String toString() {
+		// TODO Auto-generated method stub
+		String buffer = new String();
+		buffer += "Registro Acadêmico: " + matricula + "\n";
+		buffer += super.toString();
+		buffer += usuario + "\n";
+		return buffer;
 	}
 }
