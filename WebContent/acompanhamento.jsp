@@ -46,7 +46,7 @@
 							<div
 								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" class="form-control"
+									<input type="text" name="search" id="search" class="form-control"
 										placeholder="Search for..."> <span
 										class="input-group-btn">
 										<button class="btn btn-default" type="button">Go!</button>
@@ -99,7 +99,7 @@
 										<table class="table table-striped jambo_table bulk_action">
 											<thead>
 												<tr class="headings">
-													<th><input type="checkbox" id="check-all" class="flat">
+													<th><input type="checkbox" name="check" id="check"  class="flat">
 													</th>
 													<th class="column-title">Código</th>
 													<th class="column-title">Assunto</th>
@@ -122,7 +122,7 @@
 											<tbody>
 												<tr class="even pointer">
 													<td class="a-center "><input type="checkbox"
-														class="flat" name="table_records"></td>
+														class="flat" name="table" id="table" ></td>
 													<td class=" ">46001</td>
 													<td class=" ">QUEBRA DE PRÉ-REQUISITO</td>
 													<td class=" ">Quebra Aceita</td>
@@ -135,7 +135,7 @@
 												</tr>
 												<tr class="odd pointer">
 													<td class="a-center "><input type="checkbox"
-														class="flat" name="table_records"></td>
+														class="flat" name="table-2" id="table-2" ></td>
 													<td class=" ">46001</td>
 													<td class=" ">QUEBRA DE PRÉ-REQUISITO</td>
 													<td class=" ">Quebra Aceita</td>

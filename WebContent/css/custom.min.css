@@ -1,12 +1,12 @@
 .left_col {
-	background: #2A3F54
+	background: #4E7204;
 }
 .nav-sm .container.body .col-md-3.left_col {
 	min-height: 100%;
 	width: 70px;
 	padding: 0;
 	z-index: 9999;
-	position: absolute
+	position: absolute;
 }
 .nav-sm .container.body .col-md-3.left_col.menu_fixed {
 	position: fixed;
@@ -50,7 +50,7 @@
 	padding: 10px 5px
 }
 .nav-sm .nav.child_menu li.active, .nav-sm .nav.side-menu li.active-sm {
-	border-right: 5px solid #1ABB9C
+	border-right: 5px solid #799004;
 }
 .nav-sm ul.nav.child_menu ul, .nav-sm .nav.side-menu li.active-sm ul ul {
 	position: static;
@@ -115,7 +115,7 @@
 	z-index: 1000;
 	position: inherit;
 	margin-top: 20px;
-	border: 1px solid rgba(52,73,94,0.44);
+	border: 1px solid #405e04;
 	padding: 4px
 }
 .profile_info {
@@ -207,7 +207,7 @@ body .container.body .right_col {
 .nav_title {
 	width: 230px;
 	float: left;
-	background: #2A3F54;
+	background: #405E04;
 	border-radius: 0;
 	height: 57px
 }
@@ -331,11 +331,11 @@ body .container.body .right_col {
 }
 body {
 	color: #73879C;
-	background: #2A3F54;
 	font-family: "Helvetica Neue", Roboto, Arial, "Droid Sans", sans-serif;
 	font-size: 13px;
 	font-weight: 400;
-	line-height: 1.471
+	line-height: 1.471;
+	background-color: #4E7204;
 }
 .main_container .top_nav {
 	display: block;
@@ -553,7 +553,7 @@ a:hover, a:focus {
 	padding: 13px 15px 12px
 }
 .nav.side-menu>li.current-page, .nav.side-menu>li.active {
-	border-right: 5px solid #1ABB9C
+	border-right: 5px solid #799004;
 }
 .nav li.current-page {
 	background: rgba(255,255,255,0.05)
@@ -566,7 +566,7 @@ a:hover, a:focus {
 }
 .nav.side-menu>li.active>a {
 	text-shadow: rgba(0,0,0,0.25) 0 -1px 0;
-	background: linear-gradient(#334556, #2C4257), #2A3F54;
+	background: linear-gradient(#006600, #799004), #405E04;
 	box-shadow: rgba(0,0,0,0.25) 0 1px 0, inset rgba(255,255,255,0.16) 0 1px 0
 }
 .navbar-brand, .navbar-nav>li>a {
@@ -1057,8 +1057,8 @@ table.jambo_table {
 	border: 1px solid rgba(221,221,221,0.78)
 }
 table.jambo_table thead {
-	background: rgba(52,73,94,0.94);
-	color: #ECF0F1
+	color: #ECF0F1;
+	background-color: rgba(52,73,94,0.94);
 }
 table.jambo_table tbody tr:hover td {
 	background: rgba(38,185,154,0.07);
@@ -1422,7 +1422,7 @@ span.right {
 	padding: 5px 0 0 0;
 	position: fixed;
 	width: 230px;
-	background: #2A3F54
+	background: #799004;
 }
 .sidebar-footer a {
 	padding: 7px 0 3px;
@@ -1431,10 +1431,10 @@ span.right {
 	font-size: 17px;
 	display: block;
 	float: left;
-	background: #172D44
+	background: #405e04;
 }
 .sidebar-footer a:hover {
-	background: #425567
+	background: #cccccc;
 }
 .tile_count {
 	margin-bottom: 20px;

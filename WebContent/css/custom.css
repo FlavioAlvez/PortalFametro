@@ -1,6 +1,6 @@
 @charset "UTF-8";
 .left_col {
-  background: #2A3F54; }
+  background: #4E7204; }
 
 .nav-sm .container.body .col-md-3.left_col {
   min-height: 100%;
@@ -210,7 +210,7 @@ body .container.body .right_col {
 .nav_title {
   width: 230px;
   float: left;
-  background: #2A3F54;
+  background: #405E04;
   border-radius: 0;
   height: 57px; }
 
@@ -557,7 +557,7 @@ a:hover, a:focus {
 
 .nav.side-menu > li.active > a {
   text-shadow: rgba(0, 0, 0, 0.25) 0 -1px 0;
-  background: linear-gradient(#334556, #2C4257), #2A3F54;
+  background: linear-gradient(#334556, #2C4257), #405E04;
   box-shadow: rgba(0, 0, 0, 0.25) 0 1px 0, inset rgba(255, 255, 255, 0.16) 0 1px 0; }
 
 .navbar-brand, .navbar-nav > li > a {
@@ -1419,7 +1419,7 @@ span.right {
   padding: 5px 0 0 0;
   position: fixed;
   width: 230px;
-  background: #2A3F54; }
+  background: #799004; }
 
 .sidebar-footer a {
   padding: 7px 0 3px;
@@ -1428,10 +1428,10 @@ span.right {
   font-size: 17px;
   display: block;
   float: left;
-  background: #172D44; }
+  background: #405E04; }
 
 .sidebar-footer a:hover {
-  background: #425567; }
+  background: #CCCCCC; }
 
 /** top tiles  */
 .tile_count {
