@@ -1058,7 +1058,7 @@ table.jambo_table {
 }
 table.jambo_table thead {
 	color: #ECF0F1;
-	background-color: rgba(52,73,94,0.94);
+	background-color: #4E7204;
 }
 table.jambo_table tbody tr:hover td {
 	background: rgba(38,185,154,0.07);
@@ -2074,16 +2074,27 @@ input.parsley-error, textarea.parsley-error, select.parsley-error {
 .btn {
 	border-radius: 3px
 }
-a.btn-success, a.btn-primary, a.btn-warning, a.btn-danger {
-	color: #fff
+a.btn-success, a.btn-cancel, a.btn-warning, a.btn-danger {
+	color: #ffffff;
 }
 .btn-success {
-	background: #26B99A;
+	background: #405e04;
 	border: 1px solid #169F85
 }
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
-	background: #169F85
+	background: #799004;
 }
+
+.btn-cancel {
+	background: #990000;
+	border: 1px solid #ff0000;
+	color: #ffffff;
+}
+.btn-cancel:hover, .btn-cancel:focus, .btn-cancel:active, .btn-cancel.active, .open .dropdown-toggle.btn-cancel {
+	background: #ff0000;
+	color: #ffffff;
+}
+
 .btn-dark {
 	color: #E9EDEF;
 	background-color: #4B5F71;

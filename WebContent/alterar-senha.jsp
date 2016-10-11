@@ -192,7 +192,7 @@
 												<div class="ln_solid"></div>
 												<div class="form-group">
 													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="submit" class="btn btn-primary	" name="concluir"
+														<input type="submit" class="btn btn-cancel	" name="concluir"
 															value="Cancelar"> <input type="submit"
 															class="btn btn-success" name="" value="Concluir">
 													</div>
