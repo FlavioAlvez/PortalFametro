@@ -8,18 +8,14 @@ public class Secretario extends Pessoa implements AcessaSistema {
 
 	public Secretario(String nome, String rg, String cpf, Date nascimento, Genero genero) {
 		super(nome, rg, cpf, nascimento, genero);
-		matricula = Sistema.geraMatricula();
+		matricula = Sistema.geraMatricula(TipoUsuario.SECRETARIO);
 		System.out.print("PAS");
-		usuario = Sistema.geraPrimeiroAcesso(matricula);
+		usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.SECRETARIO);
 		System.out.println("SOU");
 	}
 
 	public String getMatricula() {
 		return matricula;
-	}
-
-	public void setMatricula(String matricula) {
-		this.matricula = matricula;
 	}
 
 	public Usuario getUsuario() {

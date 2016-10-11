@@ -38,6 +38,4 @@ public class SecretarioBusiness {
 		}
 		return null;
 	}
-	
-	
 }

@@ -10,8 +10,6 @@ import br.edu.fametro.portal.business.SecretarioBusiness;
 import br.edu.fametro.portal.model.Genero;
 import br.edu.fametro.portal.model.Secretario;
 
-import org.apache.commons.codec.digest.DigestUtils;
-
 /**
  * Application Lifecycle Listener implementation class Persistencia
  *
@@ -31,6 +29,7 @@ public class Persistencia implements ServletContextListener {
 	 */
 	public void contextDestroyed(ServletContextEvent contexto) {
 		// TODO Auto-generated method stub
+		System.out.println("Finalizando aplicação!");
 	}
 
 	/**
@@ -54,9 +53,13 @@ public class Persistencia implements ServletContextListener {
 			System.out.println("----------");
 			System.out.println(s);
 		}
+		System.out.println("----------");
 		System.out.println();
 
+		System.out.println("Colocando banco no contexto da aplicação...");
 		contexto.getServletContext().setAttribute("bancoSecretario", bancoSecretario);
+		
+		System.out.println("Inicialização concluída...");
 	}
 
 }

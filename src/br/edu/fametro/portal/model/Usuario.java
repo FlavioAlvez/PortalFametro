@@ -3,7 +3,7 @@ package br.edu.fametro.portal.model;
 import org.apache.commons.codec.digest.DigestUtils;
 
 public class Usuario {
-	private String username; // "1-" + Matricula Ex.: 1-2016123456
+	private String username;
 	private String senha;
 
 	public Usuario(String username, String senha) {

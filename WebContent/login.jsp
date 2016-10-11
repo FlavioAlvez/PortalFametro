@@ -51,7 +51,7 @@
 	<!-- /navbar -->
 	<div class="account-container">
 		<div class="content clearfix">
-			<form id="formlogin" action="home.jsp" method="post">
+			<form id="formlogin" action="LoginController.do" method="post">
 				<img class="img-logo" src="img/logo-login-page.png" alt="logo">
 				<h2>Portal Acadêmico</h2>
 				<div class="login-fields">
