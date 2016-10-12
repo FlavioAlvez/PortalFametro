@@ -24,13 +24,9 @@
 			<li><a><i class="fa fa-desktop"></i> Solicitação <span
 					class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
-					<li><a href="solicitacao.jsp?tipo=QuebraPreRequisito">Quebra
-							de Pré-Requisito</a></li>
-					<li><a href="solicitacao.jsp?tipo=RevisaoNota">Revisão de
-							Nota</a></li>
-					<li><a href="solicitacao.jsp?tipo=AbonoFalta">Abono de
-							Falta</a></li>
-					<li><a href="solicitacao.jsp?tipo=ReclamacoesComentarios">Ouvidoria</a></li>
+					<li><a href="solicitacao.jsp?tipo=1">Secretaria</a></li>
+					<li><a href="solicitacao.jsp?tipo=2">Financeiro</a></li>
+					<li><a href="solicitacao.jsp?tipo=3">Relacionamento</a></li>
 				</ul></li>
 			<li><a href="acompanhamento.jsp"><i class="fa fa-table"></i>
 					Acompanhamento</a></li>
