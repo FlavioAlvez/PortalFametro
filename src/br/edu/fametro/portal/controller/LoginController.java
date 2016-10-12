@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.SecretarioBusiness;
-import br.edu.fametro.portal.model.Secretario;
-import br.edu.fametro.portal.model.Usuario;
+import br.edu.fametro.portal.model.atores.Secretario;
+import br.edu.fametro.portal.model.atores.Usuario;
 
 /**
  * Servlet implementation class LoginController

@@ -1,6 +1,10 @@
-package br.edu.fametro.portal.model;
+package br.edu.fametro.portal.model.atores;
 
 import java.util.Date;
+
+import br.edu.fametro.portal.model.Sistema;
+import br.edu.fametro.portal.model.enums.Genero;
+import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 public class Secretario extends Pessoa implements AcessaSistema {
 	private String matricula; // RegistroAcademico ex:2016123456

@@ -3,8 +3,8 @@ package br.edu.fametro.portal.business;
 import java.util.ArrayList;
 import java.util.List;
 
-import br.edu.fametro.portal.model.Secretario;
-import br.edu.fametro.portal.model.Usuario;
+import br.edu.fametro.portal.model.atores.Secretario;
+import br.edu.fametro.portal.model.atores.Usuario;
 
 public class SecretarioBusiness {
 	private List<Secretario> banco;

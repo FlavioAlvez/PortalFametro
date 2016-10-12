@@ -1,10 +1,13 @@
-package br.edu.fametro.portal.model;
+package br.edu.fametro.portal.model.atores;
 
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
-public class Professor extends Pessoa {
+import br.edu.fametro.portal.model.Disciplina;
+import br.edu.fametro.portal.model.enums.Genero;
+
+public class Professor extends Pessoa implements AcessaSistema {
 	private List<Disciplina> disciplinas;
 	private boolean coordenador;
 	private String matricula; // RegistroAcademico ex:2016123456

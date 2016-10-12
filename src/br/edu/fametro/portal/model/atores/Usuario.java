@@ -1,4 +1,4 @@
-package br.edu.fametro.portal.model;
+package br.edu.fametro.portal.model.atores;
 
 import org.apache.commons.codec.digest.DigestUtils;
 

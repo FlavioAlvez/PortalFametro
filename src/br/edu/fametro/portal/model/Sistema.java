@@ -1,5 +1,8 @@
 package br.edu.fametro.portal.model;
 
+import br.edu.fametro.portal.model.atores.Usuario;
+import br.edu.fametro.portal.model.enums.TipoUsuario;
+
 public class Sistema {
 	public static String geraMatricula(TipoUsuario tipo) {
 		int id;

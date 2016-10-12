@@ -7,8 +7,8 @@ import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import br.edu.fametro.portal.business.SecretarioBusiness;
-import br.edu.fametro.portal.model.Genero;
-import br.edu.fametro.portal.model.Secretario;
+import br.edu.fametro.portal.model.atores.Secretario;
+import br.edu.fametro.portal.model.enums.Genero;
 
 /**
  * Application Lifecycle Listener implementation class Persistencia

@@ -1,6 +1,8 @@
-package br.edu.fametro.portal.model;
+package br.edu.fametro.portal.model.atores;
 
 import java.util.Date;
+
+import br.edu.fametro.portal.model.enums.Genero;
 
 public abstract class Pessoa {
 	private String nome;
