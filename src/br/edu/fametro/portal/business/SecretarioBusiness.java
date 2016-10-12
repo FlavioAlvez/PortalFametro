@@ -20,17 +20,37 @@ public class SecretarioBusiness {
 	public int getSize() {
 		return banco.size();
 	}
-	
+
+	public boolean isEmpty() {
+		if (this.banco == null || this.getSize() == 0)
+			return true;
+		else
+			return false;
+	}
+
 	public boolean adicionar(Secretario novo) {
 		return banco.add(novo);
 	}
 
+	public Secretario pesquisaSecretario(Secretario s) {
+		if (!isEmpty()) {
+			for(Secretario temp: banco){
+				if(temp.equals(s)){
+					return temp;
+				}
+			}
+		}
+		return null;
+	}
+	
+	
+
 	public Secretario pesquisaUsuario(Usuario u) {
-		if (this.banco != null && this.getSize() != 0) {
-			for (int i = 0; i < getSize(); i++) {
-				if (banco.get(i).getUsuario().equals(u)) {
-					if (banco.get(i).getUsuario().getSenha().equals(u.getSenha())) {
-						return banco.get(i);
+		if (!isEmpty()) {
+			for (Secretario temp: banco) {
+				if (temp.getUsuario().equals(u)) {
+					if (temp.getUsuario().getSenha().equals(u.getSenha())) {
+						return temp;
 					}
 					break;
 				}
