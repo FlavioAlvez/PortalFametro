@@ -26,7 +26,8 @@
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
-			<%@ include file="menu-de-navegacao.jsp"%>
+			<!--  Teste do JSTL, QUANDO FOR IMPLEMENTAR, APAGUE ESTE COMENTARIO -.- -->
+			<c:import url="menu-de-navegacao.jsp"/>
 
 			<%@ include file="navegacao-de-topo.jsp"%>
 
@@ -102,12 +103,18 @@
 											<div class="col-md-1 col-sm-1 col-xs-2">
 												<input type="tel" id="tipo-atendimento-cdg"
 													name="tipo-atendimento-cdg" required="required"
-													class="form-control col-md-7 col-xs-12">
+													class="form-control col-md-7 col-xs-12" value="${param.tipo}" readonly>
 											</div>
 											<div class="col-md-5 col-sm-5 col-xs-10">
-												<input type="tel" id="tipo-atendimento-descricao"
-													name="tipo-atendimento-descricao" required="required"
-													class="form-control col-md-7 col-xs-12">
+												<c:if test="${param.tipo == '1'}">
+													<c:import url="includes/grupos-de-atendimento/secretaria-1.jsp" />
+												</c:if>
+												<c:if test="${param.tipo == '2'}">
+													<c:import url="includes/grupos-de-atendimento/financeiro-2.jsp" />
+												</c:if>
+												<c:if test="${param.tipo == '3'}">
+													<c:import url="includes/grupos-de-atendimento/relacionamento-3.jsp" />
+												</c:if>
 											</div>
 										</div>
 										<div class="form-group">
