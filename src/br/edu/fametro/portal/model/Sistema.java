@@ -16,9 +16,6 @@ public class Sistema {
 		case "PROFESSOR":
 			id = TipoUsuario.PROFESSOR.ordinal();
 			break;
-		case "COORDENADOR":
-			id = TipoUsuario.COORDENADOR.ordinal();
-			break;
 		default:
 			id = -1;
 			break;

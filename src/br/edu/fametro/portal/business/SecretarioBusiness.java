@@ -29,6 +29,13 @@ public class SecretarioBusiness {
 	}
 
 	public boolean adicionar(Secretario novo) {
+		if (!isEmpty()) {
+			for(Secretario s: banco){
+				if(s.equals(novo)){
+					return false;
+				}
+			}
+		}
 		return banco.add(novo);
 	}
 
@@ -42,8 +49,6 @@ public class SecretarioBusiness {
 		}
 		return null;
 	}
-	
-	
 
 	public Secretario pesquisaUsuario(Usuario u) {
 		if (!isEmpty()) {
