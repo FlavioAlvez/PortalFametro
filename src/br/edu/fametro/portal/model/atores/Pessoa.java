@@ -2,6 +2,7 @@ package br.edu.fametro.portal.model.atores;
 
 import java.util.Date;
 
+import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.enums.Genero;
 
 public abstract class Pessoa {
@@ -10,6 +11,7 @@ public abstract class Pessoa {
 	private String cpf;
 	private Date nascimento;
 	private Genero genero;
+	private Filiacao filiacao;
 
 	public Pessoa(String nome, String rg, String cpf, Date nascimento, Genero genero) {
 		super();
@@ -58,6 +60,14 @@ public abstract class Pessoa {
 
 	public void setGenero(Genero genero) {
 		this.genero = genero;
+	}
+
+	public Filiacao getFiliacao() {
+		return filiacao;
+	}
+
+	public void setFiliacao(Filiacao filiacao) {
+		this.filiacao = filiacao;
 	}
 
 	@Override
