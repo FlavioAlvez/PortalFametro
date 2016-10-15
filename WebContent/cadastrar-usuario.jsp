@@ -42,8 +42,8 @@
 							<div
 								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" name="search" id="search" class="form-control"
-										placeholder="Search for..."> <span
+									<input type="text" name="search" id="search"
+										class="form-control" placeholder="Search for..."> <span
 										class="input-group-btn">
 										<button class="btn btn-default" type="button">Go!</button>
 									</span>
@@ -83,6 +83,23 @@
 												action="home.jsp">
 												<div class="profile_title">
 													<div class="col-md-6">
+														<h2>Educacional</h2>
+													</div>
+												</div>
+												<br />
+												<div class="form-group">
+													<label class="col-md-12 col-sm-12 col-xs-12"
+														for="first-name">Curso <span class="required">*</span>
+													</label>
+
+													<div class="col-md-12 col-sm-12 col-xs-12">
+														<input type="text" name="nome" id="nome" required
+															class="form-control col-md-7 col-xs-12">
+													</div>
+												</div>
+												<br />
+												<div class="profile_title">
+													<div class="col-md-6">
 														<h2>Identificação</h2>
 													</div>
 												</div>
@@ -91,40 +108,86 @@
 													<label class="col-md-12 col-sm-12 col-xs-12"
 														for="first-name">Nome <span class="required">*</span>
 													</label>
-                                                    
+
 													<div class="col-md-12 col-sm-12 col-xs-12">
-														<input type="text" name="nome" id="nome"  required
+														<input type="text" name="nome" id="nome" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 												</div>
-                                                
+
 												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" 
-                                                    	for="first-name">Data de Nascimento <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-5 col-sm-5 col-xs-10"
-														for="first-name">Naturalidade <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-4 col-sm-4 col-xs-8" 
-                                                    	for="first-name">Estado Natal <span class="required">*</span>
+													<label class="col-md-4 col-sm-4 col-xs-8" for="first-name">RG
+														<span class="required">*</span>
+													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">CPF
+														<span class="required">*</span>
+													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Gênero
+														<span class="required">*</span>
 													</label>
-                                                    
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="data-nascimento" id="data-nascimento" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-5 col-sm-5 col-xs-10">
-														<input type="text" name="naturalidade" id="naturalidade" required
+
+													<div class="col-md-4 col-sm-4 col-xs-8">
+														<input type="text" name="data-nascimento"
+															id="data-nascimento" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="estado-natal" id="estado-natal" required
-															class="form-control col-md-7 col-xs-12">
+														<input type="text" name="naturalidade" id="naturalidade"
+															required class="form-control col-md-7 col-xs-12">
+													</div>
+													<div class="col-md-4 col-sm-4 col-xs-8">
+														<input type="text" name="estado-natal" id="estado-natal"
+															required class="form-control col-md-7 col-xs-12">
 													</div>
 												</div>
-                                                
+
+												<div class="form-group">
+													<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Data
+														de Nascimento <span class="required">*</span>
+													</label> <label class="col-md-5 col-sm-5 col-xs-10"
+														for="first-name">Naturalidade <span
+														class="required">*</span>
+													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Estado
+														Natal <span class="required">*</span>
+													</label>
+
+													<div class="col-md-3 col-sm-3 col-xs-6">
+														<input type="text" name="data-nascimento"
+															id="data-nascimento" required
+															class="form-control col-md-7 col-xs-12">
+													</div>
+													<div class="col-md-5 col-sm-5 col-xs-10">
+														<input type="text" name="naturalidade" id="naturalidade"
+															required class="form-control col-md-7 col-xs-12">
+													</div>
+													<div class="col-md-4 col-sm-4 col-xs-8">
+														<input type="text" name="estado-natal" id="estado-natal"
+															required class="form-control col-md-7 col-xs-12">
+													</div>
+												</div>
+
+												<br />
+												<div class="profile_title">
+													<div class="col-md-6">
+														<h2>Filiação</h2>
+													</div>
+												</div>
+												<br />
+												<div class="form-group">
+													<label class="col-md-6 col-sm-6 col-xs-12" for="first-name">Nome
+														do Pai <span class="required">*</span>
+													</label> <label class="col-md-6 col-sm-6 col-xs-12"
+														for="first-name">Nome da Mãe <span
+														class="required">*</span>
+													</label>
+
+													<div class="col-md-6 col-sm-6 col-xs-12">
+														<input type="text" name="cep" id="cep" required
+															class="form-control col-md-7 col-xs-12">
+													</div>
+													<div class="col-md-6 col-sm-6 col-xs-11">
+														<input type="text" name="logradouro" id="logradouro"
+															required class="form-control col-md-7 col-xs-12">
+													</div>
+												</div>
 												<br />
 												<div class="profile_title">
 													<div class="col-md-6">
@@ -133,39 +196,33 @@
 												</div>
 												<br />
 												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" 
-                                                    	for="first-name">CEP <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-9 col-sm-9 col-xs-18"
+													<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">CEP
+														<span class="required">*</span>
+													</label> <label class="col-md-9 col-sm-9 col-xs-18"
 														for="first-name">Logradouro <span class="required">*</span>
 													</label>
-                                                    
+
 													<div class="col-md-3 col-sm-3 col-xs-6">
 														<input type="text" name="cep" id="cep" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													<div class="col-md-9 col-sm-9 col-xs-18">
-														<input type="text" name="logradouro" id="logradouro" required
-															class="form-control col-md-7 col-xs-12">
+														<input type="text" name="logradouro" id="logradouro"
+															required class="form-control col-md-7 col-xs-12">
 													</div>
 												</div>
 												<div class="form-group">
-													<label class="col-md-5 col-sm-5 col-xs-10" 
-                                                    	for="first-name">Complemento <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-3 col-sm-3 col-xs-6" 
-                                                    	for="first-name">Número <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-4 col-sm-4 col-xs-8" 
-                                                    	for="first-name">Bairro <span class="required">*</span>
+													<label class="col-md-5 col-sm-5 col-xs-10" for="first-name">Complemento
+														<span class="required">*</span>
+													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Número
+														<span class="required">*</span>
+													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Bairro
+														<span class="required">*</span>
 													</label>
-                                                    
+
 													<div class="col-md-5 col-sm-5 col-xs-10">
-														<input type="text" name="complemento" id="complemento" required
-															class="form-control col-md-7 col-xs-12">
+														<input type="text" name="complemento" id="complemento"
+															required class="form-control col-md-7 col-xs-12">
 													</div>
 													<div class="col-md-3 col-sm-3 col-xs-6">
 														<input type="text" name="numero" id="numero" required
@@ -176,67 +233,62 @@
 															class="form-control col-md-7 col-xs-12">
 													</div>
 												</div>
-                                                
+
 												<div class="form-group">
-													<label class="col-md-6 col-sm-6 col-xs-12" 
-                                                    	for="first-name">Estado <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-6 col-sm-6 col-xs-12"
-														for="first-name">Cidade <span class="required">*</span>
+													<label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Estado
+														<span class="required">*</span>
+													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Cidade
+														<span class="required">*</span>
+													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">País
+														<span class="required">*</span>
 													</label>
-                                                    
-													<div class="col-md-6 col-sm-6 col-xs-12">
+
+													<div class="col-md-4 col-sm-4 col-xs-8">
 														<input type="text" name="estado" id="estado" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-6 col-sm-6 col-xs-12">
+													<div class="col-md-4 col-sm-4 col-xs-8">
 														<input type="text" name="cidade" id="cidade" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-												</div>
-                                                
-												<div class="form-group">
-													<label class="col-md-6 col-sm-6 col-xs-12" 
-                                                    	for="first-name">País <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-6 col-sm-6 col-xs-12"
-														for="first-name">Email <span class="required">*</span>
-													</label>
-                                                    
-													<div class="col-md-6 col-sm-6 col-xs-12">
+													<div class="col-md-4 col-sm-4 col-xs-8">
 														<input type="text" name="pais" id="pais" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="text" name="email" id="email" required
-															class="form-control col-md-7 col-xs-12">
+												</div>
+												<br />
+												<div class="profile_title">
+													<div class="col-md-6">
+														<h2>Contato</h2>
 													</div>
 												</div>
-                                                
+												<br />
 												<div class="form-group">
-													<label class="col-md-4 col-sm-4 col-xs-8" 
-                                                    	for="first-name">Telefone Residencial <span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-4 col-sm-4 col-xs-8" 
-                                                    	for="first-name">Telefone Celular <span class="required">*</span>
+													<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Email
+														<span class="required">*</span>
+													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Telefone
+														Residencial <span class="required">*</span>
+													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Telefone
+														Celular <span class="required">*</span>
+													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Telefone
+														3 <span class="required">*</span>
 													</label>
-                                                    
-                                                    <label class="col-md-4 col-sm-4 col-xs-8" 
-                                                    	for="first-name">Telefone 3 <span class="required">*</span>
-													</label>
-                                                    
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="fone-residencial" id="fone-residencial" required
+
+													<div class="col-md-3 col-sm-3 col-xs-6">
+														<input type="text" name="fone-residencial"
+															id="fone-residencial" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="fone-celular" id="fone-celular" required
+													<div class="col-md-3 col-sm-3 col-xs-6">
+														<input type="text" name="fone-residencial"
+															id="fone-residencial" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
+													<div class="col-md-3 col-sm-3 col-xs-6">
+														<input type="text" name="fone-celular" id="fone-celular"
+															required class="form-control col-md-7 col-xs-12">
+													</div>
+													<div class="col-md-3 col-sm-3 col-xs-6">
 														<input type="text" name="fone-3" id="fone-3" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
@@ -244,8 +296,8 @@
 												<div class="ln_solid"></div>
 												<div class="form-group">
 													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="submit" class="btn btn-success" name="cadastro"
-															value="Concluir cadastro">
+														<input type="submit" class="btn btn-success"
+															name="cadastro" value="Concluir cadastro">
 													</div>
 												</div>
 											</form>
