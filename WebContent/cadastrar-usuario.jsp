@@ -32,9 +32,9 @@
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
-			<%@ include file="menu-de-navegacao.jsp"%>
+			<c:import url="menu-de-navegacao.jsp"/>
 
-			<%@ include file="navegacao-de-topo.jsp"%>
+			<c:import url="navegacao-de-topo.jsp"/>
 
 			<!-- page content -->
 			<div class="right_col" role="main">
@@ -402,7 +402,7 @@
 				</div>
 			</div>
 			<!-- /page content -->
-			<%@ include file="conteudo-do-rodape.jsp"%>
+			<c:import url="conteudo-do-rodape.jsp"/>
 		</div>
 	</div>
 

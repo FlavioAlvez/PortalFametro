@@ -23,6 +23,11 @@
 <link href="css/custom.min.css" rel="stylesheet">
 </head>
 
+<!-- Switchery -->
+<link href="css/switchery/switchery.min.css" rel="stylesheet">
+<!-- Select2 -->
+<link href="css/select2/select2.min.css" rel="stylesheet">
+
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
@@ -91,91 +96,69 @@
 								<!-- panel content -->
 								<div class="x_content">
 									<br />
-									<form id="form-pesquisa" data-parsley-validate
+									<form id="form_pesquisa" data-parsley-validate
 										class="form-horizontal form-label-left"
 										action="SolicitacaoController.do">
 
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Tipo de Atendimento <span
-												class="required">*</span>
+											<label class="col-md-12 col-sm-12 col-xs-12"
+												for="first-name">Tipo da Solicitação
 											</label>
-											<div class="col-md-1 col-sm-1 col-xs-2">
-												<input type="tel" id="tipo-atendimento-cdg"
-													name="tipo-atendimento-cdg" required="required"
-													class="form-control col-md-7 col-xs-12" value="${param.tipo}" readonly>
-											</div>
-											<div class="col-md-5 col-sm-5 col-xs-10">
-												<c:if test="${param.tipo == '1'}">
-													<c:import url="includes/grupos-de-atendimento/secretaria-1.jsp" />
-												</c:if>
-												<c:if test="${param.tipo == '2'}">
-													<c:import url="includes/grupos-de-atendimento/financeiro-2.jsp" />
-												</c:if>
-												<c:if test="${param.tipo == '3'}">
-													<c:import url="includes/grupos-de-atendimento/relacionamento-3.jsp" />
-												</c:if>
+
+											<div class="col-md-9 col-sm-12 col-xs-12">
+												<select id="tipo-atendimento-pesquisa" name="tipo-atendimento-pesquisa" 
+													class="select2_single form-control" form="form_pesquisa">
+													<option>ANÁLISE DE EXCESSO DE CARGA HORÁRIA</option>
+													<option>DESCONTO DE ALUNOS TRANSF. OU GRAD. DE OUTRA IES</option>
+													<option>DESCONTO DE DEPENDENTE/FUNCIONARIO FAMETRO</option>
+													<option>DESCONTO DE EX-ALUNO</option>
+													<option>DESCONTO DE MONITORIA OU INICIAÇÃO CIENTÍFICA</option>
+													<option>DESCONTO DE PARENTESCO</option>
+												</select>
 											</div>
 										</div>
+
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="last-name">Matrícula / Cliente <span class="required">*</span>
+											<label class="col-md-3 col-sm-4 col-xs-8" for="first-name">
+												Data de Abertura
+											</label> <label class="col-md-3 col-sm-4 col-xs-8"
+												for="first-name">Data de Fechamento
+											</label> <label class="col-md-4 col-sm-4 col-xs-8"
+												for="first-name">Status
 											</label>
-											<div class="col-md-2 col-sm-2 col-xs-4">
-												<input type="text" id="matricula" name="matricula"
-													required="required" class="form-control col-md-7 col-xs-12">
-											</div>
-											<div class="col-md-4 col-sm-4 col-xs-8">
-												<input type="text" id="nome" name="nome" required="required"
+
+											<div class="col-md-3 col-sm-4 col-xs-8">
+												<input type="text" name="data-abertura"
+													id="data-abertura"
 													class="form-control col-md-7 col-xs-12">
 											</div>
-										</div>
-										<div class="form-group">
-											<label for="middle-name"
-												class="control-label col-md-3 col-sm-3 col-xs-12">Tipo
-												/ Abertura / Fechamento</label>
-											<div class="col-md-2 col-sm-2 col-xs-4">
-												<input id="tipo" class="form-control col-md-7 col-xs-12"
-													type="text" name="tipo">
+											<div class="col-md-3 col-sm-4 col-xs-8">
+												<input type="text" name="data-fechamento" id="data-fechamento"
+													class="form-control col-md-7 col-xs-12">
 											</div>
-											<div class="col-md-2 col-sm-2 col-xs-4">
-												<input id="abertura" class="form-control col-md-7 col-xs-12"
-													type="date" name="abertura">
-											</div>
-											<div class="col-md-2 col-sm-2 col-xs-4">
-												<input id="fechamento"
-													class="form-control col-md-7 col-xs-12" type="date"
-													name="fechamento">
+											<div class="col-md-3 col-sm-4 col-xs-8">
+												<select id="tipo-atendimento-descricao" name="tipo-atendimento-descricao" 
+													class="select2_single form-control" form="form_pesquisa">
+													<option>CONCLUÍDO</option>
+													<option>EM ANÁLISE</option>
+												</select>
 											</div>
 										</div>
+
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Assunto
-												<span class="required">*</span>
+											<label class="col-md-8 col-sm-3 col-xs-6" for="first-name">
+												Assunto
 											</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input id="asssunto" name="assunto"
-													class="date-picker form-control col-md-7 col-xs-12"
-													required="required" type="text">
-											</div>
-										</div>
-										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">DescriÃ§Ã£o
-												<span class="required">*</span>
-											</label>
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<textarea id="message" required="required"
-													class="form-control" name="message"
-													data-parsley-trigger="keyup" data-parsley-minlength="20"
-													data-parsley-maxlength="100"
-													data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
-													data-parsley-validation-threshold="10"></textarea>
+											<div class="col-md-9 col-sm-12 col-xs-12">
+												<input type="text" name="assunto" id="assunto"
+													class="form-control col-md-7 col-xs-12">
 											</div>
 										</div>
 										<div class="ln_solid"></div>
 										<div class="form-group">
-											<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-												<button type="submit" class="btn btn-cancel">Cancel</button>
-												<button type="submit" class="btn btn-success">Submit</button>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<button type="submit" class="btn btn-cancel">Cancelar</button>
+												<button type="submit" class="btn btn-success">Enviar</button>
 											</div>
 										</div>
 									</form>
@@ -189,7 +172,7 @@
 			</div>
 			<!-- /page content -->
 
-			<%@ include file="conteudo-do-rodape.jsp"%>
+			<c:import url="conteudo-do-rodape.jsp"/>
 		</div>
 	</div>
 
@@ -199,5 +182,19 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
+	
+	<!-- Switchery -->
+	<script src="js/switchery/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="js/select2/select2.full.min.js"></script>
+	<!-- Select2 -->
+	<script>
+		$(document).ready(function() {
+			$(".select2_single").select2({});
+			$(".select2_group").select2({});
+			$(".select2_multiple").select2({});
+		});
+	</script>
+	<!-- /Select2 -->
 </body>
 </html>
