@@ -21,6 +21,12 @@
 
 <!-- Custom Theme Style -->
 <link href="css/custom.min.css" rel="stylesheet">
+
+<!-- Switchery -->
+<link href="css/switchery/switchery.min.css" rel="stylesheet">
+<!-- Select2 -->
+<link href="css/select2/select2.min.css" rel="stylesheet">
+
 </head>
 
 <body class="nav-md">
@@ -58,7 +64,15 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Informações do Aluno/Professor/Secretário</h2>
+									<c:if test="${param.tipo.equalsIgnoreCase('aluno')}">
+										<h2>Informações do Aluno</h2>
+									</c:if>
+									<c:if test="${param.tipo.equalsIgnoreCase('professor')}">
+										<h2>Informações do Professor</h2>
+									</c:if>
+									<c:if test="${param.tipo.equalsIgnoreCase('secretario')}">
+										<h2>Informações do Secretário</h2>
+									</c:if>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -74,236 +88,314 @@
 									</ul>
 									<div class="clearfix"></div>
 								</div>
-								<div class="x_content">
-									<div class="col-md-12 col-sm-12 col-xs-12">
+								<c:choose>
+									<c:when
+										test="${param.tipo.equalsIgnoreCase('aluno') or param.tipo.equalsIgnoreCase('professor') or param.tipo.equalsIgnoreCase('secretario')}">
 										<div class="x_content">
-											<br />
-											<form id="demo-form2" data-parsley-validate
-												class="form-horizontal form-label-left" method="post"
-												action="home.jsp">
-												<div class="profile_title">
-													<div class="col-md-6">
-														<h2>Educacional</h2>
+											<div class="col-md-12 col-sm-12 col-xs-12">
+												<div class="x_content">
+													<br />
+													<c:if test="${param.tipo.equalsIgnoreCase('aluno') }">
+														<form id="formularioCadastro"
+															class="form-horizontal form-label-left" method="post"
+															action="AlunoController.do">
+													</c:if>
+													<c:if test="${param.tipo.equalsIgnoreCase('professor') }">
+														<form id="formularioCadastro"
+															class="form-horizontal form-label-left" method="post"
+															action="ProfessorController.do">
+													</c:if>
+													<c:if test="${param.tipo.equalsIgnoreCase('secretario') }">
+														<form id="formularioCadastro"
+															class="form-horizontal form-label-left" method="post"
+															action="SecretarioController.do">
+													</c:if>
+													<div class="profile_title">
+														<div class="col-md-6">
+															<h2>Identificação</h2>
+														</div>
 													</div>
-												</div>
-												<br />
-												<div class="form-group">
-													<label class="col-md-12 col-sm-12 col-xs-12"
-														for="first-name">Curso <span class="required">*</span>
-													</label>
+													<br />
+													<div class="form-group">
+														<label class="col-md-12 col-sm-12 col-xs-12"
+															for="first-name">Nome <span class="required">*</span>
+														</label>
 
-													<div class="col-md-12 col-sm-12 col-xs-12">
-														<input type="text" name="nome" id="nome" required
-															class="form-control col-md-7 col-xs-12">
+														<div class="col-md-12 col-sm-12 col-xs-12">
+															<input type="text" name="nome" id="nome" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
 													</div>
-												</div>
-												<br />
-												<div class="profile_title">
-													<div class="col-md-6">
-														<h2>Identificação</h2>
-													</div>
-												</div>
-												<br />
-												<div class="form-group">
-													<label class="col-md-12 col-sm-12 col-xs-12"
-														for="first-name">Nome <span class="required">*</span>
-													</label>
 
-													<div class="col-md-12 col-sm-12 col-xs-12">
-														<input type="text" name="nome" id="nome" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
+													<div class="form-group">
+														<label class="col-md-4 col-sm-4 col-xs-8" for="first-name">RG
+															<span class="required">*</span>
+														</label> <label class="col-md-4 col-sm-4 col-xs-8"
+															for="first-name">CPF <span class="required">*</span>
+														</label> <label class="col-md-4 col-sm-4 col-xs-8"
+															for="first-name">Gênero <span class="required">*</span>
+														</label>
 
-												<div class="form-group">
-													<label class="col-md-4 col-sm-4 col-xs-8" for="first-name">RG
-														<span class="required">*</span>
-													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">CPF
-														<span class="required">*</span>
-													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Gênero
-														<span class="required">*</span>
-													</label>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="data-nascimento"
+																id="data-nascimento" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="naturalidade" id="naturalidade"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="estado-natal" id="estado-natal"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
+													</div>
 
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="data-nascimento"
-															id="data-nascimento" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="naturalidade" id="naturalidade"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="estado-natal" id="estado-natal"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
+													<div class="form-group">
+														<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Data
+															de Nascimento <span class="required">*</span>
+														</label> <label class="col-md-5 col-sm-5 col-xs-10"
+															for="first-name">Naturalidade <span
+															class="required">*</span>
+														</label> <label class="col-md-4 col-sm-4 col-xs-8"
+															for="first-name">Estado Natal <span
+															class="required">*</span>
+														</label>
 
-												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Data
-														de Nascimento <span class="required">*</span>
-													</label> <label class="col-md-5 col-sm-5 col-xs-10"
-														for="first-name">Naturalidade <span
-														class="required">*</span>
-													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Estado
-														Natal <span class="required">*</span>
-													</label>
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<input type="text" name="data-nascimento"
+																id="data-nascimento" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-5 col-sm-5 col-xs-10">
+															<input type="text" name="naturalidade" id="naturalidade"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="estado-natal" id="estado-natal"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
+													</div>
 
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="data-nascimento"
-															id="data-nascimento" required
-															class="form-control col-md-7 col-xs-12">
+													<br />
+													<div class="profile_title">
+														<div class="col-md-6">
+															<h2>Filiação</h2>
+														</div>
 													</div>
-													<div class="col-md-5 col-sm-5 col-xs-10">
-														<input type="text" name="naturalidade" id="naturalidade"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="estado-natal" id="estado-natal"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
+													<br />
+													<div class="form-group">
+														<label class="col-md-6 col-sm-6 col-xs-12"
+															for="first-name">Nome do Pai <span
+															class="required">*</span>
+														</label> <label class="col-md-6 col-sm-6 col-xs-12"
+															for="first-name">Nome da Mãe <span
+															class="required">*</span>
+														</label>
 
-												<br />
-												<div class="profile_title">
-													<div class="col-md-6">
-														<h2>Filiação</h2>
+														<div class="col-md-6 col-sm-6 col-xs-12">
+															<input type="text" name="cep" id="cep" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-6 col-sm-6 col-xs-11">
+															<input type="text" name="logradouro" id="logradouro"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
 													</div>
-												</div>
-												<br />
-												<div class="form-group">
-													<label class="col-md-6 col-sm-6 col-xs-12" for="first-name">Nome
-														do Pai <span class="required">*</span>
-													</label> <label class="col-md-6 col-sm-6 col-xs-12"
-														for="first-name">Nome da Mãe <span
-														class="required">*</span>
-													</label>
+													<br />
+													<div class="profile_title">
+														<div class="col-md-6">
+															<h2>Endereço</h2>
+														</div>
+													</div>
+													<br />
+													<div class="form-group">
+														<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">CEP
+															<span class="required">*</span>
+														</label> <label class="col-md-9 col-sm-9 col-xs-18"
+															for="first-name">Logradouro <span
+															class="required">*</span>
+														</label>
 
-													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="text" name="cep" id="cep" required
-															class="form-control col-md-7 col-xs-12">
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<input type="text" name="cep" id="cep" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-9 col-sm-9 col-xs-18">
+															<input type="text" name="logradouro" id="logradouro"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
 													</div>
-													<div class="col-md-6 col-sm-6 col-xs-11">
-														<input type="text" name="logradouro" id="logradouro"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
-												<br />
-												<div class="profile_title">
-													<div class="col-md-6">
-														<h2>Endereço</h2>
-													</div>
-												</div>
-												<br />
-												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">CEP
-														<span class="required">*</span>
-													</label> <label class="col-md-9 col-sm-9 col-xs-18"
-														for="first-name">Logradouro <span class="required">*</span>
-													</label>
+													<div class="form-group">
+														<label class="col-md-5 col-sm-5 col-xs-10"
+															for="first-name">Complemento <span
+															class="required">*</span>
+														</label> <label class="col-md-3 col-sm-3 col-xs-6"
+															for="first-name">Número <span class="required">*</span>
+														</label> <label class="col-md-4 col-sm-4 col-xs-8"
+															for="first-name">Bairro <span class="required">*</span>
+														</label>
 
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="cep" id="cep" required
-															class="form-control col-md-7 col-xs-12">
+														<div class="col-md-5 col-sm-5 col-xs-10">
+															<input type="text" name="complemento" id="complemento"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<input type="text" name="numero" id="numero" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="bairro" id="bairro" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
 													</div>
-													<div class="col-md-9 col-sm-9 col-xs-18">
-														<input type="text" name="logradouro" id="logradouro"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="col-md-5 col-sm-5 col-xs-10" for="first-name">Complemento
-														<span class="required">*</span>
-													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Número
-														<span class="required">*</span>
-													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Bairro
-														<span class="required">*</span>
-													</label>
 
-													<div class="col-md-5 col-sm-5 col-xs-10">
-														<input type="text" name="complemento" id="complemento"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="numero" id="numero" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="bairro" id="bairro" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
+													<div class="form-group">
+														<label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Estado
+															<span class="required">*</span>
+														</label> <label class="col-md-4 col-sm-4 col-xs-8"
+															for="first-name">Cidade <span class="required">*</span>
+														</label> <label class="col-md-4 col-sm-4 col-xs-8"
+															for="first-name">País <span class="required">*</span>
+														</label>
 
-												<div class="form-group">
-													<label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Estado
-														<span class="required">*</span>
-													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">Cidade
-														<span class="required">*</span>
-													</label> <label class="col-md-4 col-sm-4 col-xs-8" for="first-name">País
-														<span class="required">*</span>
-													</label>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="estado" id="estado" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="cidade" id="cidade" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-4 col-sm-4 col-xs-8">
+															<input type="text" name="pais" id="pais" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+													</div>
+													<br />
+													<div class="profile_title">
+														<div class="col-md-6">
+															<h2>Contato</h2>
+														</div>
+													</div>
+													<br />
+													<div class="form-group">
+														<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Email
+															<span class="required">*</span>
+														</label> <label class="col-md-3 col-sm-3 col-xs-6"
+															for="first-name">Telefone Residencial <span
+															class="required">*</span>
+														</label> <label class="col-md-3 col-sm-3 col-xs-6"
+															for="first-name">Telefone Celular <span
+															class="required">*</span>
+														</label> <label class="col-md-3 col-sm-3 col-xs-6"
+															for="first-name">Telefone 3 <span
+															class="required">*</span>
+														</label>
 
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="estado" id="estado" required
-															class="form-control col-md-7 col-xs-12">
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<input type="text" name="fone-residencial"
+																id="fone-residencial" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<input type="text" name="fone-residencial"
+																id="fone-residencial" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<input type="text" name="fone-celular" id="fone-celular"
+																required class="form-control col-md-7 col-xs-12">
+														</div>
+														<div class="col-md-3 col-sm-3 col-xs-6">
+															<input type="text" name="fone-3" id="fone-3" required
+																class="form-control col-md-7 col-xs-12">
+														</div>
 													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="cidade" id="cidade" required
-															class="form-control col-md-7 col-xs-12">
+													<br />
+													<c:if
+														test="${param.tipo.equalsIgnoreCase('aluno') or param.tipo.equalsIgnoreCase('professor')}">
+														<div class="profile_title">
+															<div class="col-md-6">
+																<h2>Educacional</h2>
+															</div>
+														</div>
+														<c:if test="${param.tipo.equalsIgnoreCase('aluno') }">
+															<br />
+															<div class="form-group">
+																<label class="col-md-12 col-sm-12 col-xs-12">Curso</label>
+																<div class="col-md-12 col-sm-12 col-xs-12">
+																	<select class="select2_single form-control">
+																		<option></option>
+																		<option value="AK">Alaska</option>
+																		<option value="HI">Hawaii</option>
+																		<option value="CA">California</option>
+																		<option value="NV">Nevada</option>
+																		<option value="OR">Oregon</option>
+																		<option value="WA">Washington</option>
+																		<option value="AZ">Arizona</option>
+																		<option value="CO">Colorado</option>
+																		<option value="ID">Idaho</option>
+																		<option value="MT">Montana</option>
+																		<option value="NE">Nebraska</option>
+																		<option value="NM">New Mexico</option>
+																		<option value="ND">North Dakota</option>
+																		<option value="UT">Utah</option>
+																		<option value="WY">Wyoming</option>
+																		<option value="AR">Arkansas</option>
+																		<option value="IL">Illinois</option>
+																		<option value="IA">Iowa</option>
+																		<option value="KS">Kansas</option>
+																		<option value="KY">Kentucky</option>
+																		<option value="LA">Louisiana</option>
+																		<option value="MN">Minnesota</option>
+																		<option value="MS">Mississippi</option>
+																		<option value="MO">Missouri</option>
+																		<option value="OK">Oklahoma</option>
+																		<option value="SD">South Dakota</option>
+																		<option value="TX">Texas</option>
+																	</select>
+																</div>
+															</div>
+														</c:if>
+														<c:if test="${param.tipo.equalsIgnoreCase('professor') }">
+															<div class="form-group">
+																<label class="col-md-12 col-sm-12 col-xs-12">Disciplinas</label>
+																<div class="col-md-12 col-sm-12 col-xs-12">
+																	<select class="select2_multiple form-control"
+																		multiple="multiple" name="">
+																		<option>Option one</option>
+																		<option>Option two</option>
+																		<option>Option three</option>
+																		<option>Option four</option>
+																		<option>Option five</option>
+																		<option>Option six</option>
+																	</select>
+																</div>
+															</div>
+															<div class="form-group">
+																<div class="col-md-12 col-sm-12 col-xs-12">
+																	<label> <input type="checkbox"
+																		class="js-switch" /> Coordenador
+																	</label>
+																</div>
+															</div>
+														</c:if>
+													</c:if>
+													<div class="ln_solid"></div>
+													<div class="form-group">
+														<div class="col-md-6 col-sm-6 col-xs-12">
+															<input type="submit" class="btn btn-success"
+																name="action" value="Concluir cadastro">
+														</div>
 													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input type="text" name="pais" id="pais" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
+													</form>
 												</div>
-												<br />
-												<div class="profile_title">
-													<div class="col-md-6">
-														<h2>Contato</h2>
-													</div>
-												</div>
-												<br />
-												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Email
-														<span class="required">*</span>
-													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Telefone
-														Residencial <span class="required">*</span>
-													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Telefone
-														Celular <span class="required">*</span>
-													</label> <label class="col-md-3 col-sm-3 col-xs-6" for="first-name">Telefone
-														3 <span class="required">*</span>
-													</label>
-
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="fone-residencial"
-															id="fone-residencial" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="fone-residencial"
-															id="fone-residencial" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="fone-celular" id="fone-celular"
-															required class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input type="text" name="fone-3" id="fone-3" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
-												<div class="ln_solid"></div>
-												<div class="form-group">
-													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="submit" class="btn btn-success"
-															name="cadastro" value="Concluir cadastro">
-													</div>
-												</div>
-											</form>
+											</div>
 										</div>
-									</div>
-								</div>
+									</c:when>
+									<c:otherwise>Parâmetro Inválido</c:otherwise>
+								</c:choose>
 							</div>
 						</div>
 					</div>
@@ -320,5 +412,19 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
+
+	<!-- Switchery -->
+	<script src="js/switchery/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="js/select2/select2.full.min.js"></script>
+	<!-- Select2 -->
+	<script>
+		$(document).ready(function() {
+			$(".select2_single").select2({});
+			$(".select2_group").select2({});
+			$(".select2_multiple").select2({});
+		});
+	</script>
+	<!-- /Select2 -->
 </body>
 </html>
