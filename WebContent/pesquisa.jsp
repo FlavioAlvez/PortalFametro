@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt" %>
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -10,10 +9,10 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="author" content="FlavioAlves">
+<meta name="author" content="EduardoRoseo">
 <link rel="shortcut icon" href="img/favicon.ico">
 
-<title>Portal Fametro | Solicitação</title>
+<title>Portal Fametro | Pesquisa</title>
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -28,10 +27,9 @@
 	<div class="container body">
 		<div class="main_container">
 		
-			<jsp:useBean id="now" class="java.util.Date" />
 			<c:import url="menu-de-navegacao.jsp"/>
 
-			<%@ include file="navegacao-de-topo.jsp"%>
+			<c:import url="navegacao-de-topo.jsp"/>
 
 			<!-- page content -->
 			<div class="right_col" role="main">
@@ -40,7 +38,7 @@
 					<div class="page-title">
 						<!-- page title left -->
 						<div class="title_left">
-							<h3>Solicitação</h3>
+							<h3>Pesquisa de Solicitações</h3>
 						</div>
 
 						<!-- /page title left -->
@@ -70,7 +68,7 @@
 								<!-- panel header -->
 								<div class="x_title">
 									<!-- panel header title -->
-									<h2>Registro da Solicitação</h2>
+									<h2>Pesquisa</h2>
 									<!-- /panel header title -->
 									<!-- panel header toolox -->
 									<ul class="nav navbar-right panel_toolbox">
@@ -93,13 +91,14 @@
 								<!-- panel content -->
 								<div class="x_content">
 									<br />
-									<form id="demo-form2" data-parsley-validate
+									<form id="form-pesquisa" data-parsley-validate
 										class="form-horizontal form-label-left"
 										action="SolicitacaoController.do">
 
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Tipo de Atendimento
+												for="first-name">Tipo de Atendimento <span
+												class="required">*</span>
 											</label>
 											<div class="col-md-1 col-sm-1 col-xs-2">
 												<input type="tel" id="tipo-atendimento-cdg"
@@ -120,17 +119,15 @@
 										</div>
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="last-name">Matrícula / Cliente 
+												for="last-name">Matrícula / Cliente <span class="required">*</span>
 											</label>
 											<div class="col-md-2 col-sm-2 col-xs-4">
 												<input type="text" id="matricula" name="matricula"
-													required="required" class="form-control col-md-7 col-xs-12"
-													value="0-2016123456" readonly>
+													required="required" class="form-control col-md-7 col-xs-12">
 											</div>
-											<div class="col-md-4 col-sm-5 col-xs-10">
+											<div class="col-md-4 col-sm-4 col-xs-8">
 												<input type="text" id="nome" name="nome" required="required"
-													class="form-control col-md-5 col-xs-10"
-													value="FRANCISCO JOSE MARIA PEREIRA DA SILVA" readonly>
+													class="form-control col-md-7 col-xs-12">
 											</div>
 										</div>
 										<div class="form-group">
@@ -143,7 +140,7 @@
 											</div>
 											<div class="col-md-2 col-sm-2 col-xs-4">
 												<input id="abertura" class="form-control col-md-7 col-xs-12"
-													type="date" name="abertura" value="${now}" disabled>
+													type="date" name="abertura">
 											</div>
 											<div class="col-md-2 col-sm-2 col-xs-4">
 												<input id="fechamento"
@@ -162,7 +159,7 @@
 											</div>
 										</div>
 										<div class="form-group">
-											<label class="control-label col-md-3 col-sm-3 col-xs-12">Descrição
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">DescriÃ§Ã£o
 												<span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
