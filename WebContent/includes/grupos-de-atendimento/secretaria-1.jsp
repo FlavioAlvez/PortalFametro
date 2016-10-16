@@ -1,5 +1,5 @@
 <select id="tipo-atendimento-descricao" name="tipo-atendimento-descricao" required="required" 
-	class="form-control col-md-7 col-xs-12" form="demo-form2">
+	class="select2_single form-control" form="demo-form2">
 	<option>Declaração de Matrícula ou Histórico</option>
 	<option>Ajuste de Disciplina</option>
 	<option>Aproveitamento de disciplina</option>

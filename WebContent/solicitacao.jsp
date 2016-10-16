@@ -24,6 +24,11 @@
 <link href="css/custom.min.css" rel="stylesheet">
 </head>
 
+<!-- Switchery -->
+<link href="css/switchery/switchery.min.css" rel="stylesheet">
+<!-- Select2 -->
+<link href="css/select2/select2.min.css" rel="stylesheet">
+
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
@@ -31,7 +36,7 @@
 			<jsp:useBean id="now" class="java.util.Date" />
 			<c:import url="menu-de-navegacao.jsp"/>
 
-			<%@ include file="navegacao-de-topo.jsp"%>
+			<c:import url="navegacao-de-topo.jsp"/>
 
 			<!-- page content -->
 			<div class="right_col" role="main">
@@ -99,7 +104,7 @@
 
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
-												for="first-name">Tipo de Atendimento
+												for="first-name">Tipo de Atendimento*
 											</label>
 											<div class="col-md-1 col-sm-1 col-xs-2">
 												<input type="tel" id="tipo-atendimento-cdg"
@@ -135,12 +140,22 @@
 										</div>
 										<div class="form-group">
 											<label for="middle-name"
-												class="control-label col-md-3 col-sm-3 col-xs-12">Tipo
+												class="control-label col-md-3 col-sm-3 col-xs-12">Grupo
 												/ Abertura / Fechamento</label>
 											<div class="col-md-2 col-sm-2 col-xs-4">
-												<input id="tipo" class="form-control col-md-7 col-xs-12"
-													type="text" name="tipo">
-											</div>
+												<c:if test="${param.tipo == '1'}">
+													<input id="grupo" class="form-control col-md-7 col-xs-12"
+													type="text" name="grupo" value="SECRETARIA" readonly>
+												</c:if>
+												<c:if test="${param.tipo == '2'}">
+													<input id="grupo" class="form-control col-md-7 col-xs-12"
+													type="text" name="grupo" value="FINANCEIRO" readonly>
+												</c:if>
+												<c:if test="${param.tipo == '3'}">
+													<input id="grupo" class="form-control col-md-7 col-xs-12"
+													type="text" name="grupo" value="RELACIONAMENTO" readonly>
+												</c:if>
+											</div>			
 											<div class="col-md-2 col-sm-2 col-xs-4">
 												<input id="abertura" class="form-control col-md-7 col-xs-12"
 													type="date" name="abertura" value="${now}" disabled>
@@ -148,7 +163,7 @@
 											<div class="col-md-2 col-sm-2 col-xs-4">
 												<input id="fechamento"
 													class="form-control col-md-7 col-xs-12" type="date"
-													name="fechamento">
+													name="fechamento" disabled>
 											</div>
 										</div>
 										<div class="form-group">
@@ -156,7 +171,7 @@
 												<span class="required">*</span>
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<input id="asssunto" name="assunto"
+												<input id="assunto" name="assunto"
 													class="date-picker form-control col-md-7 col-xs-12"
 													required="required" type="text">
 											</div>
@@ -177,8 +192,8 @@
 										<div class="ln_solid"></div>
 										<div class="form-group">
 											<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
-												<button type="submit" class="btn btn-cancel">Cancel</button>
-												<button type="submit" class="btn btn-success">Submit</button>
+												<button type="submit" class="btn btn-cancel">Cancelar</button>
+												<button type="submit" class="btn btn-success">Enviar</button>
 											</div>
 										</div>
 									</form>
@@ -192,7 +207,7 @@
 			</div>
 			<!-- /page content -->
 
-			<%@ include file="conteudo-do-rodape.jsp"%>
+			<c:import url="conteudo-do-rodape.jsp"/>
 		</div>
 	</div>
 
@@ -202,5 +217,19 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
+	
+	<!-- Switchery -->
+	<script src="js/switchery/switchery.min.js"></script>
+	<!-- Select2 -->
+	<script src="js/select2/select2.full.min.js"></script>
+	<!-- Select2 -->
+	<script>
+		$(document).ready(function() {
+			$(".select2_single").select2({});
+			$(".select2_group").select2({});
+			$(".select2_multiple").select2({});
+		});
+	</script>
+	<!-- /Select2 -->
 </body>
 </html>
