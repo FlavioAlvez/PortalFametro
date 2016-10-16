@@ -44,7 +44,7 @@ public class Persistencia implements ServletContextListener {
 		SecretarioBusiness bancoSecretario = new SecretarioBusiness();
 
 		System.out.println("Adicionando o primeiro elemento...");
-		bancoSecretario.adicionar(new Secretario("Fulano Secretario da Silva", "123456789", "123.456.789-00",
+		bancoSecretario.adicionar(new Secretario(0, "Fulano Secretario da Silva", "123456789", "123.456.789-00",
 				new Date(), Genero.MASCULINO));
 
 		// Teste

@@ -1,6 +1,6 @@
 package br.edu.fametro.portal.model.solicitacoes;
 
-import br.edu.fametro.portal.model.Disciplina;
+import br.edu.fametro.portal.model.enums.Disciplina;
 import br.edu.fametro.portal.model.atores.AcessaSistema;
 import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.enums.Avaliacao;
