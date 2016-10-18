@@ -30,8 +30,8 @@ public class SecretarioBusiness {
 
 	public boolean adicionar(Secretario novo) {
 		if (!isEmpty()) {
-			for(Secretario s: banco){
-				if(s.equals(novo)){
+			for (Secretario s : banco) {
+				if (s.equals(novo)) {
 					return false;
 				}
 			}
@@ -41,8 +41,8 @@ public class SecretarioBusiness {
 
 	public Secretario pesquisaSecretario(Secretario s) {
 		if (!isEmpty()) {
-			for(Secretario temp: banco){
-				if(temp.equals(s)){
+			for (Secretario temp : banco) {
+				if (temp.equals(s)) {
 					return temp;
 				}
 			}
@@ -52,7 +52,7 @@ public class SecretarioBusiness {
 
 	public Secretario pesquisaUsuario(Usuario u) {
 		if (!isEmpty()) {
-			for (Secretario temp: banco) {
+			for (Secretario temp : banco) {
 				if (temp.getUsuario().equals(u)) {
 					if (temp.getUsuario().getSenha().equals(u.getSenha())) {
 						return temp;

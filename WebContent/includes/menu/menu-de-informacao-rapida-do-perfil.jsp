@@ -5,7 +5,7 @@
 	</div>
 	<div class="profile_info">
 		<span>Bem vindo,</span>
-		<h2>Admin</h2>
+		<h2>${usuarioLogado.getPrimeiroNome() }</h2>
 	</div>
 </div>
 <!-- /menu profile quick info -->
