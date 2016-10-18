@@ -25,6 +25,10 @@ public abstract class Pessoa {
 	public String getNome() {
 		return nome;
 	}
+	
+	public String getPrimeiroNome(){
+		return nome.split(" ")[0];
+	}
 
 	public void setNome(String nome) {
 		this.nome = nome;

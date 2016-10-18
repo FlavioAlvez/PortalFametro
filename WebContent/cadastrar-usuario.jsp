@@ -194,11 +194,11 @@
 														</label>
 
 														<div class="col-md-6 col-sm-6 col-xs-12">
-															<input type="text" name="cep" id="cep" required
+															<input type="text" name="pai" id="pai" required
 																class="form-control col-md-7 col-xs-12">
 														</div>
 														<div class="col-md-6 col-sm-6 col-xs-11">
-															<input type="text" name="logradouro" id="logradouro"
+															<input type="text" name="mae" id="mae"
 																required class="form-control col-md-7 col-xs-12">
 														</div>
 													</div>
@@ -294,8 +294,8 @@
 														</label>
 
 														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="fone-residencial"
-																id="fone-residencial" required
+															<input type="text" name="email"
+																id="email" required
 																class="form-control col-md-7 col-xs-12">
 														</div>
 														<div class="col-md-3 col-sm-3 col-xs-6">
@@ -325,7 +325,7 @@
 															<div class="form-group">
 																<label class="col-md-12 col-sm-12 col-xs-12">Curso</label>
 																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<select class="select2_single form-control">
+																	<select name="curso" id="curso" class="select2_single form-control">
 																		<option></option>
 																		<option value="AK">Alaska</option>
 																		<option value="HI">Hawaii</option>
@@ -362,7 +362,7 @@
 															<div class="form-group">
 																<label class="col-md-12 col-sm-12 col-xs-12">Disciplinas</label>
 																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<select class="select2_multiple form-control"
+																	<select name="disciplina" id="disciplina" class="select2_multiple form-control"
 																		multiple="multiple" name="">
 																		<option>Option one</option>
 																		<option>Option two</option>
@@ -375,7 +375,7 @@
 															</div>
 															<div class="form-group">
 																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<label> <input type="checkbox"
+																	<label> <input name="coordenador" id="coordenador" type="checkbox"
 																		class="js-switch" /> Coordenador
 																	</label>
 																</div>

@@ -93,14 +93,12 @@ public class LoginController extends HttpServlet {
 		case 2: // professor 2-2016123456
 
 			break;
-		case 3: // coordenador 3-2016123456
-
-			break;
 		default:// buxo
 
 			break;
 		}
-		request.getRequestDispatcher("home.jsp").forward(request, response);
+//		request.getRequestDispatcher("home.jsp").forward(request, response);
+		response.sendRedirect("home.jsp");
 	}
 
 	private void logout(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -108,7 +106,7 @@ public class LoginController extends HttpServlet {
 
 		session.setAttribute("usuarioLogado", null);
 		session.invalidate();
-		request.getRequestDispatcher("login.jsp").forward(request, response);
+		response.sendRedirect("login.jsp");
 	}
 
 	private void verificarSession(HttpServletRequest request, HttpServletResponse response)
