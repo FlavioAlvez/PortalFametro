@@ -46,7 +46,7 @@ public class Persistencia implements ServletContextListener {
 		System.out.println("Gerando persistencia...");
 		
 		System.out.println("Listando enums...");
-		Curso bancoCursos[] = Curso.values();
+		Curso bancoCursos[] = Curso.values( );
 		Disciplina bancoDisciplinas[] = Disciplina.values();
 
 		System.out.println("Instanciando banco...");
