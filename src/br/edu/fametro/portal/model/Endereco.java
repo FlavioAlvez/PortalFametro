@@ -10,6 +10,10 @@ public class Endereco {
 	private String cidade;
 	private String pais;
 
+	public Endereco() {
+
+	}
+
 	public String getCep() {
 		return cep;
 	}
@@ -66,11 +70,11 @@ public class Endereco {
 		this.cidade = cidade;
 	}
 
-	public String getpais() {
+	public String getPais() {
 		return pais;
 	}
 
-	public void setpais(String pais) {
+	public void setPais(String pais) {
 		this.pais = pais;
 	}
 }

@@ -15,6 +15,7 @@ import br.edu.fametro.portal.model.enums.TipoUsuario;
 public class Professor extends Pessoa implements AcessaSistema {
 	private String matricula;
 	private Endereco endereco;
+	private String email;
 	private Telefone residencial;
 	private Telefone celular;
 	private Telefone opcional;
@@ -47,6 +48,14 @@ public class Professor extends Pessoa implements AcessaSistema {
 		this.endereco = endereco;
 	}
 
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+
 	public Telefone getResidencial() {
 		return residencial;
 	}
@@ -77,6 +86,10 @@ public class Professor extends Pessoa implements AcessaSistema {
 
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
+	}
+	
+	public void addDisciplina(Disciplina disciplina){
+		disciplinas.add(disciplina);
 	}
 
 	public boolean isCoordenador() {

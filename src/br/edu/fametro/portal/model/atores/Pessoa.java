@@ -12,6 +12,8 @@ public abstract class Pessoa {
 	private Date nascimento;
 	private Genero genero;
 	private Filiacao filiacao;
+	private String naturalidade;
+	private String estadoNatal;
 
 	public Pessoa(String nome, String rg, String cpf, Date nascimento, Genero genero) {
 		super();
@@ -25,8 +27,8 @@ public abstract class Pessoa {
 	public String getNome() {
 		return nome;
 	}
-	
-	public String getPrimeiroNome(){
+
+	public String getPrimeiroNome() {
 		return nome.split(" ")[0];
 	}
 
@@ -72,6 +74,22 @@ public abstract class Pessoa {
 
 	public void setFiliacao(Filiacao filiacao) {
 		this.filiacao = filiacao;
+	}
+
+	public String getNaturalidade() {
+		return naturalidade;
+	}
+
+	public void setNaturalidade(String naturalidade) {
+		this.naturalidade = naturalidade;
+	}
+
+	public String getEstadoNatal() {
+		return estadoNatal;
+	}
+
+	public void setEstadoNatal(String estadoNatal) {
+		this.estadoNatal = estadoNatal;
 	}
 
 	@Override

@@ -137,16 +137,16 @@
 														</label>
 
 														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="data-nascimento"
-																id="data-nascimento" required
+															<input type="text" name="rg"
+																id="rg" required
 																class="form-control col-md-7 col-xs-12">
 														</div>
 														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="naturalidade" id="naturalidade"
+															<input type="text" name="cpf" id="cpf"
 																required class="form-control col-md-7 col-xs-12">
 														</div>
 														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="estado-natal" id="estado-natal"
+															<input type="text" name="genero" id="genero"
 																required class="form-control col-md-7 col-xs-12">
 														</div>
 													</div>
@@ -364,12 +364,12 @@
 																<div class="col-md-12 col-sm-12 col-xs-12">
 																	<select name="disciplina" id="disciplina" class="select2_multiple form-control"
 																		multiple="multiple" name="">
-																		<option>Option one</option>
-																		<option>Option two</option>
-																		<option>Option three</option>
-																		<option>Option four</option>
-																		<option>Option five</option>
-																		<option>Option six</option>
+																		<option value="1">Option one</option>
+																		<option value="2">Option two</option>
+																		<option value="3">Option three</option>
+																		<option value="4">Option four</option>
+																		<option value="5">Option five</option>
+																		<option value="6">Option six</option>
 																	</select>
 																</div>
 															</div>
@@ -386,7 +386,7 @@
 													<div class="form-group">
 														<div class="col-md-6 col-sm-6 col-xs-12">
 															<input type="submit" class="btn btn-success"
-																name="action" value="Concluir cadastro">
+																name="action" value="Cadastrar">
 														</div>
 													</div>
 													</form>

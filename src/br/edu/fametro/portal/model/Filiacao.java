@@ -4,6 +4,10 @@ public class Filiacao {
 	private String pai;
 	private String mae;
 
+	public Filiacao() {
+
+	}
+
 	public Filiacao(String pai, String mae) {
 		super();
 		this.pai = pai;
