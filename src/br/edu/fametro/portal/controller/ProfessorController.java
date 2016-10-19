@@ -69,7 +69,7 @@ public class ProfessorController extends HttpServlet {
 		String rg = request.getParameter("rg");
 		String cpf = request.getParameter("cpf");
 		String genero = request.getParameter("genero");
-		String nascimento = request.getParameter("data-nascimento");
+		String nascimento = request.getParameter("nascimento");
 		String naturalidade = request.getParameter("naturalidade");
 		String estadoNatal = request.getParameter("estado-natal");
 
