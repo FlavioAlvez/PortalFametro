@@ -395,12 +395,9 @@
 															<select name="disciplina" id="disciplina" 
                                                             class="select2_multiple form-control"
 																		multiple="multiple" name="">
-																		<option>Option one</option>
-																		<option>Option two</option>
-																		<option>Option three</option>
-																		<option>Option four</option>
-																		<option>Option five</option>
-																		<option>Option six</option>
+																		<c:forEach var="disciplina" items="${bancoDisciplina }">
+																			<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
+																		</c:forEach>
 																	</select>
 																</div>
 															</div>

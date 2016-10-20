@@ -1,7 +1,6 @@
 package br.edu.fametro.portal.listener;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 
@@ -44,17 +43,27 @@ public class Persistencia implements ServletContextListener {
 		// TODO Auto-generated method stub
 		System.out.println("Iniciando aplicação...");
 		System.out.println("Gerando persistencia...");
-		
+
 		System.out.println("Listando enums...");
-		Curso bancoCursos[] = Curso.values( );
-		Disciplina bancoDisciplinas[] = Disciplina.values();
+		Curso listaCursos[] = Curso.values();
+		Disciplina listaDisciplinas[] = Disciplina.values();
+
+		List<Curso> bancoCurso = new ArrayList<Curso>();
+		List<Disciplina> bancoDisciplina = new ArrayList<>();
+
+		for (Curso c : listaCursos) {
+			bancoCurso.add(c);
+		}
+		for (Disciplina d : listaDisciplinas) {
+			bancoDisciplina.add(d);
+		}
 
 		System.out.println("Instanciando banco...");
 		SecretarioBusiness bancoSecretario = new SecretarioBusiness();
-		
+
 		System.out.println("Adicionando o primeiro elemento...");
-		bancoSecretario.adicionar(new Secretario(bancoSecretario.getSize(), "Secretario Tester", "123456789", "123.456.789-00",
-				new Date(), Genero.MASCULINO));
+		bancoSecretario.adicionar(new Secretario(bancoSecretario.getSize(), "Secretario Tester", "123456789",
+				"123.456.789-00", new Date(), Genero.MASCULINO));
 
 		// Teste
 		System.out.println("Secretários (" + bancoSecretario.getSize() + "):");
@@ -64,9 +73,13 @@ public class Persistencia implements ServletContextListener {
 		}
 		System.out.println("----------\n");
 
+		System.out.println("Colocando enums no contexto da aplicação...");
+		contexto.getServletContext().setAttribute("bancoCurso", bancoCurso);
+		contexto.getServletContext().setAttribute("bancoDisciplina", bancoDisciplina);
+
 		System.out.println("Colocando banco no contexto da aplicação...");
 		contexto.getServletContext().setAttribute("bancoSecretario", bancoSecretario);
-		
+
 		System.out.println("Inicialização concluída...");
 	}
 
