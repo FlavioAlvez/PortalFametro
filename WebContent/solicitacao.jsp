@@ -123,6 +123,24 @@
 												</c:if>
 											</div>
 										</div>
+								
+										<div id="solicitacao-disciplina" class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12"
+												for="disciplina"> 
+												Escolha a Disciplina												
+											</label>
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<select name="disciplina" id="disciplina"
+													class="select2_multiple form-control col-md-7 col-xs-12"
+													multiple="multiple">
+													<c:forEach var="disciplina"
+														items="${bancoDisciplina }">
+														<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
+													</c:forEach>
+												</select>
+											</div>
+										</div>
+											
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12"
 												for="last-name">Matrícula / Cliente 
@@ -217,6 +235,8 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
+	
+	<script src="js/solicitacoes.js"></script>
 	
 	<!-- Switchery -->
 	<script src="js/switchery/switchery.min.js"></script>
