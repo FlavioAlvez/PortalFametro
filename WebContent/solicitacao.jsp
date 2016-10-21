@@ -165,17 +165,20 @@
 													class="form-control col-md-7 col-xs-12" type="date"
 													name="fechamento" disabled>
 											</div>
-										</div>
+										</div>																				
+										
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Assunto
 												<span class="required">*</span>
 											</label>
+											
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<input id="assunto" name="assunto"
 													class="date-picker form-control col-md-7 col-xs-12"
 													required="required" type="text">
 											</div>
 										</div>
+										
 										<div class="form-group">
 											<label class="control-label col-md-3 col-sm-3 col-xs-12">Descrição
 												<span class="required">*</span>
@@ -189,6 +192,40 @@
 													data-parsley-validation-threshold="10"></textarea>
 											</div>
 										</div>
+										
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">Avaliação / Disciplina 
+											</label>			
+											
+														
+											<div class="col-md-3 col-sm-2 col-xs-4">												
+												<select name="avaliacao" id="avaliacao" class="select2_multiple form-control">
+													<option></option>
+													<option>AV1</option>
+													<option>AV2</option>
+													<option>AVF</option>																		
+												</select>												
+											</div>
+											
+											<div class="col-md-3 col-sm-2 col-xs-4">
+												<select name="disciplina" id="disciplina" class="select2_multiple form-control">
+													<option></option>																															
+												</select>
+											</div>
+										</div>									
+										
+										<div class="form-group">
+											<label class="control-label col-md-3 col-sm-3 col-xs-12">Professor
+												<span class="required">*</span>
+											</label>
+											
+											<div class="col-md-6 col-sm-6 col-xs-12">
+												<input id="professor" name="professor"
+													class="date-picker form-control col-md-7 col-xs-12"
+													required="required" type="text">
+											</div>
+										</div>
+										
 										<div class="ln_solid"></div>
 										<div class="form-group">
 											<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
