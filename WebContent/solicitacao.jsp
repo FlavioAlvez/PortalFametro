@@ -206,7 +206,7 @@
 													</div>
 												</div>
 
-												<div id="divAv" onload="carregaEscondidos()">
+												<div class="escondido" id="divAv">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">Avaliação</label>
 
 
@@ -222,7 +222,7 @@
 													</div>
 												</div>
 												
-												<div id="divDis" onload="carregaEscondidos()">
+												<div class="escondido" id="divDis">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">Disciplina</label>
 													
 													<div class="col-md-6 col-sm-5 col-xs-10">
