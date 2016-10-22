@@ -1,6 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="pt">
 <head>
@@ -26,14 +26,27 @@
 <link href="css/switchery/switchery.min.css" rel="stylesheet">
 <!-- Select2 -->
 <link href="css/select2/select2.min.css" rel="stylesheet">
+<!-- Mascara -->
+<script type="text/javascript" src="jquery/jquery.js"></script>
+<script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
 
 </head>
+
+<script type="text/javascript">
+$(document).ready(function(){
+		$("#nascimento").mask("99/99/9999");
+        $("#cpf").mask("999.999.999-99");
+        $("#cep").mask("99999-999");
+        $("#fone-residencial").mask("(99)9999-9999");
+        $("#fone-celular").mask("(99)99999-9999");
+        $("#fone-3").mask("(99)99999-9999");        
+});
+</script>
 
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
 			<c:import url="menu-de-navegacao.jsp" />
-
 			<c:import url="navegacao-de-topo.jsp" />
 
 			<!-- page content -->
@@ -130,9 +143,13 @@
 													<div class="form-group">
 														<label class="col-md-4 col-sm-4 col-xs-8" for="rg">RG
 															<span class="required">*</span>
-														</label> <label class="col-md-4 col-sm-4 col-xs-8" for="cpf">CPF
+														</label> 
+														
+														<label class="col-md-4 col-sm-4 col-xs-8" for="cpf">CPF
 															<span class="required">*</span>
-														</label> <label class="col-md-4 col-sm-4 col-xs-8" for="genero">Gênero
+														</label> 
+														
+														<label class="col-md-4 col-sm-4 col-xs-8" for="genero">Gênero
 															<span class="required">*</span>
 														</label>
 
@@ -146,9 +163,12 @@
 															class="form-control col-md-7 col-xs-12">
 														</div>
 
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="genero" id="genero" required
-																class="form-control col-md-7 col-xs-12">
+														<div class="col-md-4 col-sm-4 col-xs-8">															
+															<select name="genero" id="genero" class="form-control col-md-7 col-xs-12">
+																<option></option>
+																<option>Masculino</option>
+																<option>Feminino</option>																		
+															</select>
 														</div>
 													</div>
 
@@ -334,11 +354,10 @@
 														<c:if test="${param.tipo.equalsIgnoreCase('aluno') }">
 															<br />
 															<div class="form-group">
-																<label class="col-md-12 col-sm-12 col-xs-12" for="curso">
-																	Curso</label>
+															
+															<label class="col-md-12 col-sm-12 col-xs-12" for="curso">Curso</label>
 																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<select name="curso" id="curso"
-																		class="select2_single form-control" required>
+																	<select name="curso" id="curso" class="select2_single form-control" required>
 																		<option value="" selected></option>
 																		<c:forEach var="curso"
 																			items="${bancoCurso }">
@@ -346,22 +365,24 @@
 																		</c:forEach>
 																	</select>
 																</div>
+																
 															</div>
 														</c:if>
 														<c:if test="${param.tipo.equalsIgnoreCase('professor') }">
+														<br />
 															<div class="form-group">
-																<label class="col-md-12 col-sm-12 col-xs-12"
-																	for="disciplina"> Disciplinas</label>
+															
+															<label class="col-md-12 col-sm-12 col-xs-12" for="disciplina"> Disciplinas</label>																	
 																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<select name="disciplina" id="disciplina"
-																		class="select2_multiple form-control"
-																		multiple="multiple" name="">
+																	<select name="disciplina" id="disciplina" class="select2_multiple form-control"	required>
+																		<option value="" selected></option>
 																		<c:forEach var="disciplina"
 																			items="${bancoDisciplina }">
 																			<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
 																		</c:forEach>
 																	</select>
 																</div>
+																
 															</div>
 															<div class="form-group">
 																<div class="col-md-12 col-sm-12 col-xs-12">
@@ -397,8 +418,7 @@
 		</div>
 	</div>
 
-	<!-- jQuery -->
-	<script src="jquery/jquery.min.js"></script>
+	
 	<!-- Bootstrap -->
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
