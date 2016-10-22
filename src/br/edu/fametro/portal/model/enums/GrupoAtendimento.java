@@ -1,7 +1,7 @@
 package br.edu.fametro.portal.model.enums;
 
 public enum GrupoAtendimento {
-	SECRETARIA(1, "Secretaria"), FINANCEIRO(2, "Financeiro"), RELACIONAMENTO(3, "Relacionamento");
+	SECRETARIA(1, "Secretaria")/*, FINANCEIRO(2, "Financeiro"), RELACIONAMENTO(3, "Relacionamento")*/;
 	
 	public final int codigo;
 	public final String grupo;

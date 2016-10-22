@@ -5,9 +5,24 @@ import java.util.Date;
 
 public class DateUtility {
 	public static Date HtmlToDate(String htmlDateInput) {
+		// yyyy-MM-dd
 		int ano = Integer.parseInt(htmlDateInput.split("-")[0]);
 		int mes = Integer.parseInt(htmlDateInput.split("-")[1]);
 		int dia = Integer.parseInt(htmlDateInput.split("-")[2]);
+
+		Calendar dt = Calendar.getInstance();
+		dt.set(Calendar.YEAR, ano);
+		dt.set(Calendar.MONTH, mes - 1);
+		dt.set(Calendar.DAY_OF_MONTH, dia);
+
+		return dt.getTime();
+	}
+
+	public static Date MaskToDate(String dateMaskInput) {
+		// dd/MM/yyyy
+		int dia = Integer.parseInt(dateMaskInput.split("/")[0]);
+		int mes = Integer.parseInt(dateMaskInput.split("/")[1]);
+		int ano = Integer.parseInt(dateMaskInput.split("/")[2]);
 
 		Calendar dt = Calendar.getInstance();
 		dt.set(Calendar.YEAR, ano);
@@ -34,40 +49,40 @@ public class DateUtility {
 		while (ano.length() < 4) {
 			ano = "0".concat(ano);
 		}
-		
+
 		return ano.concat("-").concat(mes).concat("-").concat(dia);
 	}
-	
-	public static int getDia(Date data){
+
+	public static int getDia(Date data) {
 		Calendar dt = Calendar.getInstance();
 		dt.setTime(data);
-		
+
 		return dt.get(Calendar.DAY_OF_MONTH);
 	}
-	
-	public static int getMes(Date data){
+
+	public static int getMes(Date data) {
 		Calendar dt = Calendar.getInstance();
 		dt.setTime(data);
-		
+
 		return dt.get(Calendar.MONTH);
 	}
-	
-	public static int getSemestre(Date data){
+
+	public static int getSemestre(Date data) {
 		Calendar dt = Calendar.getInstance();
 		dt.setTime(data);
-		
+
 		int mes = dt.get(Calendar.MONTH) + 1;
-		
-		if(mes<=6) return 1;
-		else return 2;
+
+		if (mes <= 6)
+			return 1;
+		else
+			return 2;
 	}
-	
-	public static int getAno(Date data){
+
+	public static int getAno(Date data) {
 		Calendar dt = Calendar.getInstance();
 		dt.setTime(data);
-		
+
 		return dt.get(Calendar.YEAR);
 	}
-	
-	
 }
