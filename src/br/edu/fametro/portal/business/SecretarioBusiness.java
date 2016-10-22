@@ -49,6 +49,17 @@ public class SecretarioBusiness {
 		}
 		return null;
 	}
+	
+	public Secretario pesquisaMatricula(String matricula){
+		if (!isEmpty()) {
+			for (Secretario temp : banco) {
+				if (temp.getMatricula().equals(matricula)) {
+					return temp;
+				}
+			}
+		}
+		return null;
+	}
 
 	public Secretario pesquisaUsuario(Usuario u) {
 		if (!isEmpty()) {
