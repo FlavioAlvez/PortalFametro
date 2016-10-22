@@ -130,9 +130,9 @@
 												Escolha a Disciplina												
 											</label>
 											<div class="col-md-6 col-sm-6 col-xs-12">
-												<select name="disciplina" id="disciplina"
+												<select name="campo_disciplina" id="campo_disciplina"
 													class="select2_multiple form-control col-md-7 col-xs-12"
-													multiple="multiple">
+													multiple="multiple" disabled>
 													<c:forEach var="disciplina"
 														items="${bancoDisciplina }">
 														<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>

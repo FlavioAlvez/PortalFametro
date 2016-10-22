@@ -1,5 +1,5 @@
 <select id="tipo-atendimento-descricao" name="tipo-atendimento-descricao" required="required" 
-	class="select2_single form-control" form="demo-form2" onchange="campoDisciplina()">
+	class="select2_single form-control" form="demo-form2" onchange="campoDisciplina(this.value)">
 	<option>DECLARAÇÃO DE MATRÍCULA OU HISTÓRICO</option>
 	<option>AJUSTE DE DISCIPLINA</option>
 	<option>APROVEITAMENTO DE DISCIPLINA</option>
