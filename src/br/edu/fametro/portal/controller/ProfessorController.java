@@ -58,8 +58,9 @@ public class ProfessorController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			response.sendRedirect("LoginController.do");
 		}
-		cadastro(request, response);
+
 	}
 
 	private void cadastro(HttpServletRequest request, HttpServletResponse response)
@@ -97,7 +98,7 @@ public class ProfessorController extends HttpServlet {
 		String disciplinas[] = request.getParameterValues("disciplina");
 		String coordenador = request.getParameter("coordenador"); // null ou on
 
-		//TESTE
+		// TESTE
 		System.out.println("----- IDENTIFICAÇÃO -----");
 		System.out.println("Nome: " + nome);
 		System.out.println("RG: " + rg);
@@ -132,9 +133,13 @@ public class ProfessorController extends HttpServlet {
 			System.out.println("Disciplinas: " + disciplinas[i]);
 		System.out.println("Coordenador: " + coordenador);
 		System.out.println();
+		
+		// Resgatando o banco
+		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
+				.getAttribute("bancoProfessor");
 
 		// Criar objeto
-		Professor professor = new Professor(0, nome, rg, cpf, DateUtility.HtmlToDate(nascimento),
+		Professor professor = new Professor(bancoProfessor.getSize(), nome, rg, cpf, DateUtility.HtmlToDate(nascimento),
 				genero.equalsIgnoreCase("masculino") ? Genero.MASCULINO : Genero.FEMININO,
 				coordenador.equalsIgnoreCase("on") ? Boolean.TRUE : Boolean.FALSE);
 		professor.setNaturalidade(naturalidade);
@@ -178,7 +183,6 @@ public class ProfessorController extends HttpServlet {
 		for (int i = 0; i < disciplinas.length; i++) {
 			professor.addDisciplina(Disciplina.search(disciplinas[i]));
 		}
-		
-		
+
 	}
 }
