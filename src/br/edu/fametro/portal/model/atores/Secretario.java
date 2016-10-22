@@ -70,6 +70,8 @@ public class Secretario extends Pessoa implements AcessaSistema {
 	@Override
 	public boolean equals(Object obj) {
 		// TODO Auto-generated method stub
+		if (!(obj instanceof Secretario))
+			return false;
 		return super.equals(obj);
 	}
 

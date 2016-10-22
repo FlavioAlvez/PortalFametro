@@ -8,25 +8,26 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.fametro.portal.business.AlunoBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
 import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.Telefone;
-import br.edu.fametro.portal.model.atores.Professor;
-import br.edu.fametro.portal.model.enums.Disciplina;
+import br.edu.fametro.portal.model.atores.Aluno;
+import br.edu.fametro.portal.model.enums.Curso;
 import br.edu.fametro.portal.model.enums.Genero;
 
 /**
- * Servlet implementation class ProfessorController
+ * Servlet implementation class AlunoController
  */
-@WebServlet("/ProfessorController.do")
-public class ProfessorController extends HttpServlet {
+@WebServlet("/AlunoController.do")
+public class AlunoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
-	public ProfessorController() {
+	public AlunoController() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
@@ -55,12 +56,14 @@ public class ProfessorController extends HttpServlet {
 			case "cadastrar":
 				cadastro(request, response);
 				break;
+			case "alterar":
+				alterar(request, response);
+				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("LoginController.do");
 		}
-
 	}
 
 	private void cadastro(HttpServletRequest request, HttpServletResponse response)
@@ -95,8 +98,7 @@ public class ProfessorController extends HttpServlet {
 		String opcional = request.getParameter("fone-3");
 
 		// Educacional
-		String disciplinas[] = request.getParameterValues("disciplina");
-		String coordenador = request.getParameter("coordenador"); // null ou on
+		String curso = request.getParameter("curso");
 
 		// TESTE
 		System.out.println("----- IDENTIFICAÇÃO -----");
@@ -129,24 +131,20 @@ public class ProfessorController extends HttpServlet {
 		System.out.println("Telefone 3: " + opcional);
 		System.out.println();
 		System.out.println("------ EDUCACIONAL ------");
-		for (int i = 0; i < disciplinas.length; i++)
-			System.out.println("Disciplinas: " + disciplinas[i]);
-		System.out.println("Coordenador: " + coordenador);
+		System.out.println("Curso: " + curso);
 		System.out.println();
-		
-		// Resgatando o banco
-		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
-				.getAttribute("bancoProfessor");
+
+		// Criando uma cópia local do banco
+		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
 		// Criar objeto
-		Professor professor = new Professor(bancoProfessor.getSize(), nome, rg, cpf, DateUtility.HtmlToDate(nascimento),
-				genero.equalsIgnoreCase("masculino") ? Genero.MASCULINO : Genero.FEMININO,
-				coordenador.equalsIgnoreCase("on") ? Boolean.TRUE : Boolean.FALSE);
-		professor.setNaturalidade(naturalidade);
-		professor.setEstadoNatal(estadoNatal);
-
+		Aluno aluno = new Aluno(bancoAluno.getSize(), nome, rg, cpf, DateUtility.MaskToDate(nascimento),
+				genero.equalsIgnoreCase("masculino") ? Genero.MASCULINO : Genero.FEMININO);
+		aluno.setNaturalidade(naturalidade);
+		aluno.setEstadoNatal(estadoNatal);
+		
 		Filiacao filiacao = new Filiacao(pai, mae);
-		professor.setFiliacao(filiacao);
+		aluno.setFiliacao(filiacao);
 
 		Endereco endereco = new Endereco();
 		endereco.setCep(cep);
@@ -157,32 +155,52 @@ public class ProfessorController extends HttpServlet {
 		endereco.setEstado(estado);
 		endereco.setCidade(cidade);
 		endereco.setPais(pais);
-		professor.setEndereco(endereco);
+		aluno.setEndereco(endereco);
 
-		professor.setEmail(email);
-
-		String dddAux = new String(); // (0 1 2 )3
-		String numeroAux = new String();// 4 5 6 7 8 -9 0 1 2 3
+		aluno.setEmail(email);
+		
+		String dddAux = new String();
+		String numeroAux = new String();
 		Telefone aux;
 
 		dddAux = residencial.substring(1, 3);
 		numeroAux = residencial.substring(4, 9).concat(residencial.substring(10));
 		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		professor.setResidencial(aux);
+		aluno.setResidencial(aux);
 
 		dddAux = celular.substring(1, 3);
 		numeroAux = celular.substring(4, 9).concat(celular.substring(10));
 		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		professor.setCelular(aux);
+		aluno.setCelular(aux);
 
 		dddAux = opcional.substring(1, 3);
 		numeroAux = opcional.substring(4, 9).concat(opcional.substring(10));
 		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		professor.setCelular(aux);
-
-		for (int i = 0; i < disciplinas.length; i++) {
-			professor.addDisciplina(Disciplina.search(disciplinas[i]));
+		aluno.setCelular(aux);
+		
+		Curso listaCursos[] = Curso.values();
+		Curso auxCurso = null;
+		for(Curso c: listaCursos){
+			if(c.getCodigo().equalsIgnoreCase(curso))
+				auxCurso = c;
 		}
-
+		aluno.setCurso(auxCurso);
+		
+		// TESTE
+		System.out.println(aluno);
+		
+		// Adicionando ao banco local
+		bancoAluno.adicionar(aluno);
+		
+		// Colocando o banco local de volta ao escopo da aplicação
+		request.getServletContext().setAttribute("bancoAluno", bancoAluno);
+		
+		//Redirecionando pra tela home
+		response.sendRedirect("home.jsp?cadastro-de-aluno");
+	}
+	
+	private void alterar(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+	
 	}
 }

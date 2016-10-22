@@ -1,15 +1,22 @@
 package br.edu.fametro.portal.model.enums;
 
 public enum TipoUsuario {
-	SECRETARIO(0), ALUNO(1), PROFESSOR(2);
+	SECRETARIO(0, "Secretario"), ALUNO(1, "Aluno"), PROFESSOR(2, "Professor");
 
-	public final int codigo;
+	private final int codigo;
+	private final String nome;
 
-	private TipoUsuario(int codigo) {
+	private TipoUsuario(int codigo, String nome) {
 		this.codigo = codigo;
+		this.nome = nome;
 	}
 
 	public int getCodigo() {
 		return codigo;
 	}
+
+	public String getNome() {
+		return nome;
+	}
+
 }

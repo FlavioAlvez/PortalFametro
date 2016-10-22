@@ -30,10 +30,8 @@ public class SecretarioBusiness {
 
 	public boolean adicionar(Secretario novo) {
 		if (!isEmpty()) {
-			for (Secretario s : banco) {
-				if (s.equals(novo)) {
-					return false;
-				}
+			if (banco.contains(novo)) {
+				return false;
 			}
 		}
 		return banco.add(novo);
@@ -41,9 +39,20 @@ public class SecretarioBusiness {
 
 	public Secretario pesquisaSecretario(Secretario s) {
 		if (!isEmpty()) {
-			for (Secretario temp : banco) {
-				if (temp.equals(s)) {
-					return temp;
+			for (Secretario secretario : banco) {
+				if (secretario.equals(s)) {
+					return secretario;
+				}
+			}
+		}
+		return null;
+	}
+
+	public Secretario pesquisaMatricula(String matricula) {
+		if (!isEmpty()) {
+			for (Secretario secretario : banco) {
+				if (secretario.getMatricula().equals(matricula)) {
+					return secretario;
 				}
 			}
 		}
@@ -52,15 +61,36 @@ public class SecretarioBusiness {
 
 	public Secretario pesquisaUsuario(Usuario u) {
 		if (!isEmpty()) {
-			for (Secretario temp : banco) {
-				if (temp.getUsuario().equals(u)) {
-					if (temp.getUsuario().getSenha().equals(u.getSenha())) {
-						return temp;
+			for (Secretario secretario : banco) {
+				if (secretario.getUsuario().equals(u)) {
+					if (secretario.getUsuario().getSenha().equals(u.getSenha())) {
+						return secretario;
 					}
 					break;
 				}
 			}
 		}
 		return null;
+	}
+	
+	public boolean alterar(Secretario s) {
+		if (!isEmpty()) {
+			int index = banco.indexOf(s);
+
+			if (index > -1) {
+				banco.add(index, s);
+				return true;
+			}
+		}
+		return false;
+	}
+
+	public boolean remover(Secretario s) {
+		if (!isEmpty()) {
+			if (banco.contains(s)) {
+				return banco.remove(s);
+			}
+		}
+		return false;
 	}
 }

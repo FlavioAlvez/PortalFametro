@@ -9,7 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import br.edu.fametro.portal.business.AlunoBusiness;
 import br.edu.fametro.portal.business.SecretarioBusiness;
+import br.edu.fametro.portal.model.atores.Aluno;
 import br.edu.fametro.portal.model.atores.Secretario;
 import br.edu.fametro.portal.model.atores.Usuario;
 
@@ -88,16 +90,34 @@ public class LoginController extends HttpServlet {
 			}
 			break;
 		case 1: // aluno 1-2016123456
+			AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
-			break;
-		case 2: // professor 2-2016123456
+			Aluno alunoLogado = bancoAluno.pesquisaUsuario(u);
 
+			if (alunoLogado != null) {
+				session.setAttribute("usuarioLogado", alunoLogado);
+			} else {
+				session.setAttribute("loginInvalido", Boolean.TRUE);
+			}
 			break;
+//		case 2: // professor 2-2016123456
+//			ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
+//					.getAttribute("bancoProfessor");
+//
+//			Professor professorLogado = bancoProfessor.pesquisaUsuario(u);
+//
+//			if (professorLogado != null) {
+//				session.setAttribute("usuarioLogado", professorLogado);
+//			} else {
+//				session.setAttribute("loginInvalido", Boolean.TRUE);
+//			}
+//
+//			break;
 		default:// buxo
-
+			session.setAttribute("loginInvalido", Boolean.TRUE);
 			break;
 		}
-//		request.getRequestDispatcher("home.jsp").forward(request, response);
+		// request.getRequestDispatcher("home.jsp").forward(request, response);
 		response.sendRedirect("home.jsp");
 	}
 
@@ -119,6 +139,5 @@ public class LoginController extends HttpServlet {
 		} else {
 			response.sendRedirect("home.jsp");
 		}
-
 	}
 }

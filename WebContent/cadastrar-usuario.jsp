@@ -37,7 +37,7 @@ $(document).ready(function(){
 		$("#nascimento").mask("99/99/9999");
         $("#cpf").mask("999.999.999-99");
         $("#cep").mask("99999-999");
-        $("#fone-residencial").mask("(99)9999-9999");
+        $("#fone-residencial").mask("(99)99999-9999");
         $("#fone-celular").mask("(99)99999-9999");
         $("#fone-3").mask("(99)99999-9999");        
 });
@@ -164,10 +164,11 @@ $(document).ready(function(){
 														</div>
 
 														<div class="col-md-4 col-sm-4 col-xs-8">															
-															<select name="genero" id="genero" class="form-control col-md-7 col-xs-12">
-																<option></option>
-																<option>Masculino</option>
-																<option>Feminino</option>																		
+															<select name="genero" id="genero" class="select2_single form-control col-md-7 col-xs-12">
+																<option value="" selected></option>
+																<c:forEach var="genero" items="${bancoEnum.getBancoGenero() }">
+																	<option value="${genero.name() }">${genero.name() }</option>
+																</c:forEach>																	
 															</select>
 														</div>
 													</div>
@@ -184,7 +185,7 @@ $(document).ready(function(){
 														</label>
 
 														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="date" name="nascimento" id="nascimento"
+															<input type="text" name="nascimento" id="nascimento"
 																required class="form-control col-md-7 col-xs-12">
 														</div>
 
@@ -266,7 +267,7 @@ $(document).ready(function(){
 														</div>
 
 														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="numero" id="numero" required
+															<input type="number" min=0 name="numero" id="numero" required
 																class="form-control col-md-7 col-xs-12">
 														</div>
 
@@ -322,7 +323,7 @@ $(document).ready(function(){
 														</label>
 
 														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="email" id="email" required
+															<input type="email" name="email" id="email" required
 																class="form-control col-md-7 col-xs-12">
 														</div>
 
@@ -360,7 +361,7 @@ $(document).ready(function(){
 																	<select name="curso" id="curso" class="select2_single form-control" required>
 																		<option value="" selected></option>
 																		<c:forEach var="curso"
-																			items="${bancoCurso }">
+																			items="${bancoEnum.getBancoCurso() }">
 																			<option value="${curso.getCodigo() }">${curso.getNome() }</option>
 																		</c:forEach>
 																	</select>
@@ -398,7 +399,7 @@ $(document).ready(function(){
 													<div class="form-group">
 														<div class="col-md-6 col-sm-6 col-xs-12">
 															<input type="submit" class="btn btn-success"
-																name="action" value="Concluir cadastro">
+																name="action" value="Cadastrar">
 														</div>
 													</div>
 													</form>
