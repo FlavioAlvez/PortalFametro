@@ -159,8 +159,8 @@ $(document).ready(function(){
 														</div>
 
 														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="cpf" id="cpf" required
-																class="form-control col-md-7 col-xs-12">
+															<input type="text" name="cpf" id="cpf" required 
+															class="form-control col-md-7 col-xs-12">
 														</div>
 
 														<div class="col-md-4 col-sm-4 col-xs-8">															
@@ -184,7 +184,7 @@ $(document).ready(function(){
 														</label>
 
 														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="nascimento" id="nascimento"
+															<input type="date" name="nascimento" id="nascimento"
 																required class="form-control col-md-7 col-xs-12">
 														</div>
 
@@ -423,6 +423,8 @@ $(document).ready(function(){
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
+	
+	<script src="js/validacoes.js"></script>
 
 	<!-- Switchery -->
 	<script src="js/switchery/switchery.min.js"></script>

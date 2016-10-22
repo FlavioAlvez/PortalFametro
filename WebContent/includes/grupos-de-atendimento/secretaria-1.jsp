@@ -1,15 +1,15 @@
 <select id="tipo-atendimento-descricao" name="tipo-atendimento-descricao" required="required" 
-	class="select2_single form-control" form="demo-form2">
-	<option>Declaração de Matrícula ou Histórico</option>
-	<option>Ajuste de Disciplina</option>
-	<option>Aproveitamento de disciplina</option>
-	<option>Atividade Complementar</option>
-	<option>Colação de Grau</option>
-	<option>Cópia de Avaliação Final</option>
-	<option>Plano de Ensino</option>
-	<option>Quebra de Pré-Requisito</option>
-	<option>Reabertura de Matrícula</option>
-	<option>Revisão de Avaliação Final</option>
-	<option>Transferência Interna</option>
-	<option>Transferências para outras faculdades</option>
+	class="select2_single form-control" form="demo-form2" onchange="campoDisciplina(this.value)">
+	<option>DECLARAÇÃO DE MATRÍCULA OU HISTÓRICO</option>
+	<option>AJUSTE DE DISCIPLINA</option>
+	<option>APROVEITAMENTO DE DISCIPLINA</option>
+	<option>ATIVIDADE COMPLEMENTAR</option>
+	<option>COLAÇÃO DE GRAU</option>
+	<option>CÓPIA DE AVALIAÇÃO FINAL</option>
+	<option>PLANO DE ENSINO</option>
+	<option>QUEBRA DE PRÉ-REQUISITO</option>
+	<option>REABERTURA DE MATRÍCULA</option>
+	<option>REVISÃO DE AVALIAÇÃO FINAL</option>
+	<option>TRANSFERÊNCIA INTERNA</option>
+	<option>TRANSFERÊNCIAS PARA OUTRAS FACULDADES</option>
 </select>
