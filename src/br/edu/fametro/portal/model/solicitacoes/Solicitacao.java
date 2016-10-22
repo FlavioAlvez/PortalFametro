@@ -3,11 +3,13 @@ package br.edu.fametro.portal.model.solicitacoes;
 import java.util.Date;
 
 import br.edu.fametro.portal.model.atores.AcessaSistema;
+import br.edu.fametro.portal.model.enums.Avaliacao;
+import br.edu.fametro.portal.model.enums.Disciplina;
 import br.edu.fametro.portal.model.enums.GrupoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
-public abstract class Solicitacao {
+public class Solicitacao {
 	private int codigo;
 	private GrupoAtendimento grupoAtendimento;
 	private TipoAtendimento tipoAtendimento;
@@ -20,6 +22,10 @@ public abstract class Solicitacao {
 	private String discussao;
 	private String solucao;
 	
+	//Parametros
+	private Disciplina disciplina;
+	private Avaliacao av;
+
 	public Solicitacao(int codigo, GrupoAtendimento grupoAtendimento, TipoAtendimento tipoAtendimento,
 			AcessaSistema cliente, TipoUsuario tipo, String assunto, String solicitacao) {
 		super();
@@ -119,4 +125,43 @@ public abstract class Solicitacao {
 	public void setSolucao(String solucao) {
 		this.solucao = solucao;
 	}
+
+	public Disciplina getDisciplina() {
+		return disciplina;
+	}
+
+	public void setDisciplina(Disciplina disciplina) {
+		this.disciplina = disciplina;
+	}
+
+	public Avaliacao getAv() {
+		return av;
+	}
+
+	public void setAv(Avaliacao av) {
+		this.av = av;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + codigo;
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		Solicitacao other = (Solicitacao) obj;
+		if (codigo != other.codigo)
+			return false;
+		return true;
+	}
+	
 }
