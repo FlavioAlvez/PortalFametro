@@ -10,25 +10,24 @@ function tipoAtendimento(valor) {
 
 	switch (taCdg.value) {
 	case "1":
-		av.style.display = "none";
-		dis.style.display = "";
-		document.getElementById("disciplina").class = "select2_multiple form-control col-md-6 col-sm-6 col-xs-12";
+		av.setAttribute("class", "escondido");
+		dis.setAttribute("class", "form-group");
 		break;
 	case "2":
-		av.style.display = "";
-		dis.style.display = "";
+		av.setAttribute("class", "form-group");
+		dis.setAttribute("class", "form-group");
 		break;
 	case "3":
-		av.style.display = "none";
-		dis.style.display = "";
+		av.setAttribute("class", "escondido");
+		dis.setAttribute("class", "form-group");
 		break;
 	case "4":
-		av.style.display = "none";
-		dis.style.display = "none";
+		av.setAttribute("class", "escondido");
+		dis.setAttribute("class", "escondido");
 		break;
 	default:
-		av.style.display = "none";
-		dis.style.display = "";
+		av.setAttribute("class", "escondido");
+		dis.setAttribute("class", "form-group");
 		break;
 	}
 }
@@ -39,4 +38,9 @@ function matriculaAluno(valor) {
 	var nome = document.getElementById("nome");
 
 	mat.value = nome.value;
+}
+
+function carregaEscondidos(){
+	av.setAttribute("class", "escondido");
+	dis.setAttribute("class", "escondido");
 }
