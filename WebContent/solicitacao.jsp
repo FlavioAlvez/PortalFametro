@@ -29,6 +29,13 @@
 <!-- Select2 -->
 <link href="css/select2/select2.min.css" rel="stylesheet">
 
+<!-- Esconde elementos na pagina -->
+<style>
+	.escondido {
+		display:none;
+	}
+</style>
+
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
@@ -137,6 +144,7 @@
 															required="required"
 															class="form-control col-md-7 col-xs-12" value="" readonly>
 													</div>
+													
 													<div class="col-md-4 col-sm-5 col-xs-10">
 														<select id="nome" name="nome" required="required"
 															class="select2_single form-control"
@@ -148,6 +156,7 @@
 														</select>
 													</div>
 												</div>
+												
 												<div class="form-group">
 													<label for="middle-name"
 														class="control-label col-md-3 col-sm-3 col-xs-12">Grupo
@@ -197,7 +206,7 @@
 													</div>
 												</div>
 
-												<div class="form-group" id="divAv" style="display: none">
+												<div id="divAv" onload="carregaEscondidos()">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">Avaliação</label>
 
 
@@ -212,12 +221,14 @@
 														</select>
 													</div>
 												</div>
-												<div class="form-group" id="divDis" style="display: none">
+												
+												<div id="divDis" onload="carregaEscondidos()">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">Disciplina</label>
-													<div class="col-md-5 col-sm-5 col-xs-10">
-														<select name="disciplina" id="disciplina"
-															class="select2_multiple form-control col-md-6 col-sm-6 col-xs-12">
-															<option value=""></option>
+													
+													<div class="col-md-6 col-sm-5 col-xs-10">
+														<select id="disciplina" name="disciplina"
+														class="select2_single form-control col-md-5 col-sm-5 col-xs-10">
+															<option value="" selected></option>
 															<c:forEach var="disciplina"
 																items="${bancoEnum.getBancoDisciplina() }">
 																<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
@@ -225,7 +236,7 @@
 														</select>
 													</div>
 												</div>
-
+												
 												<!-- 												<div class="form-group"> -->
 												<!-- 													<label class="control-label col-md-3 col-sm-3 col-xs-12">Professor -->
 												<!-- 														<span class="required">*</span> -->

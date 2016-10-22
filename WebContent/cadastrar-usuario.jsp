@@ -32,6 +32,7 @@
 
 </head>
 
+<!-- 
 <script type="text/javascript">
 $(document).ready(function(){
 		$("#nascimento").mask("99/99/9999");
@@ -42,7 +43,8 @@ $(document).ready(function(){
         $("#fone-3").mask("(99)99999-9999");        
 });
 </script>
-
+ -->
+ 
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
@@ -438,7 +440,16 @@ $(document).ready(function(){
 			$(".select2_group").select2({});
 			$(".select2_multiple").select2({});
 		});
+		
+		$(document).ready(function(){
+			$("#nascimento").mask("99/99/9999");
+	        $("#cpf").mask("999.999.999-99");
+	        $("#cep").mask("99999-999");
+	        $("#fone-residencial").mask("(99)99999-9999");
+	        $("#fone-celular").mask("(99)99999-9999");
+	        $("#fone-3").mask("(99)99999-9999");        
+	});
 	</script>
-	<!-- /Select2 -->
+	<!-- /Select2 e Mascaras -->
 </body>
 </html>
