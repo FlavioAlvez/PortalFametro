@@ -121,7 +121,7 @@ $(document).ready(function(){
 											<br />
 											<form id="demo-form2" name="demo-form2" data-parsley-validate
 												class="form-horizontal form-label-left" method="post"
-												action="home.jsp">
+												action="AlunoController.do">
 												<div class="profile_title">
 													<div class="col-md-6">
 														<h2>Identificação</h2>
@@ -303,7 +303,7 @@ $(document).ready(function(){
 												<div class="form-group">
 													<div class="col-md-6 col-sm-6 col-xs-12">
 														<input type="submit" class="btn btn-success"
-															name="alterar" value="Alterar informações">
+															name="action" value="Alterar">
 													</div>
 												</div>
 											</form>
