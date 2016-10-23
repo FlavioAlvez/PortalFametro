@@ -10,8 +10,10 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.AlunoBusiness;
+import br.edu.fametro.portal.business.ProfessorBusiness;
 import br.edu.fametro.portal.business.SecretarioBusiness;
 import br.edu.fametro.portal.model.atores.Aluno;
+import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.atores.Secretario;
 import br.edu.fametro.portal.model.atores.Usuario;
 
@@ -100,19 +102,19 @@ public class LoginController extends HttpServlet {
 				session.setAttribute("loginInvalido", Boolean.TRUE);
 			}
 			break;
-//		case 2: // professor 2-2016123456
-//			ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
-//					.getAttribute("bancoProfessor");
-//
-//			Professor professorLogado = bancoProfessor.pesquisaUsuario(u);
-//
-//			if (professorLogado != null) {
-//				session.setAttribute("usuarioLogado", professorLogado);
-//			} else {
-//				session.setAttribute("loginInvalido", Boolean.TRUE);
-//			}
-//
-//			break;
+		case 2: // professor 2-2016123456
+			ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
+					.getAttribute("bancoProfessor");
+
+			Professor professorLogado = bancoProfessor.pesquisaUsuario(u);
+
+			if (professorLogado != null) {
+				session.setAttribute("usuarioLogado", professorLogado);
+			} else {
+				session.setAttribute("loginInvalido", Boolean.TRUE);
+			}
+
+			break;
 		default:// buxo
 			session.setAttribute("loginInvalido", Boolean.TRUE);
 			break;
