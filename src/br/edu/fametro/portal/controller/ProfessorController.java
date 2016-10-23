@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import br.edu.fametro.portal.business.ProfessorBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
 import br.edu.fametro.portal.model.Filiacao;
