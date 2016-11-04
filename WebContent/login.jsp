@@ -28,7 +28,7 @@
 <body>
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
-			<div class="container">
+			<div class="container">			
 				
 <!-- 				<a class="btn btn-navbar" data-toggle="collapse" -->
 <!-- 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span -->
@@ -56,6 +56,9 @@
 				<h2>Portal Acadêmico</h2>
 				<div class="login-fields">
 					<p>Insira seu usuário e senha</p>
+					
+					<div class="alert alert-danger" role="alert"><img src="img/exclamação.png">&nbsp; &nbsp; A matrícula ou senha está incorreta!</div>
+					
 					<div class="field">
 						<label for="matricula">Matricula</label> <input type="text"
 							id="username" name="username" value="" placeholder="Matrícula"

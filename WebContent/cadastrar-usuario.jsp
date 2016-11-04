@@ -30,9 +30,75 @@
 <script type="text/javascript" src="jquery/jquery.js"></script>
 <script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
 
+<!-- Adicionando Javascript -->
+    <script type="text/javascript" >
+
+        $(document).ready(function() {
+
+            function limpa_formulário_cep() {
+                // Limpa valores do formulário de cep.
+                $("#rua").val("");
+                $("#bairro").val("");
+                $("#cidade").val("");
+                $("#uf").val("");                
+            }
+            
+            //Quando o campo cep perde o foco.
+            $("#cep").blur(function() {
+
+                //Nova variável "cep" somente com dígitos.
+                var cep = $(this).val().replace(/\D/g, '');
+
+                //Verifica se campo cep possui valor informado.
+                if (cep != "") {
+
+                    //Expressão regular para validar o CEP.
+                    var validacep = /^[0-9]{8}$/;
+
+                    //Valida o formato do CEP.
+                    if(validacep.test(cep)) {
+
+                        //Preenche os campos com "..." enquanto consulta webservice.
+                        $("#rua").val("...");
+                        $("#bairro").val("...");
+                        $("#cidade").val("...");
+                        $("#uf").val("...");                        
+
+                        //Consulta o webservice viacep.com.br/
+                        $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+
+                            if (!("erro" in dados)) {
+                                //Atualiza os campos com os valores da consulta.
+                                $("#rua").val(dados.logradouro);
+                                $("#bairro").val(dados.bairro);
+                                $("#cidade").val(dados.localidade);
+                                $("#uf").val(dados.uf);                                
+                            } //end if.
+                            else {
+                                //CEP pesquisado não foi encontrado.
+                                limpa_formulário_cep();
+                                alert("CEP não encontrado.");
+                            }
+                        });
+                    } //end if.
+                    else {
+                        //cep é inválido.
+                        limpa_formulário_cep();
+                        alert("Formato de CEP inválido.");
+                    }
+                } //end if.
+                else {
+                    //cep sem valor, limpa formulário.
+                    limpa_formulário_cep();
+                }
+            });
+        });
+
+    </script>
+
 </head>
 
-<!-- 
+ 
 <script type="text/javascript">
 $(document).ready(function(){
 		$("#nascimento").mask("99/99/9999");
@@ -43,7 +109,7 @@ $(document).ready(function(){
         $("#fone-3").mask("(99)99999-9999");        
 });
 </script>
- -->
+
  
 <body class="nav-md">
 	<div class="container body">
@@ -238,7 +304,7 @@ $(document).ready(function(){
 														<label class="col-md-3 col-sm-3 col-xs-6" for="cep">CEP
 															<span class="required">*</span>
 														</label> <label class="col-md-9 col-sm-9 col-xs-18"
-															for="logradouro">Logradouro <span
+															for="rua">Logradouro <span
 															class="required">*</span>
 														</label>
 
@@ -248,7 +314,7 @@ $(document).ready(function(){
 														</div>
 
 														<div class="col-md-9 col-sm-9 col-xs-18">
-															<input type="text" name="logradouro" id="logradouro"
+															<input type="text" name="rua" id="rua"
 																required class="form-control col-md-7 col-xs-12">
 														</div>
 													</div>
@@ -280,7 +346,7 @@ $(document).ready(function(){
 													</div>
 
 													<div class="form-group">
-														<label class="col-md-4 col-sm-4 col-xs-8" for="estado">Estado
+														<label class="col-md-4 col-sm-4 col-xs-8" for="uf">Estado
 															<span class="required">*</span>
 														</label> <label class="col-md-4 col-sm-4 col-xs-8" for="cidade">Cidade
 															<span class="required">*</span>
@@ -289,7 +355,7 @@ $(document).ready(function(){
 														</label>
 
 														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="estado" id="estado" required
+															<input type="text" name="uf" id="uf" required
 																class="form-control col-md-7 col-xs-12">
 														</div>
 
