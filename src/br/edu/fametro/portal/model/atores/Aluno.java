@@ -19,7 +19,11 @@ public class Aluno extends Pessoa implements AcessaSistema {
 	private Telefone celular;
 	private Telefone opcional;
 	private Usuario usuario;
-
+	
+	public Aluno() {
+		super();
+	}
+	
 	public Aluno(long id, String nome, String rg, String cpf, Date nascimento, Genero genero, Curso curso) {
 		super(nome, rg, cpf, nascimento, genero);
 		this.curso = curso;
@@ -91,6 +95,11 @@ public class Aluno extends Pessoa implements AcessaSistema {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+	
+	public void gerarMatriculaEUsuario(Long id) {
+		this.matricula = Sistema.geraMatricula(TipoUsuario.ALUNO, Calendar.getInstance().getTime(), id);
+		this.usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.ALUNO);
 	}
 
 
