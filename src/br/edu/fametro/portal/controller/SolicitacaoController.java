@@ -24,7 +24,7 @@ import br.edu.fametro.portal.model.solicitacoes.Solicitacao;
 @WebServlet("/SolicitacaoController.do")
 public class SolicitacaoController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-
+	
 	/**
 	 * @see HttpServlet#HttpServlet()
 	 */
@@ -67,7 +67,7 @@ public class SolicitacaoController extends HttpServlet {
 			throws ServletException, IOException {
 
 		String tipooAtendimentoCdg = request.getParameter("tipo-atendimento-cdg");
-		String tipoAtendimento = request.getParameter("tipo-atendimento");
+		String tipoAtendimento = request.getParameter("tipo-atendimento-descricao");
 
 		String matricula = request.getParameter("matricula");
 		String nome = request.getParameter("nome");
@@ -78,29 +78,63 @@ public class SolicitacaoController extends HttpServlet {
 		String descricao = request.getParameter("message");
 		String avaliacao = request.getParameter("avaliacao");
 		String disciplina = request.getParameter("disciplina");
+		
+		/* TESTE PARAMETROS */
+		System.out.println("***** TESTE PARAMETROS *****");
+		System.out.println("CODIGO ATENDIMENTO: " + tipooAtendimentoCdg);
+		System.out.println("TIPO ATENDIMENTO: " + tipoAtendimento);
+		System.out.println("MATRICULA: " + matricula);
+		System.out.println("NOME: " + nome);
+		System.out.println("GRUPO: " + grupo);
+		System.out.println("ABERTURA: " + abertura);
+		System.out.println("FECHAMENTO: " + fechamento);
+		System.out.println("ASSUNTO: " + assunto);
+		System.out.println("DESCRIï¿½ï¿½O: " + descricao);
+		System.out.println("AVALIAï¿½ï¿½O: " + avaliacao);
+		System.out.println("DISCIPLINA: " + disciplina);
+		System.out.println("***** TESTE PARAMETROS *****");
+		/* TESTE PARAMETROS */
 
 		SolicitacaoBusiness bancoSolicitacao = (SolicitacaoBusiness) request.getServletContext()
 				.getAttribute("bancoSolicitacao");
 		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
-		Solicitacao solicitacao;
+		Solicitacao solicitacao = new Solicitacao();
 		Disciplina listaDisciplina[] = Disciplina.values();
 		switch (Integer.parseInt(tipoAtendimento)) {
 		case 1:
-			// Quebra de Pré-Requisito
-			solicitacao = new Solicitacao(0, GrupoAtendimento.SECRETARIA, TipoAtendimento.QUEBRA_DE_PRE_REQUISITO,
-					bancoAluno.pesquisaMatricula(matricula), TipoUsuario.ALUNO, assunto, descricao);
+			// Quebra de Prï¿½-Requisito
+			solicitacao = new Solicitacao();
+			
+			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
+			solicitacao.setGrupoAtendimento(GrupoAtendimento.SECRETARIA);
+			solicitacao.setTipoAtendimento(TipoAtendimento.QUEBRA_DE_PRE_REQUISITO);
+			solicitacao.setCliente(bancoAluno.pesquisaMatricula(matricula));
+			solicitacao.setTipo(TipoUsuario.ALUNO);
 			solicitacao.setAbertura(DateUtility.HtmlToDate(abertura));
+			solicitacao.setFechamento(DateUtility.HtmlToDate(fechamento));
+			solicitacao.setAssunto(assunto);
+			solicitacao.setSolicitacao(descricao);
+			
 			for (Disciplina aux : listaDisciplina) {
 				if (disciplina.equalsIgnoreCase(aux.getCodigo()))
 					solicitacao.setDisciplina(aux);
 			}
 			break;
 		case 2:
-			// Revisão de Nota
-			solicitacao = new Solicitacao(0, GrupoAtendimento.SECRETARIA, TipoAtendimento.QUEBRA_DE_PRE_REQUISITO,
-					bancoAluno.pesquisaMatricula(matricula), TipoUsuario.ALUNO, assunto, descricao);
+			// Revisï¿½o de Nota
+			solicitacao = new Solicitacao();
+			
+			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
+			solicitacao.setGrupoAtendimento(GrupoAtendimento.SECRETARIA);
+			solicitacao.setTipoAtendimento(TipoAtendimento.REVISAO_DE_NOTA);
+			solicitacao.setCliente(bancoAluno.pesquisaMatricula(matricula));
+			solicitacao.setTipo(TipoUsuario.ALUNO);
 			solicitacao.setAbertura(DateUtility.HtmlToDate(abertura));
+			solicitacao.setFechamento(DateUtility.HtmlToDate(fechamento));
+			solicitacao.setAssunto(assunto);
+			solicitacao.setSolicitacao(descricao);
+			
 			for (Disciplina aux : listaDisciplina) {
 				if (disciplina.equalsIgnoreCase(aux.getCodigo()))
 					solicitacao.setDisciplina(aux);
@@ -110,9 +144,18 @@ public class SolicitacaoController extends HttpServlet {
 			break;
 		case 3:
 			// Abono de Falta
-			solicitacao = new Solicitacao(0, GrupoAtendimento.SECRETARIA, TipoAtendimento.QUEBRA_DE_PRE_REQUISITO,
-					bancoAluno.pesquisaMatricula(matricula), TipoUsuario.ALUNO, assunto, descricao);
+			solicitacao = new Solicitacao();
+
+			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
+			solicitacao.setGrupoAtendimento(GrupoAtendimento.SECRETARIA);
+			solicitacao.setTipoAtendimento(TipoAtendimento.ABONO_DE_FALTA);
+			solicitacao.setCliente(bancoAluno.pesquisaMatricula(matricula));
+			solicitacao.setTipo(TipoUsuario.ALUNO);
 			solicitacao.setAbertura(DateUtility.HtmlToDate(abertura));
+			solicitacao.setFechamento(DateUtility.HtmlToDate(fechamento));
+			solicitacao.setAssunto(assunto);
+			solicitacao.setSolicitacao(descricao);
+			
 			for (Disciplina aux : listaDisciplina) {
 				if (disciplina.equalsIgnoreCase(aux.getCodigo()))
 					solicitacao.setDisciplina(aux);
@@ -120,21 +163,30 @@ public class SolicitacaoController extends HttpServlet {
 			break;
 		case 4:
 			// Ouvidoria
-			solicitacao = new Solicitacao(0, GrupoAtendimento.SECRETARIA, TipoAtendimento.QUEBRA_DE_PRE_REQUISITO,
-					bancoAluno.pesquisaMatricula(matricula), TipoUsuario.ALUNO, assunto, descricao);
+			solicitacao = new Solicitacao();
+
+			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
+			solicitacao.setGrupoAtendimento(GrupoAtendimento.SECRETARIA);
+			solicitacao.setTipoAtendimento(TipoAtendimento.OUVIDORIA);
+			solicitacao.setCliente(bancoAluno.pesquisaMatricula(matricula));
+			solicitacao.setTipo(TipoUsuario.ALUNO);
 			solicitacao.setAbertura(DateUtility.HtmlToDate(abertura));
+			solicitacao.setFechamento(DateUtility.HtmlToDate(fechamento));
+			solicitacao.setAssunto(assunto);
+			solicitacao.setSolicitacao(descricao);
+			
 			break;
 		default:
 			// Buxo
 			solicitacao = null;
 			break;
 		}
-
+		
 		bancoSolicitacao.adicionar(solicitacao);
 
 		request.getServletContext().setAttribute("bancoSolicitacao", bancoSolicitacao);
 
 		response.sendRedirect("home.jsp?solicitacao");
 	}
-
+	
 }

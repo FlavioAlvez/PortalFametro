@@ -21,21 +21,13 @@ public class Solicitacao {
 	private String solicitacao;
 	private String discussao;
 	private String solucao;
-	
-	//Parametros
+
+	// Parametros
 	private Disciplina disciplina;
 	private Avaliacao av;
 
-	public Solicitacao(int codigo, GrupoAtendimento grupoAtendimento, TipoAtendimento tipoAtendimento,
-			AcessaSistema cliente, TipoUsuario tipo, String assunto, String solicitacao) {
-		super();
-		this.codigo = codigo;
-		this.grupoAtendimento = grupoAtendimento;
-		this.tipoAtendimento = tipoAtendimento;
-		this.cliente = cliente;
-		this.tipo = tipo;
-		this.assunto = assunto;
-		this.solicitacao = solicitacao;
+	public Solicitacao() {
+
 	}
 
 	public int getCodigo() {
@@ -163,5 +155,5 @@ public class Solicitacao {
 			return false;
 		return true;
 	}
-	
+
 }
