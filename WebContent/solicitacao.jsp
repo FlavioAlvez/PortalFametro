@@ -168,15 +168,12 @@
 														</c:if>
 													</div>
 													<div class="col-md-2 col-sm-2 col-xs-4">
-														<input id="abertura"
-															class="form-control col-md-7 col-xs-12" type="date"
-															name="abertura" value="${now.getDataAtualHtml() }"
-															disabled>
+														<input id="abertura" class="form-control col-md-7 col-xs-12" type="date" name="abertura" value="${now.getDataAtualHtml() }"readonly >
 													</div>
 													<div class="col-md-2 col-sm-2 col-xs-4">
 														<input id="fechamento"
 															class="form-control col-md-7 col-xs-12" type="date"
-															name="fechamento" disabled>
+															name="fechamento" value="${now.getDataAtualHtml() }" readonly>
 													</div>
 												</div>
 
@@ -259,7 +256,7 @@
 												<div class="form-group">
 													<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
 														<button type="reset" class="btn btn-cancel">Cancelar</button>
-														<button type="submit" class="btn btn-success">Cadastrar</button>
+														<button type="submit" class="btn btn-success" name="action" value="cadastrar">Cadastrar</button>
 													</div>
 												</div>
 											</form>

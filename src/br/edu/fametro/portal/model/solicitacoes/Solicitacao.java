@@ -25,7 +25,11 @@ public class Solicitacao {
 	//Parametros
 	private Disciplina disciplina;
 	private Avaliacao av;
-
+	
+	public Solicitacao() {
+		
+	}
+	
 	public Solicitacao(int codigo, GrupoAtendimento grupoAtendimento, TipoAtendimento tipoAtendimento,
 			AcessaSistema cliente, TipoUsuario tipo, String assunto, String solicitacao) {
 		super();
