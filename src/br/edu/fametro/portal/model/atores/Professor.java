@@ -1,18 +1,16 @@
 package br.edu.fametro.portal.model.atores;
 
-import java.util.ArrayList;
 import java.util.Calendar;
-import java.util.Date;
 import java.util.List;
 
 import br.edu.fametro.portal.model.Endereco;
 import br.edu.fametro.portal.model.Sistema;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.enums.Disciplina;
-import br.edu.fametro.portal.model.enums.Genero;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 public class Professor extends Pessoa implements AcessaSistema {
+	private long id;
 	private String matricula;
 	private Endereco endereco;
 	private String email;
@@ -23,21 +21,18 @@ public class Professor extends Pessoa implements AcessaSistema {
 	private boolean coordenador;
 	private Usuario usuario;
 
-	public Professor(long id, String nome, String rg, String cpf, Date nascimento, Genero genero, boolean coordenador) {
-		super(nome, rg, cpf, nascimento, genero);
-		this.disciplinas = new ArrayList<Disciplina>();
-		this.coordenador = coordenador;
+	public Professor(long id) {
+		this.id = id;
 		matricula = Sistema.geraMatricula(TipoUsuario.PROFESSOR, Calendar.getInstance().getTime(), id);
 		usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.PROFESSOR);
 	}
 
-	public Professor(long id, String nome, String rg, String cpf, Date nascimento, Genero genero,
-			List<Disciplina> disciplinas, boolean coordenador) {
-		super(nome, rg, cpf, nascimento, genero);
-		this.disciplinas = disciplinas;
-		this.coordenador = coordenador;
-		matricula = Sistema.geraMatricula(TipoUsuario.PROFESSOR, Calendar.getInstance().getTime(), id);
-		usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.PROFESSOR);
+	public long getId() {
+		return id;
+	}
+
+	public String getMatricula() {
+		return matricula;
 	}
 
 	public Endereco getEndereco() {
@@ -87,9 +82,12 @@ public class Professor extends Pessoa implements AcessaSistema {
 	public void setDisciplinas(List<Disciplina> disciplinas) {
 		this.disciplinas = disciplinas;
 	}
-	
-	public void addDisciplina(Disciplina disciplina){
-		disciplinas.add(disciplina);
+
+	public boolean addDisciplina(Disciplina disciplina) {
+		if (!disciplinas.contains(disciplina)) {
+			return disciplinas.add(disciplina);
+		}
+		return false;
 	}
 
 	public boolean isCoordenador() {
@@ -108,7 +106,11 @@ public class Professor extends Pessoa implements AcessaSistema {
 		this.usuario = usuario;
 	}
 
-	public String getMatricula() {
-		return matricula;
+	@Override
+	public String toString() {
+		return super.toString() + "\nProfessor [id=" + id + ", matricula=" + matricula + ", endereco=" + endereco
+				+ ", email=" + email + ", residencial=" + residencial + ", celular=" + celular + ", opcional="
+				+ opcional + ", disciplinas=" + disciplinas + ", coordenador=" + coordenador + ", usuario=" + usuario
+				+ "]";
 	}
 }

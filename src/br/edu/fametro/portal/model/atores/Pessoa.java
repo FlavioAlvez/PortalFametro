@@ -2,6 +2,7 @@ package br.edu.fametro.portal.model.atores;
 
 import java.util.Date;
 
+import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.enums.Genero;
 
@@ -14,18 +15,9 @@ public abstract class Pessoa {
 	private Filiacao filiacao;
 	private String naturalidade;
 	private String estadoNatal;
-	
+
 	public Pessoa() {
-		super();
-	}
-	
-	public Pessoa(String nome, String rg, String cpf, Date nascimento, Genero genero) {
-		super();
-		this.nome = nome;
-		this.rg = rg;
-		this.cpf = cpf;
-		this.nascimento = nascimento;
-		this.genero = genero;
+
 	}
 
 	public String getNome() {
@@ -97,24 +89,53 @@ public abstract class Pessoa {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		if (cpf.equals(((Pessoa) obj).getCpf()))
-			return true;
-		else if (rg.equals(((Pessoa) obj).getRg()))
-			return true;
-		else
-			return false;
+	public String toString() {
+		return "Pessoa [nome=" + nome + ", rg=" + rg + ", cpf=" + cpf + ", nascimento="
+				+ DateUtility.DateToMask(nascimento) + ", genero=" + genero + ", filiacao=" + filiacao
+				+ ", naturalidade=" + naturalidade + ", estadoNatal=" + estadoNatal + "]";
 	}
 
 	@Override
-	public String toString() {
-		// TODO Auto-generated method stub
-		String buffer = new String();
-		buffer += "Nome: " + nome + "\n";
-		buffer += "RG: " + rg + "\n";
-		buffer += "CPF: " + cpf + "\n";
-		buffer += "Data de Nascimento: " + nascimento + "\n";
-		buffer += "Gênero: " + genero.name() + "\n";
-		return buffer;
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((cpf == null) ? 0 : cpf.hashCode());
+		result = prime * result + ((rg == null) ? 0 : rg.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj) {
+			return true;
+		}
+		if (obj == null) {
+			return false;
+		}
+		if (!(obj instanceof Pessoa)) {
+			return false;
+		}
+
+		Pessoa other = (Pessoa) obj;
+		boolean cpfEquals = true;
+		boolean rgEquals = true;
+
+		if (cpf == null) {
+			if (other.cpf != null) {
+				cpfEquals = false;
+			}
+		} else if (!cpf.equals(other.cpf)) {
+			cpfEquals = false;
+		}
+
+		if (rg == null) {
+			if (other.rg != null) {
+				rgEquals = false;
+			}
+		} else if (!rg.equals(other.rg)) {
+			rgEquals = false;
+		}
+
+		return (cpfEquals || rgEquals);
 	}
 }
