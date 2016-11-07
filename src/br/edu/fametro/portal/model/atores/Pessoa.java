@@ -14,7 +14,11 @@ public abstract class Pessoa {
 	private Filiacao filiacao;
 	private String naturalidade;
 	private String estadoNatal;
-
+	
+	public Pessoa() {
+		super();
+	}
+	
 	public Pessoa(String nome, String rg, String cpf, Date nascimento, Genero genero) {
 		super();
 		this.nome = nome;

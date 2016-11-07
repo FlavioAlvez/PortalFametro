@@ -69,6 +69,9 @@ public class AlunoController extends HttpServlet {
 
 	private void cadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
+		Long id = 0L;
+		
 		// Identifica��o
 		String nome = request.getParameter("nome");
 		String rg = request.getParameter("rg");
@@ -139,8 +142,15 @@ public class AlunoController extends HttpServlet {
 		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
 		// Criar objeto
-		Aluno aluno = new Aluno(bancoAluno.getSize(), nome, rg, cpf, DateUtility.MaskToDate(nascimento),
-				genero.equalsIgnoreCase("masculino") ? Genero.MASCULINO : Genero.FEMININO);
+		Aluno aluno = new Aluno();
+		
+		aluno.setNome(nome);
+		aluno.setRg(rg);
+		aluno.setCpf(cpf);
+		aluno.setNascimento(DateUtility.MaskToDate(nascimento));
+		aluno.setGenero(genero.equalsIgnoreCase("masculino") ? Genero.MASCULINO : Genero.FEMININO);
+		aluno.gerarMatriculaEUsuario(id);
+		
 		aluno.setNaturalidade(naturalidade);
 		aluno.setEstadoNatal(estadoNatal);
 
