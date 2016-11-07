@@ -39,7 +39,7 @@ public class DateUtility implements java.io.Serializable {
 		return dt.getTime();
 	}
 
-	public static Date MaskToDate(String dateMaskInput) {
+	public static Date maskToDate(String dateMaskInput) {
 		// dd/MM/yyyy
 		int dia = Integer.parseInt(dateMaskInput.split("/")[0]);
 		int mes = Integer.parseInt(dateMaskInput.split("/")[1]);

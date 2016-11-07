@@ -77,4 +77,10 @@ public class Endereco {
 	public void setPais(String pais) {
 		this.pais = pais;
 	}
+
+	@Override
+	public String toString() {
+		return "Endereco [cep=" + cep + ", logradouro=" + logradouro + ", complemento=" + complemento + ", numero="
+				+ numero + ", bairro=" + bairro + ", estado=" + estado + ", cidade=" + cidade + ", pais=" + pais + "]";
+	}
 }
