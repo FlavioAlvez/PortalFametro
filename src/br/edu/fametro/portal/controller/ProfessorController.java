@@ -302,11 +302,12 @@ public class ProfessorController extends HttpServlet {
 			request.getRequestDispatcher("perfil.jsp").forward(request, response);
 		} else {
 			request.setAttribute("erro", Boolean.TRUE);
-			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Professor").forward(request, response);
+			request.getRequestDispatcher("perfil.jsp").forward(request, response);
 		}
 	}
 
 	public void alterarSenha(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		
 	}
 }
