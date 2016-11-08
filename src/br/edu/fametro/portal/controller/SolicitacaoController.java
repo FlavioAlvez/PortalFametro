@@ -89,8 +89,8 @@ public class SolicitacaoController extends HttpServlet {
 		System.out.println("ABERTURA: " + abertura);
 		System.out.println("FECHAMENTO: " + fechamento);
 		System.out.println("ASSUNTO: " + assunto);
-		System.out.println("DESCRIÇÃO: " + descricao);
-		System.out.println("AVALIAÇÃO: " + avaliacao);
+		System.out.println("DESCRIï¿½ï¿½O: " + descricao);
+		System.out.println("AVALIAï¿½ï¿½O: " + avaliacao);
 		System.out.println("DISCIPLINA: " + disciplina);
 		System.out.println("***** TESTE PARAMETROS *****");
 		/* TESTE PARAMETROS */
@@ -103,7 +103,7 @@ public class SolicitacaoController extends HttpServlet {
 		Disciplina listaDisciplina[] = Disciplina.values();
 		switch (Integer.parseInt(tipoAtendimento)) {
 		case 1:
-			// Quebra de Pré-Requisito
+			// Quebra de Prï¿½-Requisito
 			solicitacao = new Solicitacao();
 			
 			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
@@ -122,7 +122,7 @@ public class SolicitacaoController extends HttpServlet {
 			}
 			break;
 		case 2:
-			// Revisão de Nota
+			// Revisï¿½o de Nota
 			solicitacao = new Solicitacao();
 			
 			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
