@@ -13,7 +13,6 @@ import br.edu.fametro.portal.business.SecretarioBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
-
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Secretario;
 import br.edu.fametro.portal.model.enums.Genero;

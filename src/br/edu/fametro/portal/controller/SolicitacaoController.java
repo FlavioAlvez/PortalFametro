@@ -99,12 +99,12 @@ public class SolicitacaoController extends HttpServlet {
 				.getAttribute("bancoSolicitacao");
 		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
-		Solicitacao solicitacao = new Solicitacao();
+		Solicitacao solicitacao;
 		Disciplina listaDisciplina[] = Disciplina.values();
 		switch (Integer.parseInt(tipoAtendimento)) {
 		case 1:
 			// Quebra de Pr�-Requisito
-			solicitacao = new Solicitacao();
+			solicitacao = new Solicitacao(bancoSolicitacao.getSize());
 			
 			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
 			solicitacao.setGrupoAtendimento(GrupoAtendimento.SECRETARIA);
