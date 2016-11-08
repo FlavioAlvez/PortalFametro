@@ -10,7 +10,7 @@ import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 public class Solicitacao {
-	private Long id;
+	private long id;
 	private int codigo;
 	private GrupoAtendimento grupoAtendimento;
 	private TipoAtendimento tipoAtendimento;
@@ -27,7 +27,7 @@ public class Solicitacao {
 	private Disciplina disciplina;
 	private Avaliacao av;
 	
-	public Solicitacao(Long id) {
+	public Solicitacao(long id) {
 		this.id = id;
 	}
 	

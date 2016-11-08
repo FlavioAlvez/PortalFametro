@@ -10,11 +10,14 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.fametro.portal.business.AlunoBusiness;
+import br.edu.fametro.portal.business.ProfessorBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Aluno;
+import br.edu.fametro.portal.model.atores.Professor;
+import br.edu.fametro.portal.model.atores.Usuario;
 import br.edu.fametro.portal.model.enums.Curso;
 import br.edu.fametro.portal.model.enums.Genero;
 
@@ -261,8 +264,8 @@ public class AlunoController extends HttpServlet {
 
 		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
-		// VAI SER ALTERADO ESSE LINHA ABAIXO
-		Aluno aluno = bancoAluno.pesquisaMatricula(matricula);
+		// Objeto � ser alterado
+		Aluno aluno =  (Aluno) request.getSession().getAttribute("usuarioLogado");
 
 		// Alterar os dados no objeto local
 		{
@@ -298,5 +301,63 @@ public class AlunoController extends HttpServlet {
 			request.getRequestDispatcher("perfil.jsp").forward(request, response);
 		}
 
+	}
+	
+	public void alterarSenha(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		// Identifica��o
+		String matricula = request.getParameter("registro");
+		String nome = request.getParameter("nome");
+		String nascimento = request.getParameter("data-nascimento");
+		String naturalidade = request.getParameter("naturalidade");
+		String estadoNatal = request.getParameter("estado-natal");
+
+		// Seguran�a
+		String senhaAtual = request.getParameter("senha-atual");
+		String novaSenha = request.getParameter("nova-senha");
+		String confirmarNovaSenha = request.getParameter("confirmar-senha");
+
+		// Resgatando o banco
+		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
+
+		// Objeto � ser alterado
+		Aluno aluno =  (Aluno) request.getSession().getAttribute("usuarioLogado");
+
+		// Criar Usuario com dados passados na senhaAtual
+		Usuario usuarioAtual = new Usuario(matricula, senhaAtual);
+
+		// Conferindo senha atual
+		boolean validado = false;
+
+		if (aluno.getUsuario().getSenha().equals(usuarioAtual.getSenha())) {
+			// Conferir se senhas novas s�o iguais
+			if (novaSenha.equals(confirmarNovaSenha)) {
+				validado = true;
+			}
+		}
+
+		if (validado) {
+			// Alterando o objeto
+			Usuario buffer = aluno.getUsuario();
+			buffer.setSenha(senhaAtual);
+			aluno.setUsuario(buffer);
+
+			// Alterando o objeto no banco local
+			boolean alterado = bancoAluno.alterar(aluno);
+
+			if (alterado) {
+				// Colocando o banco de volta ao escopo da aplica��o
+				request.getServletContext().setAttribute("bancoAluno", bancoAluno);
+				request.getSession().setAttribute("usuarioLogado", aluno);
+				request.setAttribute("sucesso", Boolean.TRUE);
+				request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
+			} else {
+				request.setAttribute("erro", Boolean.TRUE);
+				request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
+			}
+		} else {
+			request.setAttribute("erro", Boolean.TRUE);
+			request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
+		}
 	}
 }
