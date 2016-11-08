@@ -8,13 +8,11 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.AlunoBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
-import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Aluno;
 import br.edu.fametro.portal.model.enums.Curso;
@@ -60,7 +58,7 @@ public class AlunoController extends HttpServlet {
 				cadastro(request, response);
 				break;
 			case "alterar":
-				alterar(request, response);
+				alterarPerfil(request, response);
 				break;
 			}
 		} catch (Exception e) {
@@ -71,8 +69,7 @@ public class AlunoController extends HttpServlet {
 
 	private void cadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		
-		
+
 		// Identifica��o
 		String nome = request.getParameter("nome");
 		String rg = request.getParameter("rg");
@@ -144,13 +141,11 @@ public class AlunoController extends HttpServlet {
 
 		// Criar objeto
 		Aluno aluno = new Aluno(bancoAluno.getSize());
-		
-		
-		
+
 		aluno.setNome(nome);
 		aluno.setRg(rg);
 		aluno.setCpf(cpf);
-		
+
 		{
 			GeneroBusiness bancoGenero = (GeneroBusiness) request.getServletContext().getAttribute("bancoGenero");
 			Genero genero_aux = bancoGenero.pesquisaName(genero);
@@ -162,7 +157,7 @@ public class AlunoController extends HttpServlet {
 
 			aluno.setNascimento(dtNascimento);
 		}
-		
+
 		aluno.setNaturalidade(naturalidade);
 		aluno.setEstadoNatal(estadoNatal);
 
@@ -194,16 +189,15 @@ public class AlunoController extends HttpServlet {
 		}
 		aluno.setCurso(auxCurso);
 
-		
 		// Adicionando ao banco local
 		boolean adicionado = bancoAluno.adicionar(aluno);
-		
+
 		if (adicionado) {
 			// Colocando o banco local de volta ao escopo da aplica��o
 			request.getServletContext().setAttribute("bancoAluno", bancoAluno);
 			request.setAttribute("usuario", aluno);
 			request.setAttribute("sucesso", Boolean.TRUE);
-			
+
 			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Aluno").forward(request, response);
 		} else {
 			request.setAttribute("usuario", aluno);
@@ -211,15 +205,18 @@ public class AlunoController extends HttpServlet {
 
 			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Aluno").forward(request, response);
 		}
-		
-		
 
-		// Redirecionando pra tela home
-		response.sendRedirect("home.jsp?cadastro-de-aluno");
 	}
 
-	private void alterar(HttpServletRequest request, HttpServletResponse response)
+	private void alterarPerfil(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+
+		// Identifica��o
+		String matricula = request.getParameter("registro");
+		String nome = request.getParameter("nome");
+		String nascimento = request.getParameter("data-nascimento");
+		String naturalidade = request.getParameter("naturalidade");
+		String estadoNatal = request.getParameter("estado-natal");
 
 		// Endereço
 		String cep = request.getParameter("cep");
@@ -238,6 +235,13 @@ public class AlunoController extends HttpServlet {
 		String opcional = request.getParameter("fone-3");
 
 		// TESTE
+		System.out.println("----- IDENTIFICA��O -----");
+		System.out.println("Registro Acad�mico: " + matricula);
+		System.out.println("Nome: " + nome);
+		System.out.println("Data de Nascimento: " + nascimento);
+		System.out.println("Naturalidade: " + naturalidade);
+		System.out.println("Estado Natal: " + estadoNatal);
+		System.out.println();
 		System.out.println("------- ENDERE�O --------");
 		System.out.println("CEP: " + cep);
 		System.out.println("Logradouro: " + logradouro);
@@ -253,45 +257,46 @@ public class AlunoController extends HttpServlet {
 		System.out.println("Telefone Residencial: " + residencial);
 		System.out.println("Telefone Celular: " + celular);
 		System.out.println("Telefone 3: " + opcional);
+		System.out.println();
 
-		AlunoBusiness bancoAluno = new AlunoBusiness();
+		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
-		HttpSession session = request.getSession();
-		Aluno alunoLogado = (Aluno) session.getAttribute("usuarioLogado");
+		// VAI SER ALTERADO ESSE LINHA ABAIXO
+		Aluno aluno = bancoAluno.pesquisaMatricula(matricula);
 
-		Endereco endereco = new Endereco();
-		endereco.setCep(cep);
-		endereco.setLogradouro(logradouro);
-		endereco.setComplemento(complemento);
-		endereco.setNumero(Integer.parseInt(numero));
-		endereco.setBairro(bairro);
-		endereco.setEstado(estado);
-		endereco.setCidade(cidade);
-		endereco.setPais(pais);
-		alunoLogado.setEndereco(endereco);
+		// Alterar os dados no objeto local
+		{
+			Endereco endereco = new Endereco();
+			endereco.setCep(cep);
+			endereco.setLogradouro(logradouro);
+			endereco.setComplemento(complemento);
+			endereco.setNumero(Integer.parseInt(numero));
+			endereco.setBairro(bairro);
+			endereco.setEstado(estado);
+			endereco.setCidade(cidade);
+			endereco.setPais(pais);
 
-		alunoLogado.setEmail(email);
+			aluno.setEndereco(endereco);
+		}
 
-		String dddAux = new String();
-		String numeroAux = new String();
-		Telefone aux;
+		aluno.setEmail(email);
+		aluno.setResidencial(Telefone.maskToTelefone(residencial));
+		aluno.setCelular(Telefone.maskToTelefone(celular));
+		aluno.setOpcional(Telefone.maskToTelefone(opcional));
 
-		dddAux = residencial.substring(1, 3);
-		numeroAux = residencial.substring(4, 9).concat(residencial.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		alunoLogado.setResidencial(aux);
+		// Alterando o objeto no banco local
+		boolean alterado = bancoAluno.alterar(aluno);
 
-		dddAux = celular.substring(1, 3);
-		numeroAux = celular.substring(4, 9).concat(celular.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		alunoLogado.setCelular(aux);
-
-		dddAux = opcional.substring(1, 3);
-		numeroAux = opcional.substring(4, 9).concat(opcional.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		alunoLogado.setCelular(aux);
-
-		bancoAluno.alterar(alunoLogado);
+		if (alterado) {
+			// Colocando o banco de volta ao escopo da aplica��o
+			request.getServletContext().setAttribute("bancoProfessor", bancoAluno);
+			request.getSession().setAttribute("usuarioLogado", aluno);
+			request.setAttribute("sucesso", Boolean.TRUE);
+			request.getRequestDispatcher("perfil.jsp").forward(request, response);
+		} else {
+			request.setAttribute("erro", Boolean.TRUE);
+			request.getRequestDispatcher("perfil.jsp").forward(request, response);
+		}
 
 	}
 }
