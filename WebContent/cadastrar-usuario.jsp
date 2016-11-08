@@ -1,4 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 
 <!DOCTYPE html>
@@ -31,86 +32,88 @@
 <script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
 
 <!-- Adicionando Javascript -->
-    <script type="text/javascript" >
+<script type="text/javascript">
+	$(document).ready(
+			function() {
 
-        $(document).ready(function() {
+				function limpa_formulário_cep() {
+					// Limpa valores do formulário de cep.
+					$("#logradouro").val("");
+					$("#bairro").val("");
+					$("#cidade").val("");
+					$("#uf").val("");
+				}
 
-            function limpa_formulário_cep() {
-                // Limpa valores do formulário de cep.
-                $("#rua").val("");
-                $("#bairro").val("");
-                $("#cidade").val("");
-                $("#uf").val("");                
-            }
-            
-            //Quando o campo cep perde o foco.
-            $("#cep").blur(function() {
+				//Quando o campo cep perde o foco.
+				$("#cep").blur(
+						function() {
 
-                //Nova variável "cep" somente com dígitos.
-                var cep = $(this).val().replace(/\D/g, '');
+							//Nova variável "cep" somente com dígitos.
+							var cep = $(this).val().replace(/\D/g, '');
 
-                //Verifica se campo cep possui valor informado.
-                if (cep != "") {
+							//Verifica se campo cep possui valor informado.
+							if (cep != "") {
 
-                    //Expressão regular para validar o CEP.
-                    var validacep = /^[0-9]{8}$/;
+								//Expressão regular para validar o CEP.
+								var validacep = /^[0-9]{8}$/;
 
-                    //Valida o formato do CEP.
-                    if(validacep.test(cep)) {
+								//Valida o formato do CEP.
+								if (validacep.test(cep)) {
 
-                        //Preenche os campos com "..." enquanto consulta webservice.
-                        $("#rua").val("...");
-                        $("#bairro").val("...");
-                        $("#cidade").val("...");
-                        $("#uf").val("...");                        
+									//Preenche os campos com "..." enquanto consulta webservice.
+									$("#rua").val("...");
+									$("#bairro").val("...");
+									$("#cidade").val("...");
+									$("#uf").val("...");
 
-                        //Consulta o webservice viacep.com.br/
-                        $.getJSON("//viacep.com.br/ws/"+ cep +"/json/?callback=?", function(dados) {
+									//Consulta o webservice viacep.com.br/
+									$.getJSON("//viacep.com.br/ws/" + cep
+											+ "/json/?callback=?", function(
+											dados) {
 
-                            if (!("erro" in dados)) {
-                                //Atualiza os campos com os valores da consulta.
-                                $("#rua").val(dados.logradouro);
-                                $("#bairro").val(dados.bairro);
-                                $("#cidade").val(dados.localidade);
-                                $("#uf").val(dados.uf);                                
-                            } //end if.
-                            else {
-                                //CEP pesquisado não foi encontrado.
-                                limpa_formulário_cep();
-                                alert("CEP não encontrado.");
-                            }
-                        });
-                    } //end if.
-                    else {
-                        //cep é inválido.
-                        limpa_formulário_cep();
-                        alert("Formato de CEP inválido.");
-                    }
-                } //end if.
-                else {
-                    //cep sem valor, limpa formulário.
-                    limpa_formulário_cep();
-                }
-            });
-        });
-
-    </script>
+										if (!("erro" in dados)) {
+											//Atualiza os campos com os valores da consulta.
+											$("#rua").val(dados.logradouro);
+											$("#bairro").val(dados.bairro);
+											$("#cidade").val(dados.localidade);
+											$("#uf").val(dados.uf);
+										} //end if.
+										else {
+											//CEP pesquisado não foi encontrado.
+											limpa_formulário_cep();
+											alert("CEP não encontrado.");
+										}
+									});
+								} //end if.
+								else {
+									//cep é inválido.
+									limpa_formulário_cep();
+									alert("Formato de CEP inválido.");
+								}
+							} //end if.
+							else {
+								//cep sem valor, limpa formulário.
+								limpa_formulário_cep();
+							}
+						});
+			});
+</script>
 
 </head>
 
- 
+
 <script type="text/javascript">
-$(document).ready(function(){
+	$(document).ready(function() {
 		$("#nascimento").mask("99/99/9999");
-        $("#cpf").mask("999.999.999-99");
-        $("#cep").mask("99999-999");
-        $("#fone-residencial").mask("(99)99999-9999");
-        $("#fone-celular").mask("(99)99999-9999");
-        $("#fone-3").mask("(99)99999-9999");        
-});
+		$("#cpf").mask("999.999.999-99");
+		$("#cep").mask("99999-999");
+		$("#fone-residencial").mask("(99)99999-9999");
+		$("#fone-celular").mask("(99)99999-9999");
+		$("#fone-3").mask("(99)99999-9999");
+	});
 </script>
 
- 
+
 <body class="nav-md">
 	<div class="container body">
 		<div class="main_container">
@@ -174,306 +177,38 @@ $(document).ready(function(){
 										test="${param.tipo.equalsIgnoreCase('aluno') or param.tipo.equalsIgnoreCase('professor') or param.tipo.equalsIgnoreCase('secretario')}">
 										<div class="x_content">
 											<div class="col-md-12 col-sm-12 col-xs-12">
+												<c:if test="${erro }">
+													<div class="alert alert-danger" role="alert">
+														<img src="img/exclamação.png">&nbsp; &nbsp; Houve um
+														erro durante o cadastro!
+													</div>
+												</c:if>
+												<c:if test="${sucesso }">
+													<div class="alert alert-danger" role="alert">
+														<img src="img/success.png">&nbsp; &nbsp; Cadastrado
+														com sucesso!
+													</div>
+												</c:if>
 												<div class="x_content">
 													<br />
 													<c:if test="${param.tipo.equalsIgnoreCase('aluno') }">
-														<form id="formularioCadastro"
-															class="form-horizontal form-label-left" method="post"
-															action="AlunoController.do">
+														<%@ include
+															file="includes/cadastro-usuario/cadastro-aluno.jsp"%>
 													</c:if>
 													<c:if test="${param.tipo.equalsIgnoreCase('professor') }">
-														<form id="formularioCadastro"
-															class="form-horizontal form-label-left" method="post"
-															action="ProfessorController.do">
+														<%@ include
+															file="includes/cadastro-usuario/cadastro-professor.jsp"%>
 													</c:if>
 													<c:if test="${param.tipo.equalsIgnoreCase('secretario') }">
-														<form id="formularioCadastro"
-															class="form-horizontal form-label-left" method="post"
-															action="SecretarioController.do">
+														<%@ include
+															file="includes/cadastro-usuario/cadastro-secretario.jsp"%>
 													</c:if>
-													<div class="profile_title">
-														<div class="col-md-6">
-															<h2>Identificação</h2>
-														</div>
-													</div>
-													<br />
-													<div class="form-group">
-														<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Nome
-															<span class="required">*</span>
-														</label>
-
-														<div class="col-md-12 col-sm-12 col-xs-12">
-															<input type="text" name="nome" id="nome" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label class="col-md-4 col-sm-4 col-xs-8" for="rg">RG
-															<span class="required">*</span>
-														</label> 
-														
-														<label class="col-md-4 col-sm-4 col-xs-8" for="cpf">CPF
-															<span class="required">*</span>
-														</label> 
-														
-														<label class="col-md-4 col-sm-4 col-xs-8" for="genero">Gênero
-															<span class="required">*</span>
-														</label>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="rg" id="rg" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="cpf" id="cpf" required 
-															class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">															
-															<select name="genero" id="genero" class="select2_single form-control col-md-7 col-xs-12">
-																<option value="" selected></option>
-																<c:forEach var="genero" items="${bancoEnum.getBancoGenero() }">
-																	<option value="${genero.name() }">${genero.name() }</option>
-																</c:forEach>																	
-															</select>
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label class="col-md-3 col-sm-3 col-xs-6" for="nascimento">Data
-															de Nascimento <span class="required">*</span>
-														</label> <label class="col-md-5 col-sm-5 col-xs-10"
-															for="naturalidade">Naturalidade <span
-															class="required">*</span>
-														</label> <label class="col-md-4 col-sm-4 col-xs-8"
-															for="estado-natal">Estado Natal <span
-															class="required">*</span>
-														</label>
-
-														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="nascimento" id="nascimento"
-																required class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-5 col-sm-5 col-xs-10">
-															<input type="text" name="naturalidade" id="naturalidade"
-																required class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="estado-natal" id="estado-natal"
-																required class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-
-													<br />
-													<div class="profile_title">
-														<div class="col-md-6">
-															<h2>Filiação</h2>
-														</div>
-													</div>
-													<br />
-													<div class="form-group">
-														<label class="col-md-6 col-sm-6 col-xs-12" for="pai">Nome
-															do Pai <span class="required">*</span>
-														</label> <label class="col-md-6 col-sm-6 col-xs-12" for="mae">Nome
-															da Mãe <span class="required">*</span>
-														</label>
-
-														<div class="col-md-6 col-sm-6 col-xs-12">
-															<input type="text" name="pai" id="pai" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-6 col-sm-6 col-xs-11">
-															<input type="text" name="mae" id="mae" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-
-													<br />
-													<div class="profile_title">
-														<div class="col-md-6">
-															<h2>Endereço</h2>
-														</div>
-													</div>
-													<br />
-													<div class="form-group">
-														<label class="col-md-3 col-sm-3 col-xs-6" for="cep">CEP
-															<span class="required">*</span>
-														</label> <label class="col-md-9 col-sm-9 col-xs-18"
-															for="rua">Logradouro <span
-															class="required">*</span>
-														</label>
-
-														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="cep" id="cep" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-9 col-sm-9 col-xs-18">
-															<input type="text" name="rua" id="rua"
-																required class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label class="col-md-5 col-sm-5 col-xs-10"
-															for="complemento">Complemento <span
-															class="required">*</span>
-														</label> <label class="col-md-3 col-sm-3 col-xs-6" for="numero">Número
-															<span class="required">*</span>
-														</label> <label class="col-md-4 col-sm-4 col-xs-8" for="bairro">Bairro
-															<span class="required">*</span>
-														</label>
-
-														<div class="col-md-5 col-sm-5 col-xs-10">
-															<input type="text" name="complemento" id="complemento"
-																required class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="number" min=0 name="numero" id="numero" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="bairro" id="bairro" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label class="col-md-4 col-sm-4 col-xs-8" for="uf">Estado
-															<span class="required">*</span>
-														</label> <label class="col-md-4 col-sm-4 col-xs-8" for="cidade">Cidade
-															<span class="required">*</span>
-														</label> <label class="col-md-4 col-sm-4 col-xs-8" for="pais">País
-															<span class="required">*</span>
-														</label>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="uf" id="uf" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="cidade" id="cidade" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-4 col-sm-4 col-xs-8">
-															<input type="text" name="pais" id="pais" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-
-													<br />
-													<div class="profile_title">
-														<div class="col-md-6">
-															<h2>Contato</h2>
-														</div>
-													</div>
-													<br />
-													<div class="form-group">
-														<label class="col-md-3 col-sm-3 col-xs-6" for="email">Email
-															<span class="required">*</span>
-														</label> <label class="col-md-3 col-sm-3 col-xs-6"
-															for="fone-residencial">Telefone Residencial <span
-															class="required">*</span>
-														</label> <label class="col-md-3 col-sm-3 col-xs-6"
-															for="fone-celular">Telefone Celular <span
-															class="required">*</span>
-														</label> <label class="col-md-3 col-sm-3 col-xs-6" for="fone-3">Telefone
-															3 <span class="required">*</span>
-														</label>
-
-														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="email" name="email" id="email" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="fone-residencial"
-																id="fone-residencial" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="fone-celular" id="fone-celular"
-																required class="form-control col-md-7 col-xs-12">
-														</div>
-
-														<div class="col-md-3 col-sm-3 col-xs-6">
-															<input type="text" name="fone-3" id="fone-3" required
-																class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-
-													<br />
-													<c:if
-														test="${param.tipo.equalsIgnoreCase('aluno') or param.tipo.equalsIgnoreCase('professor')}">
-														<div class="profile_title">
-															<div class="col-md-6">
-																<h2>Educacional</h2>
-															</div>
-														</div>
-														<c:if test="${param.tipo.equalsIgnoreCase('aluno') }">
-															<br />
-															<div class="form-group">
-															
-															<label class="col-md-12 col-sm-12 col-xs-12" for="curso">Curso</label>
-																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<select name="curso" id="curso" class="select2_single form-control" required>
-																		<option value="" selected></option>
-																		<c:forEach var="curso"
-																			items="${bancoEnum.getBancoCurso() }">
-																			<option value="${curso.getCodigo() }">${curso.getNome() }</option>
-																		</c:forEach>
-																	</select>
-																</div>
-																
-															</div>
-														</c:if>
-														<c:if test="${param.tipo.equalsIgnoreCase('professor') }">
-														<br />
-															<div class="form-group">
-															
-															<label class="col-md-12 col-sm-12 col-xs-12" for="disciplina"> Disciplinas</label>																	
-																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<select name="disciplina" id="disciplina" class="select2_multiple form-control"	required>
-																		<option value="" selected></option>
-																		<c:forEach var="disciplina"
-																			items="${bancoDisciplina }">
-																			<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
-																		</c:forEach>
-																	</select>
-																</div>
-																
-															</div>
-															<div class="form-group">
-																<div class="col-md-12 col-sm-12 col-xs-12">
-																	<label for="coordenador"> <input
-																		name="coordenador" id="coordenador" type="checkbox"
-																		class="js-switch" /> Coordenador
-																	</label>
-																</div>
-															</div>
-														</c:if>
-													</c:if>
-													<div class="ln_solid"></div>
-													<div class="form-group">
-														<div class="col-md-6 col-sm-6 col-xs-12">
-															<input type="submit" class="btn btn-success"
-																name="action" value="Cadastrar">
-														</div>
-													</div>
-													</form>
 												</div>
 											</div>
 										</div>
+										<c:if test="${sucesso }">
+											<!-- Script que desabilita campos -->
+										</c:if>
 									</c:when>
 									<c:otherwise>Parâmetro Inválido</c:otherwise>
 								</c:choose>
@@ -487,12 +222,12 @@ $(document).ready(function(){
 		</div>
 	</div>
 
-	
+
 	<!-- Bootstrap -->
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
-	
+
 	<script src="js/validacoes.js"></script>
 
 	<!-- Switchery -->
@@ -506,15 +241,15 @@ $(document).ready(function(){
 			$(".select2_group").select2({});
 			$(".select2_multiple").select2({});
 		});
-		
-		$(document).ready(function(){
+
+		$(document).ready(function() {
 			$("#nascimento").mask("99/99/9999");
-	        $("#cpf").mask("999.999.999-99");
-	        $("#cep").mask("99999-999");
-	        $("#fone-residencial").mask("(99)99999-9999");
-	        $("#fone-celular").mask("(99)99999-9999");
-	        $("#fone-3").mask("(99)99999-9999");        
-	});
+			$("#cpf").mask("999.999.999-99");
+			$("#cep").mask("99999-999");
+			$("#fone-residencial").mask("(99)99999-9999");
+			$("#fone-celular").mask("(99)99999-9999");
+			$("#fone-3").mask("(99)99999-9999");
+		});
 	</script>
 	<!-- /Select2 e Mascaras -->
 </body>
