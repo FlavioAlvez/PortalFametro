@@ -237,7 +237,7 @@
 				<select name="curso" id="curso" class="select2_single form-control"
 					required>
 					<option value="" selected></option>
-					<c:forEach var="curso" items="${bancoEnum.getBancoCurso() }">
+					<c:forEach var="curso" items="${bancoCurso.getBanco() }">
 						<option value="${curso.getCodigo() }">${curso.getNome() }</option>
 					</c:forEach>
 				</select>
