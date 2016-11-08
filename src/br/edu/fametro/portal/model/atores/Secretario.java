@@ -11,6 +11,7 @@ public class Secretario extends Pessoa implements AcessaSistema {
 	private long id;
 	private String matricula;
 	private Endereco endereco;
+	private String email;
 	private Telefone residencial;
 	private Telefone celular;
 	private Telefone opcional;
@@ -30,16 +31,20 @@ public class Secretario extends Pessoa implements AcessaSistema {
 		return matricula;
 	}
 
-	public Usuario getUsuario() {
-		return usuario;
-	}
-
 	public Endereco getEndereco() {
 		return endereco;
 	}
 
 	public void setEndereco(Endereco endereco) {
 		this.endereco = endereco;
+	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public Telefone getResidencial() {
@@ -66,13 +71,18 @@ public class Secretario extends Pessoa implements AcessaSistema {
 		this.opcional = opcional;
 	}
 
-	public void setUsuario(Usuario acesso) {
-		this.usuario = acesso;
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
 	}
 
 	@Override
 	public String toString() {
-		return super.toString() + ", Secretario [matricula=" + matricula + ", endereco=" + endereco + ", residencial="
-				+ residencial + ", celular=" + celular + ", opcional=" + opcional + ", usuario=" + usuario + "]";
+		return super.toString() + ", Secretario [id=" + id + ", matricula=" + matricula + ", endereco=" + endereco
+				+ ", email=" + email + ", residencial=" + residencial + ", celular=" + celular + ", opcional="
+				+ opcional + ", usuario=" + usuario + "]";
 	}
 }
