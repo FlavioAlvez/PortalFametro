@@ -1,15 +1,14 @@
 package br.edu.fametro.portal.model.atores;
 
 import java.util.Calendar;
-import java.util.Date;
 
 import br.edu.fametro.portal.model.Endereco;
 import br.edu.fametro.portal.model.Sistema;
 import br.edu.fametro.portal.model.Telefone;
-import br.edu.fametro.portal.model.enums.Genero;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 public class Secretario extends Pessoa implements AcessaSistema {
+	private long id;
 	private String matricula;
 	private Endereco endereco;
 	private Telefone residencial;
@@ -17,10 +16,14 @@ public class Secretario extends Pessoa implements AcessaSistema {
 	private Telefone opcional;
 	private Usuario usuario;
 
-	public Secretario(long id, String nome, String rg, String cpf, Date nascimento, Genero genero) {
-		super(nome, rg, cpf, nascimento, genero);
+	public Secretario(long id) {
+		this.id = id;
 		matricula = Sistema.geraMatricula(TipoUsuario.SECRETARIO, Calendar.getInstance().getTime(), id);
 		usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.SECRETARIO);
+	}
+
+	public long getId() {
+		return id;
 	}
 
 	public String getMatricula() {
@@ -68,20 +71,8 @@ public class Secretario extends Pessoa implements AcessaSistema {
 	}
 
 	@Override
-	public boolean equals(Object obj) {
-		// TODO Auto-generated method stub
-		if (!(obj instanceof Secretario))
-			return false;
-		return super.equals(obj);
-	}
-
-	@Override
 	public String toString() {
-		// TODO Auto-generated method stub
-		String buffer = new String();
-		buffer += "Registro Acadêmico: " + matricula + "\n";
-		buffer += super.toString();
-		buffer += usuario + "\n";
-		return buffer;
+		return super.toString() + ", Secretario [matricula=" + matricula + ", endereco=" + endereco + ", residencial="
+				+ residencial + ", celular=" + celular + ", opcional=" + opcional + ", usuario=" + usuario + "]";
 	}
 }

@@ -1,6 +1,7 @@
 package br.edu.fametro.portal.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,12 +10,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import br.edu.fametro.portal.business.ProfessorBusiness;
+import br.edu.fametro.portal.business.enums.DisciplinaBusiness;
+import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
-import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Professor;
-import br.edu.fametro.portal.model.enums.Disciplina;
 import br.edu.fametro.portal.model.enums.Genero;
 
 /**
@@ -134,56 +135,77 @@ public class ProfessorController extends HttpServlet {
 			System.out.println("Disciplinas: " + disciplinas[i]);
 		System.out.println("Coordenador: " + coordenador);
 		System.out.println();
-		
+
 		// Resgatando o banco
 		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
 				.getAttribute("bancoProfessor");
 
-		// Criar objeto
-		Professor professor = new Professor(bancoProfessor.getSize(), nome, rg, cpf, DateUtility.HtmlToDate(nascimento),
-				genero.equalsIgnoreCase("masculino") ? Genero.MASCULINO : Genero.FEMININO,
-				coordenador.equalsIgnoreCase("on") ? Boolean.TRUE : Boolean.FALSE);
+		// Criar objeto - Instanciando
+		Professor professor = new Professor(bancoProfessor.getSize());
+		// Criar objeto - Identificação
+		professor.setNome(nome);
+		professor.setRg(rg);
+		professor.setCpf(cpf);
+		{
+			GeneroBusiness bancoGenero = (GeneroBusiness) request.getServletContext().getAttribute("bancoGenero");
+			Genero genero_aux = bancoGenero.pesquisaName(genero);
+
+			professor.setGenero(genero_aux);
+		}
+		{
+			Date dtNascimento = DateUtility.maskToDate(nascimento);
+
+			professor.setNascimento(dtNascimento);
+		}
 		professor.setNaturalidade(naturalidade);
 		professor.setEstadoNatal(estadoNatal);
+		// Criar objeto - Filiação
+		professor.getFiliacao().setPai(pai);
+		professor.getFiliacao().setMae(mae);
+		// Criar objeto - Endereço
+		{
+			Endereco endereco = new Endereco();
+			endereco.setCep(cep);
+			endereco.setLogradouro(logradouro);
+			endereco.setComplemento(complemento);
+			endereco.setNumero(Integer.parseInt(numero));
+			endereco.setBairro(bairro);
+			endereco.setEstado(estado);
+			endereco.setCidade(cidade);
+			endereco.setPais(pais);
 
-		Filiacao filiacao = new Filiacao(pai, mae);
-		professor.setFiliacao(filiacao);
-
-		Endereco endereco = new Endereco();
-		endereco.setCep(cep);
-		endereco.setLogradouro(logradouro);
-		endereco.setComplemento(complemento);
-		endereco.setNumero(Integer.parseInt(numero));
-		endereco.setBairro(bairro);
-		endereco.setEstado(estado);
-		endereco.setCidade(cidade);
-		endereco.setPais(pais);
-		professor.setEndereco(endereco);
-
-		professor.setEmail(email);
-
-		String dddAux = new String(); // (0 1 2 )3
-		String numeroAux = new String();// 4 5 6 7 8 -9 0 1 2 3
-		Telefone aux;
-
-		dddAux = residencial.substring(1, 3);
-		numeroAux = residencial.substring(4, 9).concat(residencial.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		professor.setResidencial(aux);
-
-		dddAux = celular.substring(1, 3);
-		numeroAux = celular.substring(4, 9).concat(celular.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		professor.setCelular(aux);
-
-		dddAux = opcional.substring(1, 3);
-		numeroAux = opcional.substring(4, 9).concat(opcional.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		professor.setCelular(aux);
-
-		for (int i = 0; i < disciplinas.length; i++) {
-			professor.addDisciplina(Disciplina.search(disciplinas[i]));
+			professor.setEndereco(endereco);
 		}
+		// Criar objeto - Contato
+		professor.setEmail(email);
+		professor.setResidencial(Telefone.maskToTelefone(residencial));
+		professor.setCelular(Telefone.maskToTelefone(celular));
+		professor.setOpcional(Telefone.maskToTelefone(opcional));
+		// Criar objeto - Educacional
+		{
+			DisciplinaBusiness bancoDisciplina = (DisciplinaBusiness) request.getServletContext()
+					.getAttribute("bancoDisciplina");
+			for (int i = 0; i < disciplinas.length; i++) {
+				professor.addDisciplina(bancoDisciplina.pesquisaCodigo(disciplinas[i]));
+			}
+		}
+		professor.setCoordenador(coordenador != null ? Boolean.TRUE : Boolean.FALSE);
+		
+		// Adicionando o objeto ao banco
+		boolean adicionado = bancoProfessor.adicionar(professor);
 
+		if (adicionado) {
+			// Colocando o banco de volta ao escopo da aplicação
+			request.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
+			request.setAttribute("usuario", professor);
+			request.setAttribute("sucesso", Boolean.TRUE);
+
+			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Professor").forward(request, response);
+		} else {
+			request.setAttribute("usuario", professor);
+			request.setAttribute("erro", Boolean.TRUE);
+
+			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Professor").forward(request, response);
+		}
 	}
 }

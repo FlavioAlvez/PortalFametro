@@ -21,10 +21,11 @@ public class Solicitacao {
 	private String solicitacao;
 	private String discussao;
 	private String solucao;
-	
-	//Parametros
+
+	// Parametros
 	private Disciplina disciplina;
 	private Avaliacao av;
+<<<<<<< HEAD
 	
 	public Solicitacao() {
 		
@@ -40,6 +41,11 @@ public class Solicitacao {
 		this.tipo = tipo;
 		this.assunto = assunto;
 		this.solicitacao = solicitacao;
+=======
+
+	public Solicitacao() {
+
+>>>>>>> upstream/master
 	}
 
 	public int getCodigo() {
@@ -167,5 +173,5 @@ public class Solicitacao {
 			return false;
 		return true;
 	}
-	
+
 }

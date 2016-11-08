@@ -47,9 +47,8 @@ public class LoginFilter implements Filter {
 		if (paginaAtual != null
 			&& (paginaAtual.endsWith("")
 				&& (!paginaAtual.endsWith("login.jsp")
-						&& (!paginaAtual.endsWith("LoginController")
 							&& (!paginaAtual.endsWith("LoginController.do")
-								&& ((paginaAtual.endsWith(".jsp") || paginaAtual.endsWith(".do") || paginaAtual.endsWith("Controller")))))))) {
+								&& ((paginaAtual.endsWith(".jsp") || paginaAtual.endsWith(".do"))))))) {
 			if (session.getAttribute("usuarioLogado") == null) {
 				session.invalidate();
 				hresp.sendRedirect("login.jsp");

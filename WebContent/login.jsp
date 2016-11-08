@@ -29,19 +29,6 @@
 	<div class="navbar navbar-fixed-top">
 		<div class="navbar-inner">
 			<div class="container">
-				
-<!-- 				<a class="btn btn-navbar" data-toggle="collapse" -->
-<!-- 					data-target=".nav-collapse"> <span class="icon-bar"></span> <span -->
-<!-- 					class="icon-bar"></span> <span class="icon-bar"></span> -->
-<!-- 				</a> <a class="brand" href="dashboard.html"> Sistema de Solicitações -->
-<!-- 				</a> -->
-<!-- 				<div class="nav-collapse"> -->
-<!-- 					<ul class="nav pull-right"> -->
-<!-- 						<li class=""><a href="index.html" class=""> <i -->
-<!-- 								class="icon-chevron-left"></i> Voltar para Homepage -->
-<!-- 						</a></li> -->
-<!-- 					</ul> -->
-<!-- 				</div> -->
 				<!--/.nav-collapse -->
 			</div>
 			<!-- /container -->
@@ -56,6 +43,13 @@
 				<h2>Portal Acadêmico</h2>
 				<div class="login-fields">
 					<p>Insira seu usuário e senha</p>
+					<c:if test="${loginInvalido }">
+						<div class="alert alert-danger" role="alert">
+							<img src="img/exclamação.png">&nbsp; &nbsp; A matrícula ou
+							senha está incorreta!
+						</div>
+					</c:if>
+
 					<div class="field">
 						<label for="matricula">Matricula</label> <input type="text"
 							id="username" name="username" value="" placeholder="Matrícula"
@@ -71,7 +65,8 @@
 				</div>
 				<!-- /login-fields -->
 				<div class="login-actions">
-					<input type="submit" name="action" value="Entrar" class="button btn btn-success btn-large">
+					<input type="submit" name="action" value="Entrar"
+						class="button btn btn-success btn-large">
 				</div>
 				<!-- .actions -->
 			</form>

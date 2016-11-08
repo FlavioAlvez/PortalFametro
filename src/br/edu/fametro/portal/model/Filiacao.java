@@ -5,13 +5,6 @@ public class Filiacao {
 	private String mae;
 
 	public Filiacao() {
-
-	}
-
-	public Filiacao(String pai, String mae) {
-		super();
-		this.pai = pai;
-		this.mae = mae;
 	}
 
 	public String getPai() {
@@ -28,5 +21,10 @@ public class Filiacao {
 
 	public void setMae(String mae) {
 		this.mae = mae;
+	}
+
+	@Override
+	public String toString() {
+		return "Filiacao [pai=" + pai + ", mae=" + mae + "]";
 	}
 }

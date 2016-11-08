@@ -116,7 +116,7 @@ $(document).ready(function(){
 											</label>
 
 											<div class="col-md-9 col-sm-12 col-xs-12">
-												<select id="tipo-atendimento-pesquisa" name="tipo-atendimento-pesquisa" class="form-control col-md-7 col-xs-12">
+												<select id="tipo-atendimento-pesquisa" name="tipo-atendimento-pesquisa" class="form-control col-md-12 col-xs-12">
 													<option></option>
 													<option>ANÁLISE DE EXCESSO DE CARGA HORÁRIA</option>
 													<option>DESCONTO DE ALUNOS TRANSF. OU GRAD. DE OUTRA IES</option>
