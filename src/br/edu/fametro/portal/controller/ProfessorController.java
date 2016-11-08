@@ -14,6 +14,7 @@ import br.edu.fametro.portal.business.enums.DisciplinaBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
+import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.atores.Usuario;
@@ -61,7 +62,7 @@ public class ProfessorController extends HttpServlet {
 			case "alterar perfil":
 				alterarPerfil(request, response);
 				break;
-			case "alterar-senha":
+			case "alterar senha":
 				alterarSenha(request, response);
 				break;
 			}
@@ -89,7 +90,7 @@ public class ProfessorController extends HttpServlet {
 
 		// Endereço
 		String cep = request.getParameter("cep");
-		String logradouro = request.getParameter("logradouro");
+		String logradouro = request.getParameter("rua");
 		String complemento = request.getParameter("complemento");
 		String numero = request.getParameter("numero");
 		String bairro = request.getParameter("bairro");
@@ -167,8 +168,12 @@ public class ProfessorController extends HttpServlet {
 		professor.setNaturalidade(naturalidade);
 		professor.setEstadoNatal(estadoNatal);
 		// Criar objeto - Filiação
-		professor.getFiliacao().setPai(pai);
-		professor.getFiliacao().setMae(mae);
+		{
+			Filiacao filiacao = new Filiacao();
+			filiacao.setPai(pai);
+			filiacao.setMae(mae);
+			professor.setFiliacao(filiacao);
+		}
 		// Criar objeto - Endereço
 		{
 			Endereco endereco = new Endereco();
@@ -311,10 +316,10 @@ public class ProfessorController extends HttpServlet {
 			throws ServletException, IOException {
 		// Identificação
 		String matricula = request.getParameter("registro");
-		String nome = request.getParameter("nome");
-		String nascimento = request.getParameter("data-nascimento");
-		String naturalidade = request.getParameter("naturalidade");
-		String estadoNatal = request.getParameter("estado-natal");
+//		String nome = request.getParameter("nome");
+//		String nascimento = request.getParameter("data-nascimento");
+//		String naturalidade = request.getParameter("naturalidade");
+//		String estadoNatal = request.getParameter("estado-natal");
 
 		// Segurança
 		String senhaAtual = request.getParameter("senha-atual");
