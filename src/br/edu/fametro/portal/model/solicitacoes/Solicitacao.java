@@ -10,6 +10,7 @@ import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 public class Solicitacao {
+	private Long id;
 	private int codigo;
 	private GrupoAtendimento grupoAtendimento;
 	private TipoAtendimento tipoAtendimento;
@@ -25,10 +26,9 @@ public class Solicitacao {
 	// Parametros
 	private Disciplina disciplina;
 	private Avaliacao av;
-<<<<<<< HEAD
 	
-	public Solicitacao() {
-		
+	public Solicitacao(Long id) {
+		this.id = id;
 	}
 	
 	public Solicitacao(int codigo, GrupoAtendimento grupoAtendimento, TipoAtendimento tipoAtendimento,
@@ -41,11 +41,18 @@ public class Solicitacao {
 		this.tipo = tipo;
 		this.assunto = assunto;
 		this.solicitacao = solicitacao;
-=======
+	}
 
 	public Solicitacao() {
 
->>>>>>> upstream/master
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public int getCodigo() {

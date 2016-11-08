@@ -304,8 +304,7 @@
 	<!-- /Select2 -->
 </body>
 =======
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%-- <%@ taglib prefix="fmt" uri="http://java.sun.com/jstl/fmt"%> --%>
 <!DOCTYPE html>
@@ -346,7 +345,7 @@
 	<div class="container body">
 		<div class="main_container">
 
-			<jsp:useBean id="now" class="br.edu.fametro.portal.model.DateUtility" />
+			<jsp:useBean id="gow" class="br.edu.fametro.portal.model.DateUtility" />
 			<c:import url="menu-de-navegacao.jsp" />
 
 			<c:import url="navegacao-de-topo.jsp" />

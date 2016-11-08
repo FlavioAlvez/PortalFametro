@@ -104,7 +104,7 @@ public class SolicitacaoController extends HttpServlet {
 		switch (Integer.parseInt(tipoAtendimento)) {
 		case 1:
 			// Quebra de Pr�-Requisito
-			solicitacao = new Solicitacao();
+			solicitacao = new Solicitacao(bancoSolicitacao.getSize());
 			
 			solicitacao.setCodigo(Integer.parseInt(tipooAtendimentoCdg));
 			solicitacao.setGrupoAtendimento(GrupoAtendimento.SECRETARIA);

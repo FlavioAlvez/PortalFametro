@@ -1,6 +1,7 @@
 package br.edu.fametro.portal.controller;
 
 import java.io.IOException;
+import java.util.Date;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.AlunoBusiness;
+import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
 import br.edu.fametro.portal.model.Filiacao;
@@ -70,7 +72,6 @@ public class AlunoController extends HttpServlet {
 	private void cadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		
-		Long id = 0L;
 		
 		// Identifica��o
 		String nome = request.getParameter("nome");
@@ -142,20 +143,31 @@ public class AlunoController extends HttpServlet {
 		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
 		// Criar objeto
-		Aluno aluno = new Aluno();
+		Aluno aluno = new Aluno(bancoAluno.getSize());
+		
+		
 		
 		aluno.setNome(nome);
 		aluno.setRg(rg);
 		aluno.setCpf(cpf);
-		aluno.setNascimento(DateUtility.MaskToDate(nascimento));
-		aluno.setGenero(genero.equalsIgnoreCase("masculino") ? Genero.MASCULINO : Genero.FEMININO);
-		aluno.gerarMatriculaEUsuario(id);
+		
+		{
+			GeneroBusiness bancoGenero = (GeneroBusiness) request.getServletContext().getAttribute("bancoGenero");
+			Genero genero_aux = bancoGenero.pesquisaName(genero);
+
+			aluno.setGenero(genero_aux);
+		}
+		{
+			Date dtNascimento = DateUtility.maskToDate(nascimento);
+
+			aluno.setNascimento(dtNascimento);
+		}
 		
 		aluno.setNaturalidade(naturalidade);
 		aluno.setEstadoNatal(estadoNatal);
 
-		Filiacao filiacao = new Filiacao(pai, mae);
-		aluno.setFiliacao(filiacao);
+		aluno.getFiliacao().setPai(pai);
+		aluno.getFiliacao().setMae(mae);
 
 		Endereco endereco = new Endereco();
 		endereco.setCep(cep);
@@ -168,26 +180,11 @@ public class AlunoController extends HttpServlet {
 		endereco.setPais(pais);
 		aluno.setEndereco(endereco);
 
+		// Criar objeto - Contato
 		aluno.setEmail(email);
-
-		String dddAux = new String();
-		String numeroAux = new String();
-		Telefone aux;
-
-		dddAux = residencial.substring(1, 3);
-		numeroAux = residencial.substring(4, 9).concat(residencial.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		aluno.setResidencial(aux);
-
-		dddAux = celular.substring(1, 3);
-		numeroAux = celular.substring(4, 9).concat(celular.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		aluno.setCelular(aux);
-
-		dddAux = opcional.substring(1, 3);
-		numeroAux = opcional.substring(4, 9).concat(opcional.substring(10));
-		aux = new Telefone(Integer.parseInt(dddAux), numeroAux);
-		aluno.setCelular(aux);
+		aluno.setResidencial(Telefone.maskToTelefone(residencial));
+		aluno.setCelular(Telefone.maskToTelefone(celular));
+		aluno.setOpcional(Telefone.maskToTelefone(opcional));
 
 		Curso listaCursos[] = Curso.values();
 		Curso auxCurso = null;
@@ -197,14 +194,25 @@ public class AlunoController extends HttpServlet {
 		}
 		aluno.setCurso(auxCurso);
 
-		// TESTE
-		System.out.println(aluno);
-
+		
 		// Adicionando ao banco local
-		bancoAluno.adicionar(aluno);
+		boolean adicionado = bancoAluno.adicionar(aluno);
+		
+		if (adicionado) {
+			// Colocando o banco local de volta ao escopo da aplica��o
+			request.getServletContext().setAttribute("bancoAluno", bancoAluno);
+			request.setAttribute("usuario", aluno);
+			request.setAttribute("sucesso", Boolean.TRUE);
+			
+			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Aluno").forward(request, response);
+		} else {
+			request.setAttribute("usuario", aluno);
+			request.setAttribute("erro", Boolean.TRUE);
 
-		// Colocando o banco local de volta ao escopo da aplica��o
-		request.getServletContext().setAttribute("bancoAluno", bancoAluno);
+			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Aluno").forward(request, response);
+		}
+		
+		
 
 		// Redirecionando pra tela home
 		response.sendRedirect("home.jsp?cadastro-de-aluno");

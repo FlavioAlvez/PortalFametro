@@ -67,7 +67,7 @@ public class ProfessorController extends HttpServlet {
 
 	private void cadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identificação
+		// Identificaï¿½ï¿½o
 		String nome = request.getParameter("nome");
 		String rg = request.getParameter("rg");
 		String cpf = request.getParameter("cpf");
@@ -76,11 +76,11 @@ public class ProfessorController extends HttpServlet {
 		String naturalidade = request.getParameter("naturalidade");
 		String estadoNatal = request.getParameter("estado-natal");
 
-		// Filiação
+		// Filiaï¿½ï¿½o
 		String pai = request.getParameter("pai");
 		String mae = request.getParameter("mae");
 
-		// Endereço
+		// Endereï¿½o
 		String cep = request.getParameter("cep");
 		String logradouro = request.getParameter("logradouro");
 		String complemento = request.getParameter("complemento");
@@ -101,7 +101,7 @@ public class ProfessorController extends HttpServlet {
 		String coordenador = request.getParameter("coordenador"); // null ou on
 
 		// TESTE
-		System.out.println("----- IDENTIFICAÇÃO -----");
+		System.out.println("----- IDENTIFICAï¿½ï¿½O -----");
 		System.out.println("Nome: " + nome);
 		System.out.println("RG: " + rg);
 		System.out.println("CPF: " + cpf);
@@ -110,11 +110,11 @@ public class ProfessorController extends HttpServlet {
 		System.out.println("Naturalidade: " + naturalidade);
 		System.out.println("Estado Natal: " + estadoNatal);
 		System.out.println();
-		System.out.println("------- FILIAÇÃO --------");
+		System.out.println("------- FILIAï¿½ï¿½O --------");
 		System.out.println("Nome do Pai: " + pai);
-		System.out.println("Nome da Mãe: " + mae);
+		System.out.println("Nome da Mï¿½e: " + mae);
 		System.out.println();
-		System.out.println("------- ENDEREÇO --------");
+		System.out.println("------- ENDEREï¿½O --------");
 		System.out.println("CEP: " + cep);
 		System.out.println("Logradouro: " + logradouro);
 		System.out.println("Complemento: " + complemento);
@@ -122,7 +122,7 @@ public class ProfessorController extends HttpServlet {
 		System.out.println("Bairro: " + bairro);
 		System.out.println("Estado: " + estado);
 		System.out.println("Cidade: " + cidade);
-		System.out.println("País: " + pais);
+		System.out.println("Paï¿½s: " + pais);
 		System.out.println();
 		System.out.println("-------- CONTATO --------");
 		System.out.println("Email: " + email);
@@ -142,7 +142,7 @@ public class ProfessorController extends HttpServlet {
 
 		// Criar objeto - Instanciando
 		Professor professor = new Professor(bancoProfessor.getSize());
-		// Criar objeto - Identificação
+		// Criar objeto - Identificaï¿½ï¿½o
 		professor.setNome(nome);
 		professor.setRg(rg);
 		professor.setCpf(cpf);
@@ -159,10 +159,10 @@ public class ProfessorController extends HttpServlet {
 		}
 		professor.setNaturalidade(naturalidade);
 		professor.setEstadoNatal(estadoNatal);
-		// Criar objeto - Filiação
+		// Criar objeto - Filiaï¿½ï¿½o
 		professor.getFiliacao().setPai(pai);
 		professor.getFiliacao().setMae(mae);
-		// Criar objeto - Endereço
+		// Criar objeto - Endereï¿½o
 		{
 			Endereco endereco = new Endereco();
 			endereco.setCep(cep);
@@ -195,7 +195,7 @@ public class ProfessorController extends HttpServlet {
 		boolean adicionado = bancoProfessor.adicionar(professor);
 
 		if (adicionado) {
-			// Colocando o banco de volta ao escopo da aplicação
+			// Colocando o banco de volta ao escopo da aplicaï¿½ï¿½o
 			request.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
 			request.setAttribute("usuario", professor);
 			request.setAttribute("sucesso", Boolean.TRUE);
