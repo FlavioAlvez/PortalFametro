@@ -16,6 +16,7 @@ import br.edu.fametro.portal.model.atores.Aluno;
 import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.atores.Secretario;
 import br.edu.fametro.portal.model.atores.Usuario;
+import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 /**
  * Servlet implementation class LoginController
@@ -87,8 +88,10 @@ public class LoginController extends HttpServlet {
 
 			if (secretarioLogado != null) {
 				session.setAttribute("usuarioLogado", secretarioLogado);
+				session.setAttribute("tipoUsuarioLogado", TipoUsuario.SECRETARIO);
 			} else {
-				session.setAttribute("loginInvalido", Boolean.TRUE);
+				request.setAttribute("loginInvalido", Boolean.TRUE);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 			break;
 		case 1: // aluno 1-2016123456
@@ -98,8 +101,10 @@ public class LoginController extends HttpServlet {
 
 			if (alunoLogado != null) {
 				session.setAttribute("usuarioLogado", alunoLogado);
+				session.setAttribute("tipoUsuarioLogado", TipoUsuario.ALUNO);
 			} else {
-				session.setAttribute("loginInvalido", Boolean.TRUE);
+				request.setAttribute("loginInvalido", Boolean.TRUE);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 			break;
 		case 2: // professor 2-2016123456
@@ -110,13 +115,16 @@ public class LoginController extends HttpServlet {
 
 			if (professorLogado != null) {
 				session.setAttribute("usuarioLogado", professorLogado);
+				session.setAttribute("tipoUsuarioLogado", TipoUsuario.PROFESSOR);
 			} else {
-				session.setAttribute("loginInvalido", Boolean.TRUE);
+				request.setAttribute("loginInvalido", Boolean.TRUE);
+				request.getRequestDispatcher("login.jsp").forward(request, response);
 			}
 
 			break;
 		default:// buxo
 			session.setAttribute("loginInvalido", Boolean.TRUE);
+			request.getRequestDispatcher("login.jsp").forward(request, response);
 			break;
 		}
 		// request.getRequestDispatcher("home.jsp").forward(request, response);
@@ -127,6 +135,7 @@ public class LoginController extends HttpServlet {
 		HttpSession session = request.getSession();
 
 		session.setAttribute("usuarioLogado", null);
+		session.setAttribute("tipoUsuarioLogado", null);
 		session.invalidate();
 		response.sendRedirect("login.jsp");
 	}
