@@ -15,6 +15,75 @@
 <script type="text/javascript" src="jquery/jquery.js"></script>
 <script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
 
+<!-- Adicionando Javascript -->
+<script type="text/javascript">
+	$(document).ready(
+			function() {
+
+				function limpa_formulário_cep() {
+					// Limpa valores do formulário de cep.
+					$("#logradouro").val("");
+					$("#bairro").val("");
+					$("#cidade").val("");
+					$("#uf").val("");
+				}
+
+				//Quando o campo cep perde o foco.
+				$("#cep").blur(
+						function() {
+
+							//Nova variável "cep" somente com dígitos.
+							var cep = $(this).val().replace(/\D/g, '');
+
+							//Verifica se campo cep possui valor informado.
+							if (cep != "") {
+
+								//Expressão regular para validar o CEP.
+								var validacep = /^[0-9]{8}$/;
+
+								//Valida o formato do CEP.
+								if (validacep.test(cep)) {
+
+									//Preenche os campos com "..." enquanto consulta webservice.
+									$("#rua").val("...");
+									$("#bairro").val("...");
+									$("#cidade").val("...");
+									$("#uf").val("...");
+
+									//Consulta o webservice viacep.com.br/
+									$.getJSON("//viacep.com.br/ws/" + cep
+											+ "/json/?callback=?", function(
+											dados) {
+
+										if (!("erro" in dados)) {
+											//Atualiza os campos com os valores da consulta.
+											$("#rua").val(dados.logradouro);
+											$("#bairro").val(dados.bairro);
+											$("#cidade").val(dados.localidade);
+											$("#uf").val(dados.uf);
+										} //end if.
+										else {
+											//CEP pesquisado não foi encontrado.
+											limpa_formulário_cep();
+											alert("CEP não encontrado.");
+										}
+									});
+								} //end if.
+								else {
+									//cep é inválido.
+									limpa_formulário_cep();
+									alert("Formato de CEP inválido.");
+								}
+							} //end if.
+							else {
+								//cep sem valor, limpa formulário.
+								limpa_formulário_cep();
+							}
+						});
+			});
+</script>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
 		$("#data-nascimento").mask("99/99/9999");        
@@ -67,7 +136,7 @@ $(document).ready(function(){
 					<div class="clearfix"></div>
 
 					<div class="row">
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
 							<div class="x_panel">
 								<div class="x_title">
 									<c:if
@@ -98,7 +167,7 @@ $(document).ready(function(){
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 profile_left">
 										<div class="profile_img">
 											<div id="crop-avatar">
 												<!-- Current avatar -->
@@ -116,7 +185,7 @@ $(document).ready(function(){
 												Análise e Desenvolvimento de Sistemas</li>
 										</ul>
 									</div>
-									<div class="col-md-9 col-sm-9 col-xs-12">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
 										<div class="x_content">
 											<br />
 											<form id="demo-form2" name="demo-form2" data-parsley-validate
@@ -129,49 +198,49 @@ $(document).ready(function(){
 												</div>
 												<br />
 												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="registro">Registro Acadêmico 
+													<label class="col-xs-12 col-sm-3 col-md-3 col-lg-3" for="registro">Registro Acadêmico 
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-9 col-sm-9 col-xs-18" for="nome">Nome 
+													<label class="col-xs-12 col-sm-9 col-md-9 col-lg-9" for="nome">Nome 
 														<span class="required">*</span>
 													</label>
 
-													<div class="col-md-3 col-sm-3 col-xs-6">
+													<div class="col-xs-12 col-sm-3 col-md-3 col-lg-3">
 														<input disabled type="text" name="registro" id="registro" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
-													<div class="col-md-9 col-sm-9 col-xs-18">
+													<div class="col-xs-12 col-sm-9 col-md-9 col-lg-9">
 														<input disabled type="text" name="nome" id="nome" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="data-nascimento">Data de Nascimento 
+													<label class="col-md-3 col-sm-3 col-xs-12" for="data-nascimento">Data de Nascimento 
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-5 col-sm-5 col-xs-10" for="naturalidade">Naturalidade 
+													<label class="col-md-5 col-sm-5 col-xs-12" for="naturalidade">Naturalidade 
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-4 col-sm-4 col-xs-8" for="estado-natal">Estado Natal 
+													<label class="col-md-4 col-sm-4 col-xs-12" for="estado-natal">Estado Natal 
 														<span class="required">*</span>
 													</label>
 
-													<div class="col-md-3 col-sm-3 col-xs-6">
+													<div class="col-md-3 col-sm-3 col-xs-12">
 														<input disabled type="text" name="data-nascimento" id="data-nascimento" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
-													<div class="col-md-5 col-sm-5 col-xs-10">
+													<div class="col-md-5 col-sm-5 col-xs-12">
 														<input disabled type="text" name="naturalidade" id="naturalidade" required 
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
-													<div class="col-md-4 col-sm-4 col-xs-8">
+													<div class="col-md-4 col-sm-4 col-xs-12">
 														<input disabled type="text" name="estado-natal" id="estado-natal" required 
 															class="form-control col-md-7 col-xs-12">
 													</div>
@@ -185,49 +254,49 @@ $(document).ready(function(){
 												</div>
 												<br />
 												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="cep">CEP
+													<label class="col-md-3 col-sm-3 col-xs-12" for="cep">CEP
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-9 col-sm-9 col-xs-18" for="logradouro">Logradouro 
+													<label class="col-md-9 col-sm-9 col-xs-12" for="logradouro">Logradouro 
 														<span class="required">*</span>
 													</label>
 
-													<div class="col-md-3 col-sm-3 col-xs-6">
+													<div class="col-md-3 col-sm-3 col-xs-12">
 														<input type="text" name="cep" id="cep" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
-													<div class="col-md-9 col-sm-9 col-xs-18">
-														<input type="text" name="logradouro" id="logradouro" required 
+													<div class="col-md-9 col-sm-9 col-xs-12">
+														<input type="text" name="rua" id="rua" required 
 															class="form-control col-md-7 col-xs-12">
 													</div>
 												</div>
 
 												<div class="form-group">
-													<label class="col-md-5 col-sm-5 col-xs-10" for="complemento">Complemento
+													<label class="col-md-5 col-sm-5 col-xs-12" for="complemento">Complemento
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-3 col-sm-3 col-xs-6" for="numero">Número
+													<label class="col-md-3 col-sm-3 col-xs-12" for="numero">Número
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-4 col-sm-4 col-xs-8" for="bairro">Bairro
+													<label class="col-md-4 col-sm-4 col-xs-12" for="bairro">Bairro
 														<span class="required">*</span>
 													</label>
 
-													<div class="col-md-5 col-sm-5 col-xs-10">
+													<div class="col-md-5 col-sm-5 col-xs-12">
 														<input type="text" name="complemento" id="complemento" required 
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
-													<div class="col-md-3 col-sm-3 col-xs-6">
+													<div class="col-md-3 col-sm-3 col-xs-12">
 														<input type="text" name="numero" id="numero" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
-													<div class="col-md-4 col-sm-4 col-xs-8">
+													<div class="col-md-4 col-sm-4 col-xs-12">
 														<input type="text" name="bairro" id="bairro" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
@@ -243,7 +312,7 @@ $(document).ready(function(){
 													</label>
 
 													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="text" name="estado" id="estado" required
+														<input type="text" name="uf" id="uf" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
@@ -273,27 +342,27 @@ $(document).ready(function(){
 												</div>
 
 												<div class="form-group">
-													<label class="col-md-4 col-sm-4 col-xs-8" for="fone-residencial">Telefone	Residencial 
+													<label class="col-md-4 col-sm-4 col-xs-12" for="fone-residencial">Telefone	Residencial 
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-4 col-sm-4 col-xs-8" for="fone-celular">Telefone	Celular 
+													<label class="col-md-4 col-sm-4 col-xs-12" for="fone-celular">Telefone	Celular 
 														<span class="required">*</span>
 													</label> 
 													
-													<label class="col-md-4 col-sm-4 col-xs-8" for="fone-3">Telefone	3 
+													<label class="col-md-4 col-sm-4 col-xs-12" for="fone-3">Telefone	3 
 														<span class="required">*</span>
 													</label>
 
-													<div class="col-md-4 col-sm-4 col-xs-8">
+													<div class="col-md-4 col-sm-4 col-xs-12">
 														<input type="text" name="fone-residencial" id="fone-residencial" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
+													<div class="col-md-4 col-sm-4 col-xs-12">
 														<input type="text" name="fone-celular" id="fone-celular" required 
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
+													<div class="col-md-4 col-sm-4 col-xs-12">
 														<input type="text" name="fone-3" id="fone-3" required
 															class="form-control col-md-7 col-xs-12">
 													</div>

@@ -115,7 +115,7 @@ $(document).ready(function(){
 												for="tipo-atendimento-pesquisa">Tipo da Solicitação
 											</label>
 
-											<div class="col-md-9 col-sm-12 col-xs-12">
+											<div class="col-md-12 col-sm-12 col-xs-12">
 												<select id="tipo-atendimento-pesquisa" name="tipo-atendimento-pesquisa" class="form-control col-md-12 col-xs-12">
 													<option></option>
 													<option>ANÁLISE DE EXCESSO DE CARGA HORÁRIA</option>
@@ -129,28 +129,28 @@ $(document).ready(function(){
 										</div>
 
 										<div class="form-group">
-											<label class="col-md-3 col-sm-4 col-xs-8" 
+											<label class="col-md-4 col-sm-4 col-xs-12" 
 												for="data-abertura">Data de Abertura
 											</label> 
 											
-											<label class="col-md-3 col-sm-4 col-xs-8"
+											<label class="col-md-4 col-sm-4 col-xs-12"
 												for="data-fechamento">Data de Fechamento
 											</label> 
 											
-											<label class="col-md-4 col-sm-4 col-xs-8"
+											<label class="col-md-4 col-sm-4 col-xs-12"
 												for="tipo-atendimento-descricao">Status
 											</label>
 
-											<div class="col-md-3 col-sm-4 col-xs-8">
+											<div class="col-md-4 col-sm-4 col-xs-12">
 												<input type="text" name="data-abertura"	id="data-abertura"
 													class="form-control col-md-7 col-xs-12">
 											</div>
 											
-											<div class="col-md-3 col-sm-4 col-xs-8">
+											<div class="col-md-4 col-sm-4 col-xs-12">
 												<input type="text" name="data-fechamento" id="data-fechamento"
 													class="form-control col-md-7 col-xs-12">
 											</div>
-											<div class="col-md-3 col-sm-4 col-xs-8">
+											<div class="col-md-4 col-sm-4 col-xs-12">
 												<select id="tipo-atendimento-descricao" name="tipo-atendimento-descricao" class="form-control col-md-7 col-xs-12">
 													<option></option>
 													<option>CONCLUÍDO</option>
@@ -162,10 +162,10 @@ $(document).ready(function(){
 										</div>
 
 										<div class="form-group">
-											<label class="col-md-8 col-sm-3 col-xs-6" for="assunto">Assunto
+											<label class="col-md-8 col-sm-3 col-xs-12" for="assunto">Assunto
 											</label>
 											
-											<div class="col-md-9 col-sm-12 col-xs-12">
+											<div class="col-md-12 col-sm-12 col-xs-12">
 												<input type="text" name="assunto" id="assunto"
 													class="form-control col-md-7 col-xs-12">
 											</div>

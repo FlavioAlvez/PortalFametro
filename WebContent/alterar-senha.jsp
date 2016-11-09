@@ -15,6 +15,21 @@
 <script type="text/javascript" src="jquery/jquery.js"></script>
 <script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
 
+<script>
+function validarSenha(){
+	novasenha = document.getElementById('nova-senha').value;
+	confirmarsenha = document.getElementById('confirmar-senha').value;
+   if (novasenha != confirmarsenha) {
+      alert("Você deve inserir a mesma senha duas vezes para confirmá-la. !");
+	  document.getElementById('confirmar-senha').value='';
+	   
+   }else{
+      document.FormSenha.submit();
+   }
+}
+</script>
+
+
 <script type="text/javascript">
 $(document).ready(function(){
 		$("#data-nascimento").mask("99/99/9999");               
@@ -102,10 +117,10 @@ $(document).ready(function(){
 												Análise e Desenvolvimento de Sistemas</li>
 										</ul>
 									</div>
-									<div class="col-md-9 col-sm-9 col-xs-12">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
 										<div class="x_content">
 											<br />
-											<form id="demo-form2" data-parsley-validate
+											<form id="demo-form2" name="demo-form2" data-parsley-validate
 												class="form-horizontal form-label-left" method="post"
 												action="home.jsp">
 												<div class="profile_title">
@@ -115,47 +130,47 @@ $(document).ready(function(){
 												</div>
 												<br />
 												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="registro">Registro Acadêmico 
+													<label class="col-md-3 col-sm-3 col-xs-12" for="registro">Registro Acadêmico 
                                                     	<span class="required">*</span>
 													</label> 
                                                     
-                                                    <label class="col-md-9 col-sm-9 col-xs-18" for="nome">Nome 
+                                                    <label class="col-md-9 col-sm-9 col-xs-12" for="nome">Nome 
 														<span class="required">*</span>
 													</label>
                                                     
-													<div class="col-md-3 col-sm-3 col-xs-6">
+													<div class="col-md-3 col-sm-3 col-xs-12">
 														<input disabled ="text" name="registro" id="registro" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 													
-													<div class="col-md-9 col-sm-9 col-xs-18">
+													<div class="col-md-9 col-sm-9 col-xs-12">
 														<input disabled type="text" name="nome" id="nome" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
 												</div>
 												
 												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="data-nascimento">Data de Nascimento 
+													<label class="col-md-3 col-sm-3 col-xs-12" for="data-nascimento">Data de Nascimento 
                                                     	<span class="required">*</span>
 													</label> 
                                                     
-                                                    <label class="col-md-5 col-sm-5 col-xs-10" for="naturalidade">Naturalidade 
+                                                    <label class="col-md-5 col-sm-5 col-xs-12" for="naturalidade">Naturalidade 
 														<span	class="required">*</span>
 													</label> 
                                                     
-                                                    <label class="col-md-4 col-sm-4 col-xs-8" for="estado-natal">Estado Natal 
+                                                    <label class="col-md-4 col-sm-4 col-xs-12" for="estado-natal">Estado Natal 
                                                     	<span class="required">*</span>
 													</label>
                                                     
-													<div class="col-md-3 col-sm-3 col-xs-6">
+													<div class="col-md-3 col-sm-3 col-xs-12">
 														<input disabled type="text" name="data-nascimento" id="data-nascimento" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-5 col-sm-5 col-xs-10">
+													<div class="col-md-5 col-sm-5 col-xs-12">
 														<input disabled type="text" name="naturalidade" id="naturalidade" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
+													<div class="col-md-4 col-sm-4 col-xs-12">
 														<input disabled type="text" name="estado-natal" id="estado-natal" required
 															class="form-control col-md-7 col-xs-12">
 													</div>
@@ -203,9 +218,8 @@ $(document).ready(function(){
 												<div class="ln_solid"></div>
 												<div class="form-group">
 													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="submit" class="btn btn-cancel	" name="concluir"
-															value="Cancelar"> <input type="submit"
-															class="btn btn-success" name="" value="Concluir">
+														<input type="submit" class="btn btn-cancel" name="concluir" value="Cancelar"> 
+														<input type="submit" class="btn btn-success" name="" value="Concluir" onClick="validarSenha()">
 													</div>
 												</div>
 											</form>
