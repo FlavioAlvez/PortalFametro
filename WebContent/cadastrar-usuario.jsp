@@ -76,8 +76,8 @@
 						</div>
 					</div>
 
-					<div class="clearfix"></div>					
-					
+					<div class="clearfix"></div>
+
 
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
@@ -114,29 +114,53 @@
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<c:if test="${erro }">
 													<div class="alert alert-danger" role="alert">
-														<img src="img/exclamação.png">&nbsp; &nbsp; Houve um
-														erro durante o cadastro!
+														<img src="img/exclamação.png">&nbsp; &nbsp; Houve
+														algum erro e o cadastro não foi efetivado.
 													</div>
 												</c:if>
 												<c:if test="${sucesso }">
-													<div class="alert alert-danger" role="alert">
-														<img src="img/success.png">&nbsp; &nbsp; Cadastrado
-														com sucesso!
+													<div class="alert alert-sucess" role="alert">
+														<img src="img/success.png">&nbsp; &nbsp; Cadastro
+														efetivado.
 													</div>
 												</c:if>
 												<div class="x_content">
 													<br />
 													<c:if test="${param.tipo.equalsIgnoreCase('aluno') }">
-														<%@ include
-															file="includes/cadastro-usuario/cadastro-aluno.jsp"%>
+														<c:choose>
+															<c:when test="${not sucesso }">
+																<%@ include
+																	file="includes/cadastro-usuario/cadastro-aluno.jsp"%>
+															</c:when>
+															<c:otherwise>
+																<%@ include
+																	file="includes/cadastro-usuario/aluno-cadastrado.jsp"%>
+															</c:otherwise>
+														</c:choose>
 													</c:if>
 													<c:if test="${param.tipo.equalsIgnoreCase('professor') }">
-														<%@ include
-															file="includes/cadastro-usuario/cadastro-professor.jsp"%>
+														<c:choose>
+															<c:when test="${not sucesso }">
+																<%@ include
+																	file="includes/cadastro-usuario/cadastro-professor.jsp"%>
+															</c:when>
+															<c:otherwise>
+																<%@ include
+																	file="includes/cadastro-usuario/professor-cadastrado.jsp"%>
+															</c:otherwise>
+														</c:choose>
 													</c:if>
 													<c:if test="${param.tipo.equalsIgnoreCase('secretario') }">
-														<%@ include
-															file="includes/cadastro-usuario/cadastro-secretario.jsp"%>
+														<c:choose>
+															<c:when test="${not sucesso }">
+																<%@ include
+																	file="includes/cadastro-usuario/cadastro-secretario.jsp"%>
+															</c:when>
+															<c:otherwise>
+																<%@ include
+																	file="includes/cadastro-usuario/secretario-cadastrado.jsp"%>
+															</c:otherwise>
+														</c:choose>
 													</c:if>
 												</div>
 											</div>
@@ -159,7 +183,7 @@
 
 
 	<!-- Bootstrap -->
-	<script src="js/bootstrap.min.js"></script>    
+	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
 
@@ -168,10 +192,10 @@
 	<!-- Switchery -->
 	<script src="js/switchery/switchery.min.js"></script>
 	<!-- Select -->
-    <script src="js/select/bootstrap-select.js"></script>
-    <!-- Select2 -->
-	<script src="js/select2/select2.full.min.js"></script>	
-	
+	<script src="js/select/bootstrap-select.js"></script>
+	<!-- Select2 -->
+	<script src="js/select2/select2.full.min.js"></script>
+
 	<script>
 		$(document).ready(function() {
 			$(".select2_single").select2({});
