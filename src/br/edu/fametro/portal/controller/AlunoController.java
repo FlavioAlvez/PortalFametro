@@ -64,7 +64,13 @@ public class AlunoController extends HttpServlet {
 				alterarPerfil(request, response);
 				break;
 			case "alterar senha":
-
+				alterarSenha(request, response);
+				break;
+			default:
+				System.err.println("[AlunoController] action entrou no default!");
+				System.err.println("[AlunoController] action = "
+						+ (action == null ? "null" : action));
+				response.sendRedirect("LoginController.do");
 				break;
 			}
 		} catch (Exception e) {
