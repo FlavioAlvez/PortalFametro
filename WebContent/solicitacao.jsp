@@ -156,7 +156,7 @@
 															class=" form-control"
 															onchange="matriculaAluno(this)">
 															<option value=""></option>
-															<c:forEach var="aluno" items="${bancoAluno.getBanco}">
+															<c:forEach var="aluno" items="${bancoAluno.getBanco() }">
 																<option value="${aluno.getMatricula() }">${aluno.getNome() }</option>
 															</c:forEach>
 														</select>

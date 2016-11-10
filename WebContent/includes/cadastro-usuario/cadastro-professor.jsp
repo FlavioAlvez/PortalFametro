@@ -235,16 +235,15 @@
 			<label for="disciplina"> Disciplinas</label>
 			<div class="">
 				<select name="disciplina" id="disciplina"
-					class=" form-control"
-					required>
-					<option value="" selected></option>
-					<c:forEach var="disciplina" items="${bancoDisciplina.getBanco() }">
+					class="selectpicker form-control" multiple data-selected-text-format="count > 3" data-actions-box="true">
+						<c:forEach var="disciplina" items="${bancoDisciplina.getBanco() }">
 						<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
 					</c:forEach>
-				</select>
+				</select>				
 			</div>
 		</div>
-	</div>
+	</div>	
+	
 	<div class="form-group">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<label for="coordenador"> <input name="coordenador"
