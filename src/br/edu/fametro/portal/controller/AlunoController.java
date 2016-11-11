@@ -101,7 +101,7 @@ public class AlunoController extends HttpServlet {
 		String complemento = request.getParameter("complemento");
 		String numero = request.getParameter("numero");
 		String bairro = request.getParameter("bairro");
-		String estado = request.getParameter("estado");
+		String estado = request.getParameter("uf");
 		String cidade = request.getParameter("cidade");
 		String pais = request.getParameter("pais");
 

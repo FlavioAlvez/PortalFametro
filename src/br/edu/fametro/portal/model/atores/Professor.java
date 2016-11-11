@@ -1,5 +1,6 @@
 package br.edu.fametro.portal.model.atores;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
 
@@ -25,6 +26,7 @@ public class Professor extends Pessoa implements AcessaSistema {
 		this.id = id;
 		matricula = Sistema.geraMatricula(TipoUsuario.PROFESSOR, Calendar.getInstance().getTime(), id);
 		usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.PROFESSOR);
+		disciplinas = new ArrayList<Disciplina>();
 	}
 
 	public long getId() {

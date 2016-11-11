@@ -98,7 +98,7 @@ public class ProfessorController extends HttpServlet {
 		String complemento = request.getParameter("complemento");
 		String numero = request.getParameter("numero");
 		String bairro = request.getParameter("bairro");
-		String estado = request.getParameter("estado");
+		String estado = request.getParameter("uf");
 		String cidade = request.getParameter("cidade");
 		String pais = request.getParameter("pais");
 
@@ -112,49 +112,57 @@ public class ProfessorController extends HttpServlet {
 		String disciplinas[] = request.getParameterValues("disciplina");
 		String coordenador = request.getParameter("coordenador"); // null ou on
 
-		// TESTE
-		System.out.println("----- IDENTIFICAÇÃO -----");
-		System.out.println("Nome: " + nome);
-		System.out.println("RG: " + rg);
-		System.out.println("CPF: " + cpf);
-		System.out.println("Genero: " + genero);
-		System.out.println("Data de Nascimento: " + nascimento);
-		System.out.println("Naturalidade: " + naturalidade);
-		System.out.println("Estado Natal: " + estadoNatal);
-		System.out.println();
-		System.out.println("------- FILIAÇÃO --------");
-		System.out.println("Nome do Pai: " + pai);
-		System.out.println("Nome da Mãe: " + mae);
-		System.out.println();
-		System.out.println("------- ENDEREçO --------");
-		System.out.println("CEP: " + cep);
-		System.out.println("Logradouro: " + logradouro);
-		System.out.println("Complemento: " + complemento);
-		System.out.println("Numero: " + numero);
-		System.out.println("Bairro: " + bairro);
-		System.out.println("Estado: " + estado);
-		System.out.println("Cidade: " + cidade);
-		System.out.println("País: " + pais);
-		System.out.println();
-		System.out.println("-------- CONTATO --------");
-		System.out.println("Email: " + email);
-		System.out.println("Telefone Residencial: " + residencial);
-		System.out.println("Telefone Celular: " + celular);
-		System.out.println("Telefone 3: " + opcional);
-		System.out.println();
-		System.out.println("------ EDUCACIONAL ------");
-		for (int i = 0; i < disciplinas.length; i++)
-			System.out.println("Disciplinas: " + disciplinas[i]);
-		System.out.println("É coordenador: " + (coordenador.equals("on") ? "Sim" : "Não"));
-		System.out.println();
+		try {
+			// TESTE
+			System.out.println("----- IDENTIFICAÇÃO -----");
+			System.out.println("Nome: " + nome);
+			System.out.println("RG: " + rg);
+			System.out.println("CPF: " + cpf);
+			System.out.println("Genero: " + genero);
+			System.out.println("Data de Nascimento: " + nascimento);
+			System.out.println("Naturalidade: " + naturalidade);
+			System.out.println("Estado Natal: " + estadoNatal);
+			System.out.println();
+			System.out.println("------- FILIAÇÃO --------");
+			System.out.println("Nome do Pai: " + pai);
+			System.out.println("Nome da Mãe: " + mae);
+			System.out.println();
+			System.out.println("------- ENDEREçO --------");
+			System.out.println("CEP: " + cep);
+			System.out.println("Logradouro: " + logradouro);
+			System.out.println("Complemento: " + complemento);
+			System.out.println("Numero: " + numero);
+			System.out.println("Bairro: " + bairro);
+			System.out.println("Estado: " + estado);
+			System.out.println("Cidade: " + cidade);
+			System.out.println("País: " + pais);
+			System.out.println();
+			System.out.println("-------- CONTATO --------");
+			System.out.println("Email: " + email);
+			System.out.println("Telefone Residencial: " + residencial);
+			System.out.println("Telefone Celular: " + celular);
+			System.out.println("Telefone 3: " + opcional);
+			System.out.println();
+			System.out.println("------ EDUCACIONAL ------");
+			for (int i = 0; i < disciplinas.length; i++)
+				System.out.println("Disciplinas: " + disciplinas[i]);
+			System.out.println("É coordenador: " + (coordenador.equals("on") ? "Sim" : "Não"));
+			System.out.println();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("[ProfessorController] Erro no teste");
+		}
 
 		// Resgatando o banco
+		System.out.println("Resgatando o banco");
 		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
 				.getAttribute("bancoProfessor");
 
 		// Criar objeto - Instanciando
+		System.out.println("Criar objeto - Instanciando");
 		Professor professor = new Professor(bancoProfessor.getSize());
 		// Criar objeto - Identificação
+		System.out.println("Criar objeto - Identificação");
 		professor.setNome(nome);
 		professor.setRg(rg);
 		professor.setCpf(cpf);
@@ -172,6 +180,7 @@ public class ProfessorController extends HttpServlet {
 		professor.setNaturalidade(naturalidade);
 		professor.setEstadoNatal(estadoNatal);
 		// Criar objeto - Filiação
+		System.out.println("Criar objeto - Filiação");
 		{
 			Filiacao filiacao = new Filiacao();
 			filiacao.setPai(pai);
@@ -179,6 +188,7 @@ public class ProfessorController extends HttpServlet {
 			professor.setFiliacao(filiacao);
 		}
 		// Criar objeto - Endereço
+		System.out.println("Criar objeto - Endereço");
 		{
 			Endereco endereco = new Endereco();
 			endereco.setCep(cep);
@@ -193,21 +203,28 @@ public class ProfessorController extends HttpServlet {
 			professor.setEndereco(endereco);
 		}
 		// Criar objeto - Contato
+		System.out.println("Criar objeto - Contato");
 		professor.setEmail(email);
 		professor.setResidencial(Telefone.maskToTelefone(residencial));
 		professor.setCelular(Telefone.maskToTelefone(celular));
 		professor.setOpcional(Telefone.maskToTelefone(opcional));
-		// Criar objeto - Educacional
-		{
-			DisciplinaBusiness bancoDisciplina = (DisciplinaBusiness) request.getServletContext()
-					.getAttribute("bancoDisciplina");
-			for (int i = 0; i < disciplinas.length; i++) {
-				professor.addDisciplina(bancoDisciplina.pesquisaCodigo(disciplinas[i]));
+		try {
+			// Criar objeto - Educacional
+			System.out.println("Criar objeto - Educacional");
+			{
+				DisciplinaBusiness bancoDisciplina = (DisciplinaBusiness) request.getServletContext()
+						.getAttribute("bancoDisciplina");
+				for (int i = 0; i < disciplinas.length; i++) {
+					professor.addDisciplina(bancoDisciplina.pesquisaCodigo(disciplinas[i]));
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		professor.setCoordenador(coordenador != null ? Boolean.TRUE : Boolean.FALSE);
+		professor.setCoordenador(coordenador == "on" ? Boolean.TRUE : Boolean.FALSE);
 
 		// Adicionando o objeto ao banco
+		System.out.println("Adicionando o objeto ao banco");
 		boolean adicionado = bancoProfessor.adicionar(professor);
 
 		if (adicionado) {
