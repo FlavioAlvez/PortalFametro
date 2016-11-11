@@ -154,7 +154,7 @@ public class SecretarioController extends HttpServlet {
 			secretario.setGenero(genero_aux);
 		}
 		{
-			Date dtNascimento = DateUtility.maskToDate(nascimento);
+			Date dtNascimento = DateUtility.HtmlToDate(nascimento);
 
 			secretario.setNascimento(dtNascimento);
 		}

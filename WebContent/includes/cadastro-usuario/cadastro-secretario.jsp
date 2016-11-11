@@ -53,7 +53,7 @@
 				class="required">*</span>
 			</label>
 			<div class="">
-				<input type="text" name="nascimento" id="nascimento" required
+				<input type="date" name="nascimento" id="nascimento" required
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
@@ -141,7 +141,7 @@
 			<label for="numero">Número <span class="required">*</span>
 			</label>
 			<div>
-				<input type="number" min=0 name="numero" id="numero" required
+				<input type="number" min=0 max=999999999 name="numero" id="numero" required
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>

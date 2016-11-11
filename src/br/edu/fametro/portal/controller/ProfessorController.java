@@ -173,7 +173,7 @@ public class ProfessorController extends HttpServlet {
 			professor.setGenero(genero_aux);
 		}
 		{
-			Date dtNascimento = DateUtility.maskToDate(nascimento);
+			Date dtNascimento = DateUtility.HtmlToDate(nascimento);
 
 			professor.setNascimento(dtNascimento);
 		}

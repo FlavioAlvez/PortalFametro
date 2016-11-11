@@ -165,7 +165,7 @@ public class AlunoController extends HttpServlet {
 			aluno.setGenero(genero_aux);
 		}
 		{
-			Date dtNascimento = DateUtility.maskToDate(nascimento);
+			Date dtNascimento = DateUtility.HtmlToDate(nascimento);
 
 			aluno.setNascimento(dtNascimento);
 		}
