@@ -1,10 +1,14 @@
 package br.edu.fametro.portal.listener;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletContextEvent;
 import javax.servlet.ServletContextListener;
 import javax.servlet.annotation.WebListener;
 
 import br.edu.fametro.portal.business.AlunoBusiness;
+import br.edu.fametro.portal.business.ProfessorBusiness;
 import br.edu.fametro.portal.business.SecretarioBusiness;
 import br.edu.fametro.portal.business.enums.AvaliacaoBusiness;
 import br.edu.fametro.portal.business.enums.CursoBusiness;
@@ -18,8 +22,10 @@ import br.edu.fametro.portal.model.Endereco;
 import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Aluno;
+import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.atores.Secretario;
 import br.edu.fametro.portal.model.enums.Curso;
+import br.edu.fametro.portal.model.enums.Disciplina;
 import br.edu.fametro.portal.model.enums.Genero;
 
 /**
@@ -68,7 +74,7 @@ public class Persistencia implements ServletContextListener {
 			Filiacao filiacao = new Filiacao();
 			filiacao.setPai("Pai do Secretario Beltrano");
 			filiacao.setMae("Mãe do Secretario Beltrano");
-			
+
 			secretarioExemplo.setFiliacao(filiacao);
 		}
 		secretarioExemplo.setNaturalidade("Fortaleza");
@@ -99,15 +105,77 @@ public class Persistencia implements ServletContextListener {
 		{
 			int i = 0;
 			for (Secretario s : bancoSecretario.getBanco()) {
-				System.out.print("[SECRETARIO] Elemento " + i +": " + s +"\n");
+				System.out.print("[SECRETARIO] Elemento " + i + ": " + s + "\n");
 				i++;
 			}
 		}
 		// Fim Teste
-	
+
 		System.out.println("[SECRETARIO] Colocando banco no contexto da aplicação...\n");
 		contexto.getServletContext().setAttribute("bancoSecretario", bancoSecretario);
-		
+
+		/****************************************************************************************************/
+		System.out.println("[PROFESSOR] Instanciando banco...");
+		ProfessorBusiness bancoProfessor = new ProfessorBusiness();
+
+		System.out.println("[PROFESSOR] Criando o primeiro elemento...");
+		Professor professorExemplo = new Professor(bancoProfessor.getSize());
+		// Pessoa
+		professorExemplo.setNome("Professor Fulano Beltrano");
+		professorExemplo.setRg("5368374810");
+		professorExemplo.setCpf("123.456.789-00");
+		professorExemplo.setNascimento(DateUtility.maskToDate("01/02/1993"));
+		professorExemplo.setGenero(Genero.MASCULINO);
+		{
+			Filiacao filiacao = new Filiacao();
+			filiacao.setPai("Pai do Professor Beltrano");
+			filiacao.setMae("Mãe do Professor Beltrano");
+
+			professorExemplo.setFiliacao(filiacao);
+		}
+		professorExemplo.setNaturalidade("Fortaleza");
+		professorExemplo.setEstadoNatal("CE");
+		// Professor
+		professorExemplo.setCoordenador(Boolean.TRUE);
+		{
+			List<Disciplina> disciplinas = new ArrayList<Disciplina>();
+			disciplinas.add(Disciplina.DESENVOLVIMENTO_WEB);
+			professorExemplo.setDisciplinas(disciplinas);
+		}
+		{
+			Endereco endereco = new Endereco();
+			endereco.setCep("60750-000");
+			endereco.setLogradouro("Avenida Araquém Aguiar");
+			endereco.setComplemento("Complemento");
+			endereco.setNumero(234);
+			endereco.setBairro("Prefeito José Walter");
+			endereco.setEstado("CE");
+			endereco.setCidade("Fortaleza");
+			endereco.setPais("Brasil");
+
+			professorExemplo.setEndereco(endereco);
+		}
+		professorExemplo.setResidencial(Telefone.maskToTelefone("(85)03473-7070"));
+		professorExemplo.setCelular(Telefone.maskToTelefone("(85)97070-7070"));
+		professorExemplo.setOpcional(Telefone.maskToTelefone("(85)99876-5432"));
+
+		System.out.println("[PROFESSOR] Colocando o primeiro elemento no banco...");
+		bancoProfessor.adicionar(professorExemplo);
+
+		// Teste
+		System.out.println("[PROFESSOR] Quantidade de elementos no banco: " + bancoProfessor.getSize());
+		{
+			int i = 0;
+			for (Professor s : bancoProfessor.getBanco()) {
+				System.out.print("[PROFESSOR] Elemento " + i + ": " + s + "\n");
+				i++;
+			}
+		}
+		// Fim Teste
+
+		System.out.println("[PROFESSOR] Colocando banco no contexto da aplicação...\n");
+		contexto.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
+
 		/****************************************************************************************************/
 		System.out.println("[ALUNO] Instanciando banco...");
 		AlunoBusiness bancoAluno = new AlunoBusiness();
@@ -124,7 +192,7 @@ public class Persistencia implements ServletContextListener {
 			Filiacao filiacao = new Filiacao();
 			filiacao.setPai("Pai do Aluno Beltrano");
 			filiacao.setMae("Mãe do Aluno Beltrano");
-			
+
 			alunoExemplo.setFiliacao(filiacao);
 		}
 		alunoExemplo.setNaturalidade("Fortaleza");
@@ -156,12 +224,12 @@ public class Persistencia implements ServletContextListener {
 		{
 			int i = 0;
 			for (Aluno s : bancoAluno.getBanco()) {
-				System.out.print("[ALUNO] Elemento " + i +": " + s +"\n");
+				System.out.print("[ALUNO] Elemento " + i + ": " + s + "\n");
 				i++;
 			}
 		}
 		// Fim Teste
-	
+
 		System.out.println("[ALUNO] Colocando banco no contexto da aplicação...\n");
 		contexto.getServletContext().setAttribute("bancoAluno", bancoAluno);
 
@@ -197,7 +265,7 @@ public class Persistencia implements ServletContextListener {
 		System.out.println("[DateUtility] Auxiliar");
 		DateUtility auxiliar = new DateUtility();
 		contexto.getServletContext().setAttribute("DateUtility", auxiliar);
-		
+
 		/****************************************************************************************************/
 		System.out.println("Inicialização concluída...");
 	}
