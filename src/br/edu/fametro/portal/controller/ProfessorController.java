@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.ProfessorBusiness;
 import br.edu.fametro.portal.business.enums.DisciplinaBusiness;
@@ -244,12 +245,7 @@ public class ProfessorController extends HttpServlet {
 
 	public void alterarPerfil(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identificação
-		String matricula = request.getParameter("registro");
-		String nome = request.getParameter("nome");
-		String nascimento = request.getParameter("data-nascimento");
-		String naturalidade = request.getParameter("naturalidade");
-		String estadoNatal = request.getParameter("estado-natal");
+		HttpSession session = request.getSession();
 
 		// Endereço
 		String cep = request.getParameter("cep");
@@ -268,12 +264,6 @@ public class ProfessorController extends HttpServlet {
 		String opcional = request.getParameter("fone-3");
 
 		// TESTE
-		System.out.println("----- IDENTIFICAÇÃO -----");
-		System.out.println("Registro Acadêmico: " + matricula);
-		System.out.println("Nome: " + nome);
-		System.out.println("Data de Nascimento: " + nascimento);
-		System.out.println("Naturalidade: " + naturalidade);
-		System.out.println("Estado Natal: " + estadoNatal);
 		System.out.println();
 		System.out.println("------- ENDERE�O --------");
 		System.out.println("CEP: " + cep);
@@ -297,7 +287,7 @@ public class ProfessorController extends HttpServlet {
 				.getAttribute("bancoProfessor");
 
 		// Objeto � ser alterado
-		Professor professor = (Professor) request.getSession().getAttribute("usuarioLogado");
+		Professor professor = (Professor) session.getAttribute("usuarioLogado");
 
 		// Alterar os dados no objeto local
 		{
@@ -324,7 +314,7 @@ public class ProfessorController extends HttpServlet {
 		if (alterado) {
 			// Colocando o banco de volta ao escopo da aplicação
 			request.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
-			request.getSession().setAttribute("usuarioLogado", professor);
+			session.setAttribute("usuarioLogado", professor);
 			request.setAttribute("sucesso", Boolean.TRUE);
 			request.getRequestDispatcher("perfil.jsp").forward(request, response);
 		} else {
@@ -335,14 +325,12 @@ public class ProfessorController extends HttpServlet {
 
 	public void alterarSenha(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identificação
-		String matricula = request.getParameter("registro");
-		// String nome = request.getParameter("nome");
-		// String nascimento = request.getParameter("data-nascimento");
-		// String naturalidade = request.getParameter("naturalidade");
-		// String estadoNatal = request.getParameter("estado-natal");
+		HttpSession session = request.getSession();
+		Professor professor = (Professor) session.getAttribute("usuarioLogado");
 
-		// Seguran�a
+		System.out.println("[ProfessorController][alterarSenha] getParameter");
+		System.out.println(professor);
+		// Segurança
 		String senhaAtual = request.getParameter("senha-atual");
 		String novaSenha = request.getParameter("nova-senha");
 		String confirmarNovaSenha = request.getParameter("confirmar-senha");
@@ -351,11 +339,8 @@ public class ProfessorController extends HttpServlet {
 		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
 				.getAttribute("bancoProfessor");
 
-		// Objeto � ser alterado
-		Professor professor = (Professor) request.getSession().getAttribute("usuarioLogado");
-
 		// Criar Usuario com dados passados na senhaAtual
-		Usuario usuarioAtual = new Usuario(matricula, senhaAtual);
+		Usuario usuarioAtual = new Usuario(professor.getMatricula(), senhaAtual);
 
 		// Conferindo senha atual
 		boolean validado = false;
@@ -379,7 +364,7 @@ public class ProfessorController extends HttpServlet {
 			if (alterado) {
 				// Colocando o banco de volta ao escopo da aplicação
 				request.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
-				request.getSession().setAttribute("usuarioLogado", professor);
+				session.setAttribute("usuarioLogado", professor);
 				request.setAttribute("sucesso", Boolean.TRUE);
 				request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
 			} else {

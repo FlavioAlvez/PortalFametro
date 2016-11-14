@@ -8,6 +8,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.SecretarioBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
@@ -55,12 +56,15 @@ public class SecretarioController extends HttpServlet {
 
 			switch (action.toLowerCase()) {
 			case "cadastrar":
+				System.out.println("[SecretarioController] [doPost] case \"cadastrar\"");
 				cadastro(request, response);
 				break;
 			case "alterar perfil":
+				System.out.println("[SecretarioController] [doPost] case \"alterar perfil\"");
 				alterarPerfil(request, response);
 				break;
 			case "alterar senha":
+				System.out.println("[SecretarioController] [doPost] case \"alterar senha\"");
 				alterarSenha(request, response);
 				break;
 			default:
@@ -71,6 +75,7 @@ public class SecretarioController extends HttpServlet {
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
+			System.out.println("[SecretarioController] [doPost] Exception");
 			response.sendRedirect("LoginController.do");
 		}
 	}
@@ -207,13 +212,8 @@ public class SecretarioController extends HttpServlet {
 
 	public void alterarPerfil(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identificação
-		String matricula = request.getParameter("registro");
-		String nome = request.getParameter("nome");
-		String nascimento = request.getParameter("data-nascimento");
-		String naturalidade = request.getParameter("naturalidade");
-		String estadoNatal = request.getParameter("estado-natal");
-
+		HttpSession session = request.getSession();
+		
 		// Endereço
 		String cep = request.getParameter("cep");
 		String logradouro = request.getParameter("logradouro");
@@ -226,17 +226,11 @@ public class SecretarioController extends HttpServlet {
 
 		// Contato
 		String email = request.getParameter("email");
-		String residencial = request.getParameter("fone-residencial"); // (12)12345-6789
+		String residencial = request.getParameter("fone-residencial");
 		String celular = request.getParameter("fone-celular");
 		String opcional = request.getParameter("fone-3");
 
 		// TESTE
-		System.out.println("----- IDENTIFICAÇÃO -----");
-		System.out.println("Registro Acadêmico: " + matricula);
-		System.out.println("Nome: " + nome);
-		System.out.println("Data de Nascimento: " + nascimento);
-		System.out.println("Naturalidade: " + naturalidade);
-		System.out.println("Estado Natal: " + estadoNatal);
 		System.out.println();
 		System.out.println("------- ENDEREÇO --------");
 		System.out.println("CEP: " + cep);
@@ -260,7 +254,7 @@ public class SecretarioController extends HttpServlet {
 				.getAttribute("bancoSecretario");
 
 		// Objeto à ser alterado
-		Secretario secretario = (Secretario) request.getSession().getAttribute("usuarioLogado");
+		Secretario secretario = (Secretario) session.getAttribute("usuarioLogado");
 
 		// Alterar os dados no objeto local
 		{
@@ -287,7 +281,7 @@ public class SecretarioController extends HttpServlet {
 		if (alterado) {
 			// Colocando o banco de volta ao escopo da aplicação
 			request.getServletContext().setAttribute("bancoSecretario", bancoSecretario);
-			request.getSession().setAttribute("usuarioLogado", secretario);
+			session.setAttribute("usuarioLogado", secretario);
 			request.setAttribute("sucesso", Boolean.TRUE);
 			request.getRequestDispatcher("perfil.jsp").forward(request, response);
 		} else {
@@ -298,13 +292,11 @@ public class SecretarioController extends HttpServlet {
 
 	public void alterarSenha(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identificação
-		String matricula = request.getParameter("registro");
-		// String nome = request.getParameter("nome");
-		// String nascimento = request.getParameter("data-nascimento");
-		// String naturalidade = request.getParameter("naturalidade");
-		// String estadoNatal = request.getParameter("estado-natal");
-
+		HttpSession session = request.getSession();
+		Secretario secretario = (Secretario) session.getAttribute("usuarioLogado");
+		
+		System.out.println("[SecretarioController][alterarSenha] getParameter");
+		System.out.println(secretario);
 		// Segurança
 		String senhaAtual = request.getParameter("senha-atual");
 		String novaSenha = request.getParameter("nova-senha");
@@ -314,11 +306,8 @@ public class SecretarioController extends HttpServlet {
 		SecretarioBusiness bancoSecretario = (SecretarioBusiness) request.getServletContext()
 				.getAttribute("bancoSecretario");
 
-		// Objeto à ser alterado
-		Secretario secretario = (Secretario) request.getSession().getAttribute("usuarioLogado");
-
 		// Criar Usuario com dados passados na senhaAtual
-		Usuario usuarioAtual = new Usuario(matricula, senhaAtual);
+		Usuario usuarioAtual = new Usuario(secretario.getMatricula(), senhaAtual);
 
 		// Conferindo senha atual
 		boolean validado = false;
@@ -333,7 +322,7 @@ public class SecretarioController extends HttpServlet {
 		if (validado) {
 			// Alterando o objeto
 			Usuario buffer = secretario.getUsuario();
-			buffer.setSenha(senhaAtual);
+			buffer.setSenha(novaSenha);
 			secretario.setUsuario(buffer);
 
 			// Alterando o objeto no banco local
@@ -342,7 +331,7 @@ public class SecretarioController extends HttpServlet {
 			if (alterado) {
 				// Colocando o banco de volta ao escopo da aplicação
 				request.getServletContext().setAttribute("bancoSecretario", bancoSecretario);
-				request.getSession().setAttribute("usuarioLogado", secretario);
+				session.setAttribute("usuarioLogado", secretario);
 				request.setAttribute("sucesso", Boolean.TRUE);
 				request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
 			} else {

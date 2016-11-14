@@ -13,6 +13,7 @@ import br.edu.fametro.portal.business.SecretarioBusiness;
 import br.edu.fametro.portal.business.enums.AvaliacaoBusiness;
 import br.edu.fametro.portal.business.enums.CursoBusiness;
 import br.edu.fametro.portal.business.enums.DisciplinaBusiness;
+import br.edu.fametro.portal.business.enums.EstadoBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.business.enums.GrupoAtendimentoBusiness;
 import br.edu.fametro.portal.business.enums.TipoAtendimentoBusiness;
@@ -93,9 +94,10 @@ public class Persistencia implements ServletContextListener {
 
 			secretarioExemplo.setEndereco(endereco);
 		}
-		secretarioExemplo.setResidencial(Telefone.maskToTelefone("(85)03473-7070"));
+		secretarioExemplo.setResidencial(Telefone.maskToTelefone("(85)3473-7070"));
 		secretarioExemplo.setCelular(Telefone.maskToTelefone("(85)97070-7070"));
 		secretarioExemplo.setOpcional(Telefone.maskToTelefone("(85)99876-5432"));
+		secretarioExemplo.setEmail("secretario@fametro.edu.br");
 
 		System.out.println("[SECRETARIO] Colocando o primeiro elemento no banco...");
 		bancoSecretario.adicionar(secretarioExemplo);
@@ -155,9 +157,10 @@ public class Persistencia implements ServletContextListener {
 
 			professorExemplo.setEndereco(endereco);
 		}
-		professorExemplo.setResidencial(Telefone.maskToTelefone("(85)03473-7070"));
+		professorExemplo.setResidencial(Telefone.maskToTelefone("(85)3473-7070"));
 		professorExemplo.setCelular(Telefone.maskToTelefone("(85)97070-7070"));
 		professorExemplo.setOpcional(Telefone.maskToTelefone("(85)99876-5432"));
+		professorExemplo.setEmail("professor@fametro.edu.br");
 
 		System.out.println("[PROFESSOR] Colocando o primeiro elemento no banco...");
 		bancoProfessor.adicionar(professorExemplo);
@@ -212,9 +215,10 @@ public class Persistencia implements ServletContextListener {
 
 			alunoExemplo.setEndereco(endereco);
 		}
-		alunoExemplo.setResidencial(Telefone.maskToTelefone("(85)03473-7070"));
+		alunoExemplo.setResidencial(Telefone.maskToTelefone("(85)3473-7070"));
 		alunoExemplo.setCelular(Telefone.maskToTelefone("(85)97070-7070"));
 		alunoExemplo.setOpcional(Telefone.maskToTelefone("(85)99876-5432"));
+		alunoExemplo.setEmail("secretario@fametro.edu.br");
 
 		System.out.println("[ALUNO] Colocando o primeiro elemento no banco...");
 		bancoAluno.adicionar(alunoExemplo);
@@ -242,6 +246,7 @@ public class Persistencia implements ServletContextListener {
 		GrupoAtendimentoBusiness bancoGrupoAtendimento = new GrupoAtendimentoBusiness();
 		TipoAtendimentoBusiness bancoTipoAtendimento = new TipoAtendimentoBusiness();
 		TipoUsuarioBusiness bancoTipoUsuario = new TipoUsuarioBusiness();
+		EstadoBusiness bancoEstado = new EstadoBusiness();
 
 		System.out.println("[ENUM] Populando listas...");
 		bancoAvaliacao.popularBanco();
@@ -251,6 +256,7 @@ public class Persistencia implements ServletContextListener {
 		bancoGrupoAtendimento.popularBanco();
 		bancoTipoAtendimento.popularBanco();
 		bancoTipoUsuario.popularBanco();
+		bancoEstado.popularBanco();
 
 		System.out.println("[ENUM] Colocando banco no contexto da aplicação...\n");
 		contexto.getServletContext().setAttribute("bancoAvaliacao", bancoAvaliacao);
@@ -260,6 +266,7 @@ public class Persistencia implements ServletContextListener {
 		contexto.getServletContext().setAttribute("bancoGrupoAtendimento", bancoGrupoAtendimento);
 		contexto.getServletContext().setAttribute("bancoTipoAtendimento", bancoTipoAtendimento);
 		contexto.getServletContext().setAttribute("bancoTipoUsuario", bancoTipoUsuario);
+		contexto.getServletContext().setAttribute("bancoEstado", bancoEstado);
 
 		/****************************************************************************************************/
 		System.out.println("[DateUtility] Auxiliar");
