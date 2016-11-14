@@ -38,7 +38,7 @@
 			</label>
 			<div class="">
 				<select name="genero" id="genero"
-					class=" form-control col-sm-12 col-md-12 col-xs-12">
+					class=" form-control col-sm-12 col-md-12 col-xs-12 select2_single" required>
 					<option value="" selected></option>
 					<c:forEach var="genero" items="${bancoGenero.getBanco() }">
 						<option value="${genero.name() }">${genero.name() }</option>
