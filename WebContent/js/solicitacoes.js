@@ -34,10 +34,22 @@ function tipoAtendimento(valor) {
 
 function matriculaAluno(valor) {
 	var mat = document.getElementById("matricula");
-
 	var nome = document.getElementById("nome");
 
 	mat.value = nome.value;
+}
+
+function setCodigoDisciplina(valor) {
+	var dis = document.getElementById("disciplina");
+	var cdg = document.getElementById("disciplina-cdg");
+	
+	cdg.value = dis.value;
+}
+function setMatriculaProfessor(valor) {
+	var nome = document.getElementById("professor");
+	var cdg = document.getElementById("professor-cdg");
+	
+	cdg.value = nome.value;
 }
 
 function carregaEscondidos(){

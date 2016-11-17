@@ -25,6 +25,12 @@ public class DateUtility implements java.io.Serializable {
 		return DateToMask(dt);
 	}
 
+	public static String getHoraAtual() {
+		Calendar dt = Calendar.getInstance();
+
+		return getHoraCompleta(dt.getTime());
+	}
+
 	public static Date HtmlToDate(String htmlDateInput) {
 		// yyyy-MM-dd
 		int ano = Integer.parseInt(htmlDateInput.split("-")[0]);
@@ -93,6 +99,71 @@ public class DateUtility implements java.io.Serializable {
 		}
 
 		return dia.concat("/").concat(mes).concat("/").concat(ano);
+	}
+
+	public static String getHoraCompleta(Date data) {
+		String horas = String.valueOf(getHoras(data));
+		String minutos = String.valueOf(getMinutos(data));
+		String segundos = String.valueOf(getSegundos(data));
+
+		while (horas.length() < 2) {
+			horas = "0".concat(horas);
+		}
+		while (minutos.length() < 2) {
+			minutos = "0".concat(minutos);
+		}
+		while (segundos.length() < 2) {
+			segundos = "0".concat(segundos);
+		}
+
+		return horas.concat(":").concat(minutos).concat(":").concat(segundos);
+	}
+
+	public static String getDataHoraCompleta(Date data) {
+		return DateToMask(data) + " " + getHoraCompleta(data);
+	}
+
+	public static Date setDataHoraCompleta(String data, String hora) {
+		Calendar dt = Calendar.getInstance();
+		dt.setTime(maskToDate(data));
+		dt.set(Calendar.HOUR_OF_DAY, getHoras(hora));
+		dt.set(Calendar.MINUTE, getMinutos(hora));
+		dt.set(Calendar.SECOND, getSegundos(hora));
+
+		return dt.getTime();
+	}
+
+	public static int getSegundos(Date data) {
+		Calendar dt = Calendar.getInstance();
+		dt.setTime(data);
+
+		return dt.get(Calendar.SECOND);
+	}
+
+	public static int getMinutos(Date data) {
+		Calendar dt = Calendar.getInstance();
+		dt.setTime(data);
+
+		return dt.get(Calendar.MINUTE);
+	}
+
+	public static int getHoras(Date data) {
+		Calendar dt = Calendar.getInstance();
+		dt.setTime(data);
+
+		return dt.get(Calendar.HOUR_OF_DAY);
+	}
+
+	public static int getSegundos(String horaCompleta) {
+		return Integer.parseInt(horaCompleta.split(":")[2]);
+	}
+
+	public static int getMinutos(String horaCompleta) {
+		return Integer.parseInt(horaCompleta.split(":")[1]);
+	}
+
+	public static int getHoras(String horaCompleta) {
+		return Integer.parseInt(horaCompleta.split(":")[0]);
 	}
 
 	public static int getDia(Date data) {

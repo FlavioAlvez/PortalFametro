@@ -3,13 +3,11 @@ package br.edu.fametro.portal.model.solicitacoes;
 import java.util.Date;
 
 import br.edu.fametro.portal.model.atores.AcessaSistema;
-import br.edu.fametro.portal.model.enums.Avaliacao;
-import br.edu.fametro.portal.model.enums.Disciplina;
 import br.edu.fametro.portal.model.enums.GrupoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
-public class Solicitacao {
+public abstract class Solicitacao {
 	private long codigo;
 	private GrupoAtendimento grupoAtendimento;
 	private TipoAtendimento tipoAtendimento;
@@ -22,10 +20,6 @@ public class Solicitacao {
 	private String discussao;
 	private String solucao;
 
-	// Parametros
-	private Disciplina disciplina;
-	private Avaliacao av;
-
 	public Solicitacao() {
 
 	}
@@ -34,7 +28,7 @@ public class Solicitacao {
 		return codigo;
 	}
 
-	public void setCodigo(int codigo) {
+	public void setCodigo(long codigo) {
 		this.codigo = codigo;
 	}
 
@@ -118,29 +112,12 @@ public class Solicitacao {
 		this.solucao = solucao;
 	}
 
-	public Disciplina getDisciplina() {
-		return disciplina;
-	}
-
-	public void setDisciplina(Disciplina disciplina) {
-		this.disciplina = disciplina;
-	}
-
-	public Avaliacao getAv() {
-		return av;
-	}
-
-	public void setAv(Avaliacao av) {
-		this.av = av;
-	}
-
 	@Override
 	public String toString() {
 		return "Solicitacao [codigo=" + codigo + ", grupoAtendimento=" + grupoAtendimento + ", tipoAtendimento="
 				+ tipoAtendimento + ", cliente=" + cliente + ", tipo=" + tipo + ", abertura=" + abertura
 				+ ", fechamento=" + fechamento + ", assunto=" + assunto + ", solicitacao=" + solicitacao
-				+ ", discussao=" + discussao + ", solucao=" + solucao + ", disciplina=" + disciplina + ", av=" + av
-				+ "]";
+				+ ", discussao=" + discussao + ", solucao=" + solucao + "]";
 	}
 
 	@Override

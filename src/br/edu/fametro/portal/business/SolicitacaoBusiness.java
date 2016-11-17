@@ -5,12 +5,13 @@ import java.util.Date;
 import java.util.List;
 
 import br.edu.fametro.portal.model.atores.AcessaSistema;
-import br.edu.fametro.portal.model.enums.Avaliacao;
-import br.edu.fametro.portal.model.enums.Disciplina;
+import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.enums.GrupoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 import br.edu.fametro.portal.model.solicitacoes.Solicitacao;
+import br.edu.fametro.portal.model.solicitacoes.secretaria.AbonoFalta;
+import br.edu.fametro.portal.model.solicitacoes.secretaria.RevisaoNota;
 
 public class SolicitacaoBusiness {
 	private List<Solicitacao> banco;
@@ -53,7 +54,7 @@ public class SolicitacaoBusiness {
 		return null;
 	}
 
-	public Solicitacao pesquisaCodigo(int codigo) {
+	public Solicitacao pesquisaCodigo(long codigo) {
 		if (!isEmpty()) {
 			for (Solicitacao solicitacao : banco) {
 				if (solicitacao.getCodigo() == codigo)
@@ -141,7 +142,6 @@ public class SolicitacaoBusiness {
 		return result;
 	}
 
-
 	public List<Solicitacao> pesquisaCliente(AcessaSistema cliente) {
 		List<Solicitacao> result = new ArrayList<Solicitacao>();
 
@@ -155,31 +155,51 @@ public class SolicitacaoBusiness {
 		return result;
 	}
 
-	public List<Solicitacao> pesquisaDisciplina(Disciplina disciplina) {
+	public List<Solicitacao> pesquisaProfessor(Professor professor) {
 		List<Solicitacao> result = new ArrayList<Solicitacao>();
 
 		if (!isEmpty()) {
 			for (Solicitacao solicitacao : banco) {
-				if (solicitacao.getDisciplina().equals(disciplina))
-					result.add(solicitacao);
+				if (solicitacao instanceof RevisaoNota) {
+					if (((RevisaoNota) solicitacao).getProfessor().equals(professor)) {
+						result.add(solicitacao);
+					}
+				} else if (solicitacao instanceof AbonoFalta) {
+					if (((AbonoFalta) solicitacao).getProfessor().equals(professor)) {
+						result.add(solicitacao);
+					}
+				}
 			}
 		}
 
 		return result;
 	}
 
-	public List<Solicitacao> pesquisaAvaliacao(Avaliacao avaliacao) {
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
+	// public List<Solicitacao> pesquisaDisciplina(Disciplina disciplina) {
+	// List<Solicitacao> result = new ArrayList<Solicitacao>();
+	//
+	// if (!isEmpty()) {
+	// for (Solicitacao solicitacao : banco) {
+	// if (solicitacao.getDisciplina().equals(disciplina))
+	// result.add(solicitacao);
+	// }
+	// }
+	//
+	// return result;
+	// }
 
-		if (!isEmpty()) {
-			for (Solicitacao solicitacao : banco) {
-				if (solicitacao.getAv().equals(avaliacao))
-					result.add(solicitacao);
-			}
-		}
-
-		return result;
-	}
+	// public List<Solicitacao> pesquisaAvaliacao(Avaliacao avaliacao) {
+	// List<Solicitacao> result = new ArrayList<Solicitacao>();
+	//
+	// if (!isEmpty()) {
+	// for (Solicitacao solicitacao : banco) {
+	// if (solicitacao.getAv().equals(avaliacao))
+	// result.add(solicitacao);
+	// }
+	// }
+	//
+	// return result;
+	// }
 
 	public boolean alterar(Solicitacao solicitacao) {
 		if (!isEmpty()) {

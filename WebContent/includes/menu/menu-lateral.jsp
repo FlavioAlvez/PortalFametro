@@ -25,8 +25,6 @@
 					class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
 					<li><a href="solicitacao.jsp?grupoAtendimento=1">Secretaria</a></li>
-<!-- 					<li><a href="solicitacao.jsp?tipo=2">Financeiro</a></li> -->
-<!-- 					<li><a href="solicitacao.jsp?tipo=3">Relacionamento</a></li> -->
 				</ul></li>
 			<li><a href="acompanhamento.jsp"><i class="fa fa-table"></i>
 					Acompanhamento</a></li>
