@@ -4,8 +4,10 @@
 
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -17,6 +19,10 @@
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
+
+<!-- jquery -->
+<script src="js/jquery.min.js"></script>
+
 <!-- Font Awesome -->
 <link href="css/font-awesome.min.css" rel="stylesheet">
 
@@ -25,94 +31,22 @@
 
 <!-- Switchery -->
 <link href="css/switchery/switchery.min.css" rel="stylesheet">
+
+<!-- Select -->
+<link href="css/select/bootstrap-select.css" rel="stylesheet">
+
 <!-- Select2 -->
 <link href="css/select2/select2.min.css" rel="stylesheet">
+
 <!-- Mascara -->
 <script type="text/javascript" src="jquery/jquery.js"></script>
 <script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
+<script type="text/javascript" src="js/mascara/mascara.js"></script>
 
-<!-- Adicionando Javascript -->
-<script type="text/javascript">
-	$(document).ready(
-			function() {
-
-				function limpa_formulário_cep() {
-					// Limpa valores do formulário de cep.
-					$("#logradouro").val("");
-					$("#bairro").val("");
-					$("#cidade").val("");
-					$("#uf").val("");
-				}
-
-				//Quando o campo cep perde o foco.
-				$("#cep").blur(
-						function() {
-
-							//Nova variável "cep" somente com dígitos.
-							var cep = $(this).val().replace(/\D/g, '');
-
-							//Verifica se campo cep possui valor informado.
-							if (cep != "") {
-
-								//Expressão regular para validar o CEP.
-								var validacep = /^[0-9]{8}$/;
-
-								//Valida o formato do CEP.
-								if (validacep.test(cep)) {
-
-									//Preenche os campos com "..." enquanto consulta webservice.
-									$("#rua").val("...");
-									$("#bairro").val("...");
-									$("#cidade").val("...");
-									$("#uf").val("...");
-
-									//Consulta o webservice viacep.com.br/
-									$.getJSON("//viacep.com.br/ws/" + cep
-											+ "/json/?callback=?", function(
-											dados) {
-
-										if (!("erro" in dados)) {
-											//Atualiza os campos com os valores da consulta.
-											$("#rua").val(dados.logradouro);
-											$("#bairro").val(dados.bairro);
-											$("#cidade").val(dados.localidade);
-											$("#uf").val(dados.uf);
-										} //end if.
-										else {
-											//CEP pesquisado não foi encontrado.
-											limpa_formulário_cep();
-											alert("CEP não encontrado.");
-										}
-									});
-								} //end if.
-								else {
-									//cep é inválido.
-									limpa_formulário_cep();
-									alert("Formato de CEP inválido.");
-								}
-							} //end if.
-							else {
-								//cep sem valor, limpa formulário.
-								limpa_formulário_cep();
-							}
-						});
-			});
-</script>
+<!-- consulta do endereço pelo cep -->
+<script type="text/javascript" src="js/cep-consulta/cep-consulta.js"></script>
 
 </head>
-
-
-<script type="text/javascript">
-	$(document).ready(function() {
-		$("#nascimento").mask("99/99/9999");
-		$("#cpf").mask("999.999.999-99");
-		$("#cep").mask("99999-999");
-		$("#fone-residencial").mask("(99)99999-9999");
-		$("#fone-celular").mask("(99)99999-9999");
-		$("#fone-3").mask("(99)99999-9999");
-	});
-</script>
-
 
 <body class="nav-md">
 	<div class="container body">
@@ -143,6 +77,7 @@
 					</div>
 
 					<div class="clearfix"></div>
+
 
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
@@ -179,29 +114,53 @@
 											<div class="col-md-12 col-sm-12 col-xs-12">
 												<c:if test="${erro }">
 													<div class="alert alert-danger" role="alert">
-														<img src="img/exclamação.png">&nbsp; &nbsp; Houve um
-														erro durante o cadastro!
+														<img src="img/exclamação.png">&nbsp; &nbsp; Houve
+														algum erro e o cadastro não foi efetivado.
 													</div>
 												</c:if>
 												<c:if test="${sucesso }">
-													<div class="alert alert-danger" role="alert">
-														<img src="img/success.png">&nbsp; &nbsp; Cadastrado
-														com sucesso!
+													<div class="alert alert-sucess" role="alert">
+														<img src="img/success.png">&nbsp; &nbsp; Cadastro
+														efetivado.
 													</div>
 												</c:if>
 												<div class="x_content">
 													<br />
 													<c:if test="${param.tipo.equalsIgnoreCase('aluno') }">
-														<%@ include
-															file="includes/cadastro-usuario/cadastro-aluno.jsp"%>
+														<c:choose>
+															<c:when test="${not sucesso }">
+																<%@ include
+																	file="includes/cadastro-usuario/cadastro-aluno.jsp"%>
+															</c:when>
+															<c:otherwise>
+																<%@ include
+																	file="includes/cadastro-usuario/aluno-cadastrado.jsp"%>
+															</c:otherwise>
+														</c:choose>
 													</c:if>
 													<c:if test="${param.tipo.equalsIgnoreCase('professor') }">
-														<%@ include
-															file="includes/cadastro-usuario/cadastro-professor.jsp"%>
+														<c:choose>
+															<c:when test="${not sucesso }">
+																<%@ include
+																	file="includes/cadastro-usuario/cadastro-professor.jsp"%>
+															</c:when>
+															<c:otherwise>
+																<%@ include
+																	file="includes/cadastro-usuario/professor-cadastrado.jsp"%>
+															</c:otherwise>
+														</c:choose>
 													</c:if>
 													<c:if test="${param.tipo.equalsIgnoreCase('secretario') }">
-														<%@ include
-															file="includes/cadastro-usuario/cadastro-secretario.jsp"%>
+														<c:choose>
+															<c:when test="${not sucesso }">
+																<%@ include
+																	file="includes/cadastro-usuario/cadastro-secretario.jsp"%>
+															</c:when>
+															<c:otherwise>
+																<%@ include
+																	file="includes/cadastro-usuario/secretario-cadastrado.jsp"%>
+															</c:otherwise>
+														</c:choose>
 													</c:if>
 												</div>
 											</div>
@@ -232,23 +191,16 @@
 
 	<!-- Switchery -->
 	<script src="js/switchery/switchery.min.js"></script>
+	<!-- Select -->
+	<script src="js/select/bootstrap-select.js"></script>
 	<!-- Select2 -->
 	<script src="js/select2/select2.full.min.js"></script>
-	<!-- Select2 -->
+
 	<script>
 		$(document).ready(function() {
 			$(".select2_single").select2({});
 			$(".select2_group").select2({});
 			$(".select2_multiple").select2({});
-		});
-
-		$(document).ready(function() {
-			$("#nascimento").mask("99/99/9999");
-			$("#cpf").mask("999.999.999-99");
-			$("#cep").mask("99999-999");
-			$("#fone-residencial").mask("(99)99999-9999");
-			$("#fone-celular").mask("(99)99999-9999");
-			$("#fone-3").mask("(99)99999-9999");
 		});
 	</script>
 	<!-- /Select2 e Mascaras -->

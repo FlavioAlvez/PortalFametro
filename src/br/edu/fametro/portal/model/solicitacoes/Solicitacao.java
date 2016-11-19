@@ -55,7 +55,7 @@ public class Solicitacao {
 		this.id = id;
 	}
 
-	public int getCodigo() {
+	public long getCodigo() {
 		return codigo;
 	}
 
@@ -160,25 +160,37 @@ public class Solicitacao {
 	}
 
 	@Override
+	public String toString() {
+		return "Solicitacao [codigo=" + codigo + ", grupoAtendimento=" + grupoAtendimento + ", tipoAtendimento="
+				+ tipoAtendimento + ", cliente=" + cliente + ", tipo=" + tipo + ", abertura=" + abertura
+				+ ", fechamento=" + fechamento + ", assunto=" + assunto + ", solicitacao=" + solicitacao
+				+ ", discussao=" + discussao + ", solucao=" + solucao + ", disciplina=" + disciplina + ", av=" + av
+				+ "]";
+	}
+
+	@Override
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + codigo;
+		result = prime * result + (int) (codigo ^ (codigo >>> 32));
 		return result;
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
+		if (this == obj) {
 			return true;
-		if (obj == null)
+		}
+		if (obj == null) {
 			return false;
-		if (getClass() != obj.getClass())
+		}
+		if (!(obj instanceof Solicitacao)) {
 			return false;
+		}
 		Solicitacao other = (Solicitacao) obj;
-		if (codigo != other.codigo)
+		if (codigo != other.codigo) {
 			return false;
+		}
 		return true;
 	}
-
 }

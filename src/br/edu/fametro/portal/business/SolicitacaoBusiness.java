@@ -43,93 +43,8 @@ public class SolicitacaoBusiness {
 		return banco.add(nova);
 	}
 	
-	public Solicitacao pesquisaCodigo(int codigo) {
-		if (!isEmpty()) {
-			for (Solicitacao solicitacao : banco) {
-				if (solicitacao.getCodigo() == codigo)
-					return solicitacao;
-			}
-		}
-		return null;
-	}
+
 	
-	public List<Solicitacao> pesquisaGrupoAtendimento(GrupoAtendimento grupoAtendimento) {
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
-		
-		if (!isEmpty()) {
-			for(Solicitacao solicitacao : banco){
-				if(solicitacao.getGrupoAtendimento().equals(grupoAtendimento))
-					result.add(solicitacao);
-			}
-		}
-		
-		return result;
-	}
-	
-	public List<Solicitacao> pesquisaTipoAtendimento(TipoAtendimento tipoAtendimento) {
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
-		
-		if (!isEmpty()) {
-			for(Solicitacao solicitacao : banco){
-				if(solicitacao.getTipoAtendimento().equals(tipoAtendimento))
-					result.add(solicitacao);
-			}
-		}
-		
-		return result;
-	}
-	
-	public List<Solicitacao> pesquisaTipoUsuario(TipoUsuario tipoUsuario) {
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
-		
-		if (!isEmpty()) {
-			for(Solicitacao solicitacao : banco){
-				if(solicitacao.getTipo().equals(tipoUsuario))
-					result.add(solicitacao);
-			}
-		}
-		
-		return result;
-	}
-	
-	public List<Solicitacao> pesquisaDataAbertura(Date abertura) {
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
-		
-		if (!isEmpty()) {
-			for(Solicitacao solicitacao : banco){
-				if(solicitacao.getAbertura().equals(abertura))
-					result.add(solicitacao);
-			}
-		}
-		
-		return result;
-	}
-	
-	public List<Solicitacao> pesquisaDataFechamento(Date fechamento) {
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
-		
-		if (!isEmpty()) {
-			for(Solicitacao solicitacao : banco){
-				if(solicitacao.getFechamento().equals(fechamento))
-					result.add(solicitacao);
-			}
-		}
-		
-		return result;
-	}
-	
-	public List<Solicitacao> pesquisaAssunto(String assunto) {
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
-		
-		if (!isEmpty()) {
-			for(Solicitacao solicitacao : banco){
-				if(solicitacao.getAssunto().equals(assunto))
-					result.add(solicitacao);
-			}
-		}
-		
-		return result;
-	}
 	
 	public Solicitacao pesquisaSolicitacao(Solicitacao s) {
 		if (!isEmpty()) {
@@ -140,19 +55,111 @@ public class SolicitacaoBusiness {
 		}
 		return null;
 	}
-	
-	public List<Solicitacao> pesquisaCliente(AcessaSistema cliente){
-		List<Solicitacao> result = new ArrayList<Solicitacao>();
-		
+
+	public Solicitacao pesquisaCodigo(int codigo) {
 		if (!isEmpty()) {
-			for(Solicitacao solicitacao : banco){
-				if(solicitacao.getCliente().equals(cliente))
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getCodigo() == codigo)
+					return solicitacao;
+			}
+		}
+		return null;
+	}
+
+	public List<Solicitacao> pesquisaGrupoAtendimento(GrupoAtendimento grupoAtendimento) {
+		List<Solicitacao> result = new ArrayList<Solicitacao>();
+
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getGrupoAtendimento().equals(grupoAtendimento))
 					result.add(solicitacao);
 			}
 		}
-		
+
 		return result;
 	}
+
+	public List<Solicitacao> pesquisaTipoAtendimento(TipoAtendimento tipoAtendimento) {
+		List<Solicitacao> result = new ArrayList<Solicitacao>();
+
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getTipoAtendimento().equals(tipoAtendimento))
+					result.add(solicitacao);
+			}
+		}
+
+		return result;
+	}
+
+	public List<Solicitacao> pesquisaTipoUsuario(TipoUsuario tipoUsuario) {
+		List<Solicitacao> result = new ArrayList<Solicitacao>();
+
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getTipo().equals(tipoUsuario))
+					result.add(solicitacao);
+			}
+		}
+
+		return result;
+	}
+
+	public List<Solicitacao> pesquisaDataAbertura(Date abertura) {
+		List<Solicitacao> result = new ArrayList<Solicitacao>();
+
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getAbertura().equals(abertura))
+					result.add(solicitacao);
+			}
+		}
+
+		return result;
+	}
+
+	public List<Solicitacao> pesquisaDataFechamento(Date fechamento) {
+		List<Solicitacao> result = new ArrayList<Solicitacao>();
+
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getFechamento().equals(fechamento))
+					result.add(solicitacao);
+			}
+		}
+
+		return result;
+	}
+
+	public List<Solicitacao> pesquisaAssunto(String assunto) {
+		List<Solicitacao> result = new ArrayList<Solicitacao>();
+
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getAssunto().equals(assunto))
+					result.add(solicitacao);
+			}
+		}
+
+		return result;
+	}
+
+
+	public List<Solicitacao> pesquisaCliente(AcessaSistema cliente) {
+		List<Solicitacao> result = new ArrayList<Solicitacao>();
+
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getCliente().equals(cliente))
+					result.add(solicitacao);
+			}
+		}
+
+		return result;
+	}
+
+
+
 	
 	public List<Solicitacao> pesquisaDisciplina(Disciplina disciplina){
 		List<Solicitacao> result = new ArrayList<Solicitacao>();
@@ -187,6 +194,16 @@ public class SolicitacaoBusiness {
 			if (index > -1) {
 				banco.add(index, solicitacao);
 				return true;
+			}
+		}
+		return false;
+	}
+
+
+	public boolean remover(Solicitacao s) {
+		if (!isEmpty()) {
+			if (banco.contains(s)) {
+				return banco.remove(s);
 			}
 		}
 		return false;

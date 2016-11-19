@@ -8,12 +8,14 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.ProfessorBusiness;
 import br.edu.fametro.portal.business.enums.DisciplinaBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
+import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.atores.Usuario;
@@ -61,20 +63,28 @@ public class ProfessorController extends HttpServlet {
 			case "alterar perfil":
 				alterarPerfil(request, response);
 				break;
-			case "alterar-senha":
+			case "alterar senha":
 				alterarSenha(request, response);
+				break;
+			default:
+				System.err.println("[ProfessorController] action entrou no default!");
+				System.err.println("[ProfessorController] action = " + (action == null ? "null" : action));
+				response.sendRedirect("LoginController.do");
 				break;
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
 			response.sendRedirect("LoginController.do");
 		}
-
 	}
 
 	private void cadastro(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+<<<<<<< HEAD
 		// Identificaï¿½ï¿½o
+=======
+		// IdentificaÃ§Ã£o
+>>>>>>> upstream/master
 		String nome = request.getParameter("nome");
 		String rg = request.getParameter("rg");
 		String cpf = request.getParameter("cpf");
@@ -83,17 +93,25 @@ public class ProfessorController extends HttpServlet {
 		String naturalidade = request.getParameter("naturalidade");
 		String estadoNatal = request.getParameter("estado-natal");
 
+<<<<<<< HEAD
 		// Filiaï¿½ï¿½o
 		String pai = request.getParameter("pai");
 		String mae = request.getParameter("mae");
 
 		// Endereï¿½o
+=======
+		// FiliaÃ§Ã£o
+		String pai = request.getParameter("pai");
+		String mae = request.getParameter("mae");
+
+		// EndereÃ§o
+>>>>>>> upstream/master
 		String cep = request.getParameter("cep");
-		String logradouro = request.getParameter("logradouro");
+		String logradouro = request.getParameter("rua");
 		String complemento = request.getParameter("complemento");
 		String numero = request.getParameter("numero");
 		String bairro = request.getParameter("bairro");
-		String estado = request.getParameter("estado");
+		String estado = request.getParameter("uf");
 		String cidade = request.getParameter("cidade");
 		String pais = request.getParameter("pais");
 
@@ -107,6 +125,7 @@ public class ProfessorController extends HttpServlet {
 		String disciplinas[] = request.getParameterValues("disciplina");
 		String coordenador = request.getParameter("coordenador"); // null ou on
 
+<<<<<<< HEAD
 		// TESTE
 		System.out.println("----- IDENTIFICAï¿½ï¿½O -----");
 		System.out.println("Nome: " + nome);
@@ -142,14 +161,63 @@ public class ProfessorController extends HttpServlet {
 			System.out.println("Disciplinas: " + disciplinas[i]);
 		System.out.println("Coordenador: " + coordenador);
 		System.out.println();
+=======
+		try {
+			// TESTE
+			System.out.println("----- IDENTIFICAÃ‡ÃƒO -----");
+			System.out.println("Nome: " + nome);
+			System.out.println("RG: " + rg);
+			System.out.println("CPF: " + cpf);
+			System.out.println("Genero: " + genero);
+			System.out.println("Data de Nascimento: " + nascimento);
+			System.out.println("Naturalidade: " + naturalidade);
+			System.out.println("Estado Natal: " + estadoNatal);
+			System.out.println();
+			System.out.println("------- FILIAÃ‡ÃƒO --------");
+			System.out.println("Nome do Pai: " + pai);
+			System.out.println("Nome da MÃ£e: " + mae);
+			System.out.println();
+			System.out.println("------- ENDEREÃ§O --------");
+			System.out.println("CEP: " + cep);
+			System.out.println("Logradouro: " + logradouro);
+			System.out.println("Complemento: " + complemento);
+			System.out.println("Numero: " + numero);
+			System.out.println("Bairro: " + bairro);
+			System.out.println("Estado: " + estado);
+			System.out.println("Cidade: " + cidade);
+			System.out.println("PaÃ­s: " + pais);
+			System.out.println();
+			System.out.println("-------- CONTATO --------");
+			System.out.println("Email: " + email);
+			System.out.println("Telefone Residencial: " + residencial);
+			System.out.println("Telefone Celular: " + celular);
+			System.out.println("Telefone 3: " + opcional);
+			System.out.println();
+			System.out.println("------ EDUCACIONAL ------");
+			for (int i = 0; i < disciplinas.length; i++)
+				System.out.println("Disciplinas: " + disciplinas[i]);
+			System.out.println("Ã‰ coordenador: " + (coordenador.equals("on") ? "Sim" : "NÃ£o"));
+			System.out.println();
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.err.println("[ProfessorController] Erro no teste");
+		}
+>>>>>>> upstream/master
 
 		// Resgatando o banco
+		System.out.println("Resgatando o banco");
 		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
 				.getAttribute("bancoProfessor");
 
 		// Criar objeto - Instanciando
+		System.out.println("Criar objeto - Instanciando");
 		Professor professor = new Professor(bancoProfessor.getSize());
+<<<<<<< HEAD
 		// Criar objeto - Identificaï¿½ï¿½o
+=======
+		// Criar objeto - IdentificaÃ§Ã£o
+		System.out.println("Criar objeto - IdentificaÃ§Ã£o");
+>>>>>>> upstream/master
 		professor.setNome(nome);
 		professor.setRg(rg);
 		professor.setCpf(cpf);
@@ -160,16 +228,29 @@ public class ProfessorController extends HttpServlet {
 			professor.setGenero(genero_aux);
 		}
 		{
-			Date dtNascimento = DateUtility.maskToDate(nascimento);
+			Date dtNascimento = DateUtility.HtmlToDate(nascimento);
 
 			professor.setNascimento(dtNascimento);
 		}
 		professor.setNaturalidade(naturalidade);
 		professor.setEstadoNatal(estadoNatal);
+<<<<<<< HEAD
 		// Criar objeto - Filiaï¿½ï¿½o
 		professor.getFiliacao().setPai(pai);
 		professor.getFiliacao().setMae(mae);
 		// Criar objeto - Endereï¿½o
+=======
+		// Criar objeto - FiliaÃ§Ã£o
+		System.out.println("Criar objeto - FiliaÃ§Ã£o");
+		{
+			Filiacao filiacao = new Filiacao();
+			filiacao.setPai(pai);
+			filiacao.setMae(mae);
+			professor.setFiliacao(filiacao);
+		}
+		// Criar objeto - EndereÃ§o
+		System.out.println("Criar objeto - EndereÃ§o");
+>>>>>>> upstream/master
 		{
 			Endereco endereco = new Endereco();
 			endereco.setCep(cep);
@@ -184,25 +265,36 @@ public class ProfessorController extends HttpServlet {
 			professor.setEndereco(endereco);
 		}
 		// Criar objeto - Contato
+		System.out.println("Criar objeto - Contato");
 		professor.setEmail(email);
 		professor.setResidencial(Telefone.maskToTelefone(residencial));
 		professor.setCelular(Telefone.maskToTelefone(celular));
 		professor.setOpcional(Telefone.maskToTelefone(opcional));
-		// Criar objeto - Educacional
-		{
-			DisciplinaBusiness bancoDisciplina = (DisciplinaBusiness) request.getServletContext()
-					.getAttribute("bancoDisciplina");
-			for (int i = 0; i < disciplinas.length; i++) {
-				professor.addDisciplina(bancoDisciplina.pesquisaCodigo(disciplinas[i]));
+		try {
+			// Criar objeto - Educacional
+			System.out.println("Criar objeto - Educacional");
+			{
+				DisciplinaBusiness bancoDisciplina = (DisciplinaBusiness) request.getServletContext()
+						.getAttribute("bancoDisciplina");
+				for (int i = 0; i < disciplinas.length; i++) {
+					professor.addDisciplina(bancoDisciplina.pesquisaCodigo(disciplinas[i]));
+				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
-		professor.setCoordenador(coordenador != null ? Boolean.TRUE : Boolean.FALSE);
+		professor.setCoordenador(coordenador == "on" ? Boolean.TRUE : Boolean.FALSE);
 
 		// Adicionando o objeto ao banco
+		System.out.println("Adicionando o objeto ao banco");
 		boolean adicionado = bancoProfessor.adicionar(professor);
 
 		if (adicionado) {
+<<<<<<< HEAD
 			// Colocando o banco de volta ao escopo da aplicaï¿½ï¿½o
+=======
+			// Colocando o banco de volta ao escopo da aplicaÃ§Ã£o
+>>>>>>> upstream/master
 			request.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
 			request.setAttribute("usuario", professor);
 			request.setAttribute("sucesso", Boolean.TRUE);
@@ -218,14 +310,9 @@ public class ProfessorController extends HttpServlet {
 
 	public void alterarPerfil(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identificação
-		String matricula = request.getParameter("registro");
-		String nome = request.getParameter("nome");
-		String nascimento = request.getParameter("data-nascimento");
-		String naturalidade = request.getParameter("naturalidade");
-		String estadoNatal = request.getParameter("estado-natal");
+		HttpSession session = request.getSession();
 
-		// Endereço
+		// EndereÃ§o
 		String cep = request.getParameter("cep");
 		String logradouro = request.getParameter("logradouro");
 		String complemento = request.getParameter("complemento");
@@ -242,14 +329,8 @@ public class ProfessorController extends HttpServlet {
 		String opcional = request.getParameter("fone-3");
 
 		// TESTE
-		System.out.println("----- IDENTIFICAÇÃO -----");
-		System.out.println("Registro Acadêmico: " + matricula);
-		System.out.println("Nome: " + nome);
-		System.out.println("Data de Nascimento: " + nascimento);
-		System.out.println("Naturalidade: " + naturalidade);
-		System.out.println("Estado Natal: " + estadoNatal);
 		System.out.println();
-		System.out.println("------- ENDEREÇO --------");
+		System.out.println("------- ENDEREï¿½O --------");
 		System.out.println("CEP: " + cep);
 		System.out.println("Logradouro: " + logradouro);
 		System.out.println("Complemento: " + complemento);
@@ -257,7 +338,7 @@ public class ProfessorController extends HttpServlet {
 		System.out.println("Bairro: " + bairro);
 		System.out.println("Estado: " + estado);
 		System.out.println("Cidade: " + cidade);
-		System.out.println("País: " + pais);
+		System.out.println("Paï¿½s: " + pais);
 		System.out.println();
 		System.out.println("-------- CONTATO --------");
 		System.out.println("Email: " + email);
@@ -270,8 +351,8 @@ public class ProfessorController extends HttpServlet {
 		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
 				.getAttribute("bancoProfessor");
 
-		// Objeto à ser alterado
-		Professor professor = (Professor) request.getSession().getAttribute("usuarioLogado");
+		// Objeto ï¿½ ser alterado
+		Professor professor = (Professor) session.getAttribute("usuarioLogado");
 
 		// Alterar os dados no objeto local
 		{
@@ -296,9 +377,9 @@ public class ProfessorController extends HttpServlet {
 		boolean alterado = bancoProfessor.alterar(professor);
 
 		if (alterado) {
-			// Colocando o banco de volta ao escopo da aplicação
+			// Colocando o banco de volta ao escopo da aplicaÃ§Ã£o
 			request.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
-			request.getSession().setAttribute("usuarioLogado", professor);
+			session.setAttribute("usuarioLogado", professor);
 			request.setAttribute("sucesso", Boolean.TRUE);
 			request.getRequestDispatcher("perfil.jsp").forward(request, response);
 		} else {
@@ -309,14 +390,12 @@ public class ProfessorController extends HttpServlet {
 
 	public void alterarSenha(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identificação
-		String matricula = request.getParameter("registro");
-		String nome = request.getParameter("nome");
-		String nascimento = request.getParameter("data-nascimento");
-		String naturalidade = request.getParameter("naturalidade");
-		String estadoNatal = request.getParameter("estado-natal");
+		HttpSession session = request.getSession();
+		Professor professor = (Professor) session.getAttribute("usuarioLogado");
 
-		// Segurança
+		System.out.println("[ProfessorController][alterarSenha] getParameter");
+		System.out.println(professor);
+		// SeguranÃ§a
 		String senhaAtual = request.getParameter("senha-atual");
 		String novaSenha = request.getParameter("nova-senha");
 		String confirmarNovaSenha = request.getParameter("confirmar-senha");
@@ -325,17 +404,14 @@ public class ProfessorController extends HttpServlet {
 		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
 				.getAttribute("bancoProfessor");
 
-		// Objeto à ser alterado
-		Professor professor = (Professor) request.getSession().getAttribute("usuarioLogado");
-
 		// Criar Usuario com dados passados na senhaAtual
-		Usuario usuarioAtual = new Usuario(matricula, senhaAtual);
+		Usuario usuarioAtual = new Usuario(professor.getMatricula(), senhaAtual);
 
 		// Conferindo senha atual
 		boolean validado = false;
 
 		if (professor.getUsuario().getSenha().equals(usuarioAtual.getSenha())) {
-			// Conferir se senhas novas são iguais
+			// Conferir se senhas novas sï¿½o iguais
 			if (novaSenha.equals(confirmarNovaSenha)) {
 				validado = true;
 			}
@@ -351,9 +427,9 @@ public class ProfessorController extends HttpServlet {
 			boolean alterado = bancoProfessor.alterar(professor);
 
 			if (alterado) {
-				// Colocando o banco de volta ao escopo da aplicação
+				// Colocando o banco de volta ao escopo da aplicaÃ§Ã£o
 				request.getServletContext().setAttribute("bancoProfessor", bancoProfessor);
-				request.getSession().setAttribute("usuarioLogado", professor);
+				session.setAttribute("usuarioLogado", professor);
 				request.setAttribute("sucesso", Boolean.TRUE);
 				request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
 			} else {

@@ -417,21 +417,24 @@
 												action="SolicitacaoController.do">
 
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12"
-														for="first-name">Tipo de Atendimento* </label>
-													<div class="col-md-1 col-sm-1 col-xs-2">
+													<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Tipo de Atendimento
+															<span class="required">*</span>
+													</label>
+													
+													<div class="col-md-1 col-sm-1 col-xs-12">
 														<input type="tel" id="tipo-atendimento-cdg"
 															name="tipo-atendimento-cdg" required="required"
 															class="form-control col-md-7 col-xs-12" value="" readonly>
 													</div>
-													<div class="col-md-5 col-sm-5 col-xs-10">
+													
+													<div class="col-md-11 col-sm-5 col-xs-12">
 														<select id="tipo-atendimento-descricao"
 															name="tipo-atendimento-descricao" required="required"
-															class="select2_single form-control" form="demo-form2"
+															class=" form-control" form="demo-form2"
 															onchange="tipoAtendimento(this)">
 															<option value="" selected></option>
 															<c:forEach var="tipoAtendimento"
-																items="${bancoEnum.getBancoTipoAtendimento() }">
+																items="${bancoTipoAtendimento.getBanco() }">
 																<c:if
 																	test="${tipoAtendimento.getGrupo().getCodigo() eq  param.grupoAtendimento}">
 																	<option value="${tipoAtendimento.getCodigo() }">${tipoAtendimento.getTipo() }</option>
@@ -439,20 +442,23 @@
 															</c:forEach>
 														</select>
 													</div>
+													
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12"
-														for="last-name">Matrícula / Cliente </label>
-													<div class="col-md-2 col-sm-2 col-xs-4">
+													<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Matrícula / Cliente
+															<span class="required">*</span>
+													</label>													
+													
+													<div class="col-md-3 col-sm-2 col-xs-12">
 														<input type="text" id="matricula" name="matricula"
 															required="required"
 															class="form-control col-md-7 col-xs-12" value="" readonly>
 													</div>
 													
-													<div class="col-md-4 col-sm-5 col-xs-10">
+													<div class="col-md-9 col-sm-5 col-xs-12">
 														<select id="nome" name="nome" required="required"
-															class="select2_single form-control"
+															class=" form-control"
 															onchange="matriculaAluno(this)">
 															<option value=""></option>
 															<c:forEach var="aluno" items="${bancoAluno.getBanco() }">
@@ -460,45 +466,53 @@
 															</c:forEach>
 														</select>
 													</div>
+													
 												</div>
 												
 												<div class="form-group">
-													<label for="middle-name"
-														class="control-label col-md-3 col-sm-3 col-xs-12">Grupo
-														/ Abertura / Fechamento</label>
-													<div class="col-md-2 col-sm-2 col-xs-4">
+													<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Grupo / Abertura / Fechamento
+															<span class="required"></span>
+													</label>													
+													
+													<div class="col-md-4 col-sm-2 col-xs-12">
 														<c:if test="${param.grupoAtendimento == '1'}">
 															<input id="grupo" class="form-control col-md-7 col-xs-12"
 																type="text" name="grupo" value="SECRETARIA" readonly>
 														</c:if>
 													</div>
-													<div class="col-md-2 col-sm-2 col-xs-4">
-														<input id="abertura" class="form-control col-md-7 col-xs-12" type="date" name="abertura" value="${now.getDataAtualHtml() }"readonly >
+													<div class="col-md-4 col-sm-2 col-xs-12">
+														<input id="abertura"
+															class="form-control col-md-7 col-xs-12" type="date"
+															name="abertura" value="${now.getDataAtualHtml() }"
+															disabled>
 													</div>
-													<div class="col-md-2 col-sm-2 col-xs-4">
+													<div class="col-md-4 col-sm-2 col-xs-12">
 														<input id="fechamento"
 															class="form-control col-md-7 col-xs-12" type="date"
-															name="fechamento" value="${now.getDataAtualHtml() }" readonly>
+															name="fechamento" disabled>
 													</div>
+													
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Assunto
-														<span class="required">*</span>
-													</label>
+													<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Assunto
+															<span class="required">*</span>
+													</label>													
 
-													<div class="col-md-6 col-sm-6 col-xs-12">
+													<div class="col-md-12 col-sm-6 col-xs-12">
 														<input id="assunto" name="assunto"
 															class="date-picker form-control col-md-7 col-xs-12"
 															required="required" type="text">
 													</div>
+													
 												</div>
 
 												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Descrição
-														<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6 col-xs-12">
+													<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Descrição
+															<span class="required">*</span>
+													</label>													
+													
+													<div class="col-md-12 col-sm-6 col-xs-12">
 														<textarea id="message" required="required"
 															class="form-control" name="message"
 															data-parsley-trigger="keyup" data-parsley-minlength="20"
@@ -506,37 +520,42 @@
 															data-parsley-minlength-message="Come on! You need to enter at least a 20 caracters long comment.."
 															data-parsley-validation-threshold="10"></textarea>
 													</div>
-												</div>
-
-												<div class="escondido" id="divAv">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Avaliação</label>
-
-
-													<div class="col-md-1 col-sm-1 col-xs-2">
-														<select name="avaliacao" id="avaliacao"
-															class="select2_multiple form-control">
-															<option value=""></option>
-															<c:forEach var="av"
-																items="${bancoEnum.getBancoAvaliacao() }">
-																<option value="${av.name() }">${av.name() }</option>
+													
+												</div>																							
+												
+												<div class="form-group" id="divDis">
+													<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Disciplina
+															<span class="required"></span>
+													</label>													
+													
+													<div class="col-md-12 col-sm-5 col-xs-12">
+														<select id="disciplina" name="disciplina"
+														class=" form-control col-md-6 col-sm-5 col-xs-12">
+															<option value="" selected></option>
+															<c:forEach var="disciplina"
+																items="${bancoDisciplina.getBanco() }">
+																<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
 															</c:forEach>
 														</select>
 													</div>
 												</div>
 												
-												<div class="escondido" id="divDis">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Disciplina</label>
+												<div class="escondido" id="divAv">																								
+													<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Avaliação
+															<span class="required"></span>
+													</label>												
 													
-													<div class="col-md-6 col-sm-5 col-xs-10">
-														<select id="disciplina" name="disciplina"
-														class="select2_single form-control col-md-5 col-sm-5 col-xs-10">
-															<option value="" selected></option>
-															<c:forEach var="disciplina"
-																items="${bancoEnum.getBancoDisciplina() }">
-																<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
+													<div class="col-md-1 col-sm-1 col-xs-12">
+														<select name="avaliacao" id="avaliacao"
+															class=" form-control">
+															<option value=""></option>
+															<c:forEach var="av"
+																items="${bancoAvaliacao.getBanco() }">
+																<option value="${av.name() }">${av.name() }</option>
 															</c:forEach>
 														</select>
-													</div>
+													</div>												
+													
 												</div>
 												
 												<!-- 												<div class="form-group"> -->
@@ -559,9 +578,9 @@
 
 												<div class="ln_solid"></div>
 												<div class="form-group">
-													<div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+													<div class="col-md-6 col-sm-6 col-xs-12">
 														<button type="reset" class="btn btn-cancel">Cancelar</button>
-														<button type="submit" class="btn btn-success" name="action" value="cadastrar">Cadastrar</button>
+														<button type="submit" class="btn btn-success">Cadastrar</button>
 													</div>
 												</div>
 											</form>

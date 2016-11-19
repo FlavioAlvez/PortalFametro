@@ -8,15 +8,16 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import br.edu.fametro.portal.business.AlunoBusiness;
-import br.edu.fametro.portal.business.ProfessorBusiness;
+import br.edu.fametro.portal.business.enums.CursoBusiness;
 import br.edu.fametro.portal.business.enums.GeneroBusiness;
 import br.edu.fametro.portal.model.DateUtility;
 import br.edu.fametro.portal.model.Endereco;
+import br.edu.fametro.portal.model.Filiacao;
 import br.edu.fametro.portal.model.Telefone;
 import br.edu.fametro.portal.model.atores.Aluno;
-import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.atores.Usuario;
 import br.edu.fametro.portal.model.enums.Curso;
 import br.edu.fametro.portal.model.enums.Genero;
@@ -62,6 +63,16 @@ public class AlunoController extends HttpServlet {
 				break;
 			case "alterar":
 				alterarPerfil(request, response);
+			case "alterar perfil":
+				alterarPerfil(request, response);
+				break;
+			case "alterar senha":
+				alterarSenha(request, response);
+				break;
+			default:
+				System.err.println("[AlunoController] action entrou no default!");
+				System.err.println("[AlunoController] action = " + (action == null ? "null" : action));
+				response.sendRedirect("LoginController.do");
 				break;
 			}
 		} catch (Exception e) {
@@ -88,11 +99,11 @@ public class AlunoController extends HttpServlet {
 
 		// Endere�o
 		String cep = request.getParameter("cep");
-		String logradouro = request.getParameter("logradouro");
+		String logradouro = request.getParameter("rua");
 		String complemento = request.getParameter("complemento");
 		String numero = request.getParameter("numero");
 		String bairro = request.getParameter("bairro");
-		String estado = request.getParameter("estado");
+		String estado = request.getParameter("uf");
 		String cidade = request.getParameter("cidade");
 		String pais = request.getParameter("pais");
 
@@ -166,17 +177,25 @@ public class AlunoController extends HttpServlet {
 
 		aluno.getFiliacao().setPai(pai);
 		aluno.getFiliacao().setMae(mae);
+		{
+			Filiacao filiacao = new Filiacao();
+			filiacao.setPai(pai);
+			filiacao.setMae(mae);
+			aluno.setFiliacao(filiacao);
+		}
 
-		Endereco endereco = new Endereco();
-		endereco.setCep(cep);
-		endereco.setLogradouro(logradouro);
-		endereco.setComplemento(complemento);
-		endereco.setNumero(Integer.parseInt(numero));
-		endereco.setBairro(bairro);
-		endereco.setEstado(estado);
-		endereco.setCidade(cidade);
-		endereco.setPais(pais);
-		aluno.setEndereco(endereco);
+		{
+			Endereco endereco = new Endereco();
+			endereco.setCep(cep);
+			endereco.setLogradouro(logradouro);
+			endereco.setComplemento(complemento);
+			endereco.setNumero(Integer.parseInt(numero));
+			endereco.setBairro(bairro);
+			endereco.setEstado(estado);
+			endereco.setCidade(cidade);
+			endereco.setPais(pais);
+			aluno.setEndereco(endereco);
+		}
 
 		// Criar objeto - Contato
 		aluno.setEmail(email);
@@ -201,6 +220,20 @@ public class AlunoController extends HttpServlet {
 			request.setAttribute("usuario", aluno);
 			request.setAttribute("sucesso", Boolean.TRUE);
 
+		// Criar objeto - Educacional
+		{
+			CursoBusiness bancoCurso = (CursoBusiness) request.getServletContext().getAttribute("bancoCurso");
+			Curso c = bancoCurso.pesquisaCodigo(curso);
+			aluno.setCurso(c);
+		}
+
+
+		if (adicionado) {
+			// Colocando o banco local de volta ao escopo da aplica��o
+			request.getServletContext().setAttribute("bancoAluno", bancoAluno);
+			request.setAttribute("usuario", aluno);
+			request.setAttribute("sucesso", Boolean.TRUE);
+
 			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Aluno").forward(request, response);
 		} else {
 			request.setAttribute("usuario", aluno);
@@ -209,10 +242,9 @@ public class AlunoController extends HttpServlet {
 			request.getRequestDispatcher("cadastrar-usuario.jsp?tipo=Aluno").forward(request, response);
 		}
 
-	}
-
 	private void alterarPerfil(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
+		HttpSession session = request.getSession();
 
 		// Identifica��o
 		String matricula = request.getParameter("registro");
@@ -294,6 +326,8 @@ public class AlunoController extends HttpServlet {
 			// Colocando o banco de volta ao escopo da aplica��o
 			request.getServletContext().setAttribute("bancoProfessor", bancoAluno);
 			request.getSession().setAttribute("usuarioLogado", aluno);
+			request.getServletContext().setAttribute("bancoAluno", bancoAluno);
+			session.setAttribute("usuarioLogado", aluno);
 			request.setAttribute("sucesso", Boolean.TRUE);
 			request.getRequestDispatcher("perfil.jsp").forward(request, response);
 		} else {
@@ -302,16 +336,15 @@ public class AlunoController extends HttpServlet {
 		}
 
 	}
-	
+
+
 	public void alterarSenha(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
-		// Identifica��o
-		String matricula = request.getParameter("registro");
-		String nome = request.getParameter("nome");
-		String nascimento = request.getParameter("data-nascimento");
-		String naturalidade = request.getParameter("naturalidade");
-		String estadoNatal = request.getParameter("estado-natal");
+		HttpSession session = request.getSession();
+		Aluno aluno = (Aluno) session.getAttribute("usuarioLogado");
 
+		System.out.println("[AlunoController][alterarSenha] getParameter");
+		System.out.println(aluno);
 		// Seguran�a
 		String senhaAtual = request.getParameter("senha-atual");
 		String novaSenha = request.getParameter("nova-senha");
@@ -320,11 +353,8 @@ public class AlunoController extends HttpServlet {
 		// Resgatando o banco
 		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext().getAttribute("bancoAluno");
 
-		// Objeto � ser alterado
-		Aluno aluno =  (Aluno) request.getSession().getAttribute("usuarioLogado");
-
 		// Criar Usuario com dados passados na senhaAtual
-		Usuario usuarioAtual = new Usuario(matricula, senhaAtual);
+		Usuario usuarioAtual = new Usuario(aluno.getMatricula(), senhaAtual);
 
 		// Conferindo senha atual
 		boolean validado = false;
@@ -349,6 +379,7 @@ public class AlunoController extends HttpServlet {
 				// Colocando o banco de volta ao escopo da aplica��o
 				request.getServletContext().setAttribute("bancoAluno", bancoAluno);
 				request.getSession().setAttribute("usuarioLogado", aluno);
+				session.setAttribute("usuarioLogado", aluno);
 				request.setAttribute("sucesso", Boolean.TRUE);
 				request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
 			} else {

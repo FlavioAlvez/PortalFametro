@@ -2074,7 +2074,7 @@ input.parsley-error, textarea.parsley-error, select.parsley-error {
 .btn {
 	border-radius: 3px
 }
-a.btn-success, a.btn-cancel, a.btn-warning, a.btn-danger {
+a.btn-success, a.btn-imprimir, a.btn-cancel, a.btn-warning, a.btn-danger {
 	color: #ffffff;
 }
 .btn-success {
@@ -2083,6 +2083,16 @@ a.btn-success, a.btn-cancel, a.btn-warning, a.btn-danger {
 }
 .btn-success:hover, .btn-success:focus, .btn-success:active, .btn-success.active, .open .dropdown-toggle.btn-success {
 	background: #799004;
+}
+
+.btn-imprimir {
+	color:#ffffff;
+	background: #000080;
+	border: 1px solid #000085
+}
+.btn-imprimir:hover, .btn-imprimir:focus, .btn-imprimir:active, .btn-imprimir.active, .open .dropdown-toggle.btn-imprimir {
+	color:#ffffff;
+	background: #1302FF;
 }
 
 .btn-cancel {

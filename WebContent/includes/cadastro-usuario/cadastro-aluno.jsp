@@ -38,9 +38,9 @@
 			</label>
 			<div class="">
 				<select name="genero" id="genero"
-					class="select2_single form-control col-sm-12 col-md-12 col-xs-12">
+					class=" form-control col-sm-12 col-md-12 col-xs-12 select2_single" required>
 					<option value="" selected></option>
-					<c:forEach var="genero" items="${bancoEnum.getBancoGenero() }">
+					<c:forEach var="genero" items="${bancoGenero.getBanco() }">
 						<option value="${genero.name() }">${genero.name() }</option>
 					</c:forEach>
 				</select>
@@ -53,7 +53,7 @@
 				class="required">*</span>
 			</label>
 			<div class="">
-				<input type="text" name="nascimento" id="nascimento" required
+				<input type="date" name="nascimento" id="nascimento" required
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
@@ -84,7 +84,7 @@
 	</div>
 	<br />
 	<div class="form-group">
-		<div class="col-md-6 col-sm-6 col-xs-6">
+		<div class="col-md-6 col-sm-6 col-xs-12">
 			<label class="col-md-6 col-sm-6 col-xs-12" for="pai">Nome do
 				Pai <span class="required">*</span>
 			</label>
@@ -93,7 +93,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-6 col-sm-6 col-xs-6">
+		<div class="col-md-6 col-sm-6 col-xs-12">
 			<label class="" for="mae">Nome da Mãe <span class="required">*</span>
 			</label>
 			<div class="">
@@ -141,7 +141,7 @@
 			<label for="numero">Número <span class="required">*</span>
 			</label>
 			<div>
-				<input type="number" min=0 name="numero" id="numero" required
+				<input type="number" min=0 max=999999999 name="numero" id="numero" required
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
@@ -188,7 +188,7 @@
 	</div>
 	<br />
 	<div class="form-group">
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label for="email">Email <span class="required">*</span>
 			</label>
 			<div>
@@ -196,7 +196,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-4">
 			<label for="fone-residencial">Telefone Residencial <span
 				class="required">*</span>
 			</label>
@@ -205,7 +205,7 @@
 					required class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-4">
 			<label for="fone-celular">Telefone Celular <span
 				class="required">*</span>
 			</label>
@@ -214,7 +214,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-4">
 			<label for="fone-3">Telefone 3 <span class="required">*</span>
 			</label>
 			<div>
@@ -234,10 +234,10 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<label class="" for="curso">Curso</label>
 			<div class="">
-				<select name="curso" id="curso" class="select2_single form-control"
+				<select name="curso" id="curso" class=" form-control select2_single"
 					required>
 					<option value="" selected></option>
-					<c:forEach var="curso" items="${bancoEnum.getBancoCurso() }">
+					<c:forEach var="curso" items="${bancoCurso.getBanco() }">
 						<option value="${curso.getCodigo() }">${curso.getNome() }</option>
 					</c:forEach>
 				</select>
@@ -247,6 +247,7 @@
 	<div class="ln_solid"></div>
 	<div class="form-group">
 		<div class="col-md-6 col-sm-6 col-xs-12">
+			<input type="reset" class="btn btn-warning" name="redefinir" value="Redefinir"> 
 			<input type="submit" class="btn btn-success" name="action"
 				value="Cadastrar">
 		</div>

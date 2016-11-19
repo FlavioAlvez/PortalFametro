@@ -1,10 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+
 <!DOCTYPE html>
 <html lang="pt">
+
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
 <!-- Meta, title, CSS, favicons, etc. -->
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -12,31 +15,34 @@
 <meta name="author" content="EduardoRoseo">
 <link rel="shortcut icon" href="img/favicon.ico">
 
+
 <title>Portal Fametro | Pesquisa</title>
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
+
 <!-- Font Awesome -->
 <link href="css/font-awesome.min.css" rel="stylesheet">
 
 <!-- Custom Theme Style -->
 <link href="css/custom.min.css" rel="stylesheet">
+
 </head>
 
 <!-- Switchery -->
 <link href="css/switchery/switchery.min.css" rel="stylesheet">
+
+<!-- imprimir -->
+<script type="text/javascript" src="js/imprimir/imprimir.js"></script>
+
 <!-- Select2 -->
 <link href="css/select2/select2.min.css" rel="stylesheet">
+
 <!-- Mascara -->
 <script type="text/javascript" src="jquery/jquery.js"></script>
 <script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
+<script type="text/javascript" src="js/mascara/mascara.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-		$("#data-abertura").mask("99/99/9999");
-		$("#data-fechamento").mask("99/99/9999");               
-});
-</script>
 
 <body class="nav-md">
 	<div class="container body">
@@ -115,7 +121,7 @@ $(document).ready(function(){
 												for="tipo-atendimento-pesquisa">Tipo da Solicitação
 											</label>
 
-											<div class="col-md-9 col-sm-12 col-xs-12">
+											<div class="col-md-12 col-sm-12 col-xs-12">
 												<select id="tipo-atendimento-pesquisa" name="tipo-atendimento-pesquisa" class="form-control col-md-12 col-xs-12">
 													<option></option>
 													<option>ANÁLISE DE EXCESSO DE CARGA HORÁRIA</option>
@@ -129,28 +135,28 @@ $(document).ready(function(){
 										</div>
 
 										<div class="form-group">
-											<label class="col-md-3 col-sm-4 col-xs-8" 
+											<label class="col-md-4 col-sm-4 col-xs-12" 
 												for="data-abertura">Data de Abertura
 											</label> 
 											
-											<label class="col-md-3 col-sm-4 col-xs-8"
+											<label class="col-md-4 col-sm-4 col-xs-12"
 												for="data-fechamento">Data de Fechamento
 											</label> 
 											
-											<label class="col-md-4 col-sm-4 col-xs-8"
+											<label class="col-md-4 col-sm-4 col-xs-12"
 												for="tipo-atendimento-descricao">Status
 											</label>
 
-											<div class="col-md-3 col-sm-4 col-xs-8">
+											<div class="col-md-4 col-sm-4 col-xs-12">
 												<input type="text" name="data-abertura"	id="data-abertura"
 													class="form-control col-md-7 col-xs-12">
 											</div>
 											
-											<div class="col-md-3 col-sm-4 col-xs-8">
+											<div class="col-md-4 col-sm-4 col-xs-12">
 												<input type="text" name="data-fechamento" id="data-fechamento"
 													class="form-control col-md-7 col-xs-12">
 											</div>
-											<div class="col-md-3 col-sm-4 col-xs-8">
+											<div class="col-md-4 col-sm-4 col-xs-12">
 												<select id="tipo-atendimento-descricao" name="tipo-atendimento-descricao" class="form-control col-md-7 col-xs-12">
 													<option></option>
 													<option>CONCLUÍDO</option>
@@ -162,10 +168,10 @@ $(document).ready(function(){
 										</div>
 
 										<div class="form-group">
-											<label class="col-md-8 col-sm-3 col-xs-6" for="assunto">Assunto
+											<label class="col-md-8 col-sm-3 col-xs-12" for="assunto">Assunto
 											</label>
 											
-											<div class="col-md-9 col-sm-12 col-xs-12">
+											<div class="col-md-12 col-sm-12 col-xs-12">
 												<input type="text" name="assunto" id="assunto"
 													class="form-control col-md-7 col-xs-12">
 											</div>
@@ -176,6 +182,7 @@ $(document).ready(function(){
 											<div class="col-md-6 col-sm-6 col-xs-12">
 												<button type="submit" class="btn btn-cancel">Cancelar</button>
 												<button type="submit" class="btn btn-success">Enviar</button>
+												<button type="button" onclick="imprimir('form_pesquisa');" class="btn btn-imprimir">Imprimir</button>												
 											</div>
 										</div>
 									</form>

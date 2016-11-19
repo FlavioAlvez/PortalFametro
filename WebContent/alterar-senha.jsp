@@ -15,11 +15,21 @@
 <script type="text/javascript" src="jquery/jquery.js"></script>
 <script type="text/javascript" src="jquery/jquery.maskedinput.js"></script>
 
-<script type="text/javascript">
-$(document).ready(function(){
-		$("#data-nascimento").mask("99/99/9999");               
-});
+<script>
+	function validarSenha() {
+		novasenha = document.getElementById('nova-senha').value;
+		confirmarsenha = document.getElementById('confirmar-senha').value;
+		if (novasenha != confirmarsenha) {
+			alert("Você deve inserir a mesma senha duas vezes para confirmá-la. !");
+			document.getElementById('confirmar-senha').value = '';
+
+		} else {
+			document.FormSenha.submit();
+		}
+	}
 </script>
+
+
 
 <title>Portal Fametro | Perfil</title>
 
@@ -51,8 +61,8 @@ $(document).ready(function(){
 							<div
 								class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" name="search" id="search" class="form-control"
-										placeholder="Search for..."> <span
+									<input type="text" name="search" id="search"
+										class="form-control" placeholder="Search for..."> <span
 										class="input-group-btn">
 										<button class="btn btn-default" type="button">Go!</button>
 									</span>
@@ -67,7 +77,18 @@ $(document).ready(function(){
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Informações do Aluno/Professor/Secretário</h2>
+									<c:if
+										test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Secretario') }">
+										<h2>Informações do Secretário</h2>
+									</c:if>
+									<c:if
+										test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Professor') }">
+										<h2>Informações do Professor</h2>
+									</c:if>
+									<c:if
+										test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Aluno') }">
+										<h2>Informações do Aluno</h2>
+									</c:if>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -84,7 +105,7 @@ $(document).ready(function(){
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
+									<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3 profile_left">
 										<div class="profile_img">
 											<div id="crop-avatar">
 												<!-- Current avatar -->
@@ -92,122 +113,171 @@ $(document).ready(function(){
 													alt="Avatar" title="Change the avatar">
 											</div>
 										</div>
-										<h3>Admin</h3>
+										<h3>${usuarioLogado.getPrimeiroNome() }</h3>
 
 										<ul class="list-unstyled user_data">
 											<li><i class="fa fa-map-marker user-profile-icon"></i>
-												Bom Jardim, Fortaleza, CE</li>
-
-											<li><i class="fa fa-briefcase user-profile-icon"></i>
-												Análise e Desenvolvimento de Sistemas</li>
+												${usuarioLogado.getEndereco().getBairro() },
+												${usuarioLogado.getEndereco().getCidade() },
+												${usuarioLogado.getEndereco().getEstado() }</li>
+											<c:if
+												test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Aluno') }">
+												<li><i class="fa fa-briefcase user-profile-icon"></i>
+													${usuarioLogado.getCurso().getNome() }</li>
+											</c:if>
+											<c:if
+												test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Professor') }">
+												<c:forEach var="disciplina"
+													items="${usuarioLogado.getDisciplinas() }">
+													<li><i class="fa fa-briefcase user-profile-icon"></i>
+														${disciplina.getNome() }</li>
+												</c:forEach>
+											</c:if>
 										</ul>
 									</div>
-									<div class="col-md-9 col-sm-9 col-xs-12">
+									<div class="col-xs-12 col-sm-12 col-md-12 col-lg-9">
 										<div class="x_content">
 											<br />
-											<form id="demo-form2" data-parsley-validate
-												class="form-horizontal form-label-left" method="post"
-												action="home.jsp">
-												<div class="profile_title">
-													<div class="col-md-6">
-														<h2>Identificação</h2>
-													</div>
+											<c:if
+												test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Aluno') }">
+												<form id="demo-form2" name="demo-form2"
+													data-parsley-validate
+													class="form-horizontal form-label-left" method="post"
+													action="AlunoController.do">
+											</c:if>
+											<c:if
+												test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Professor') }">
+												<form id="demo-form2" name="demo-form2"
+													data-parsley-validate
+													class="form-horizontal form-label-left" method="post"
+													action="ProfessorController.do">
+											</c:if>
+											<c:if
+												test="${tipoUsuarioLogado.getNome().equalsIgnoreCase('Secretario') }">
+												<form id="demo-form2" name="demo-form2"
+													data-parsley-validate
+													class="form-horizontal form-label-left" method="post"
+													action="SecretarioController.do">
+											</c:if>
+											<div class="profile_title">
+												<div class="col-md-6">
+													<h2>Identificação</h2>
 												</div>
-												<br />
-												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="registro">Registro Acadêmico 
-                                                    	<span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-9 col-sm-9 col-xs-18" for="nome">Nome 
-														<span class="required">*</span>
+											</div>
+											<br />
+											<div class="form-group">
+												<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4">
+													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+														for="registro">Registro Acadêmico <span
+														class="required">*</span>
 													</label>
-                                                    
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input disabled ="text" name="registro" id="registro" required
-															class="form-control col-md-7 col-xs-12">
+													<div>
+														<input disabled type="text" name="registro" id="registro"
+															required class="form-control"
+															value="${usuarioLogado.getMatricula() }">
 													</div>
-													
-													<div class="col-md-9 col-sm-9 col-xs-18">
+
+												</div>
+												<div class="col-xs-8 col-sm-8 col-md-8 col-lg-8">
+													<label class="col-xs-12 col-sm-12 col-md-12 col-lg-12"
+														for="nome">Nome <span class="required">*</span>
+													</label>
+													<div>
 														<input disabled type="text" name="nome" id="nome" required
-															class="form-control col-md-7 col-xs-12">
+															class="form-control" value="${usuarioLogado.getNome() }">
 													</div>
 												</div>
-												
-												<div class="form-group">
-													<label class="col-md-3 col-sm-3 col-xs-6" for="data-nascimento">Data de Nascimento 
-                                                    	<span class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-5 col-sm-5 col-xs-10" for="naturalidade">Naturalidade 
-														<span	class="required">*</span>
-													</label> 
-                                                    
-                                                    <label class="col-md-4 col-sm-4 col-xs-8" for="estado-natal">Estado Natal 
-                                                    	<span class="required">*</span>
+											</div>
+
+											<div class="form-group">
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<label class="col-md-12 col-sm-12 col-xs-12"
+														for="data-nascimento">Data de Nascimento <span
+														class="required">*</span>
 													</label>
-                                                    
-													<div class="col-md-3 col-sm-3 col-xs-6">
-														<input disabled type="text" name="data-nascimento" id="data-nascimento" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-5 col-sm-5 col-xs-10">
-														<input disabled type="text" name="naturalidade" id="naturalidade" required
-															class="form-control col-md-7 col-xs-12">
-													</div>
-													<div class="col-md-4 col-sm-4 col-xs-8">
-														<input disabled type="text" name="estado-natal" id="estado-natal" required
-															class="form-control col-md-7 col-xs-12">
+													<div>
+														<input disabled type="date" name="data-nascimento"
+															id="data-nascimento" required class="form-control"
+															value="${DateUtility.DateToHtml(usuarioLogado.getNascimento()) }">
 													</div>
 												</div>
-												<br />
-												<div class="profile_title">
-													<div class="col-md-6">
-														<h2>Segurança</h2>
-													</div>
-												</div>
-												<br />
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12" for="senha-atual">Senha Atual 
-														<span class="required">*</span>
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<label class="col-md-12 col-sm-12 col-xs-12"
+														for="naturalidade">Naturalidade <span
+														class="required">*</span>
 													</label>
-                                                    
-													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="password" name="senha-atual" id="senha-atual" required
-															class="form-control col-md-7 col-xs-12">
+													<div>
+														<input disabled type="text" name="naturalidade"
+															id="naturalidade" required class="form-control"
+															value="${usuarioLogado.getNaturalidade() }">
 													</div>
 												</div>
-                                                
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12" for="nova-senha">Nova Senha 
-														<span class="required">*</span>
+												<div class="col-md-4 col-sm-4 col-xs-4">
+													<label class="col-md-12 col-sm-12 col-xs-12"
+														for="estado-natal">Estado Natal <span
+														class="required">*</span>
 													</label>
-                                                    
-													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="password" name="nova-senha" id="nova-senha" required="required"
-															class="form-control col-md-7 col-xs-12">
+													<div>
+														<input disabled type="text" name="estado-natal"
+															id="estado-natal" required class="form-control"
+															value="${usuarioLogado.getEstadoNatal() }">
 													</div>
 												</div>
-                                                
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Confirmar Nova Senha 
-														<span class="required">*</span>
-													</label>
-                                                    
-													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="password" name="confirmar-senha" id="confirmar-senha" required="required"
-															class="form-control col-md-7 col-xs-12">
-													</div>
+											</div>
+											<br />
+											<div class="profile_title">
+												<div class="col-md-6">
+													<h2>Segurança</h2>
 												</div>
-                                                
-												<div class="ln_solid"></div>
-												<div class="form-group">
-													<div class="col-md-6 col-sm-6 col-xs-12">
-														<input type="submit" class="btn btn-cancel	" name="concluir"
-															value="Cancelar"> <input type="submit"
-															class="btn btn-success" name="" value="Concluir">
-													</div>
+											</div>
+											<br />
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12"
+													for="senha-atual">Senha Atual <span
+													class="required">*</span>
+												</label>
+
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="password" name="senha-atual" id="senha-atual"
+														required class="form-control col-md-7 col-xs-12">
 												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12"
+													for="nova-senha">Nova Senha <span class="required">*</span>
+												</label>
+
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="password" name="nova-senha" id="nova-senha"
+														required="required"
+														class="form-control col-md-7 col-xs-12">
+												</div>
+											</div>
+
+											<div class="form-group">
+												<label class="control-label col-md-3 col-sm-3 col-xs-12"
+													for="last-name">Confirmar Nova Senha <span
+													class="required">*</span>
+												</label>
+
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="password" name="confirmar-senha"
+														id="confirmar-senha" required="required"
+														class="form-control col-md-7 col-xs-12">
+												</div>
+											</div>
+
+											<div class="ln_solid"></div>
+											<div class="form-group">
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<input type="reset" class="btn btn-warning" name="rest"
+														value="Redefinir"> <input type="submit"
+														class="btn btn-success" id="alterarSenha"
+														name="action" value="Alterar Senha"
+														onClick="validarSenha()">
+												</div>
+											</div>
 											</form>
 										</div>
 									</div>

@@ -17,7 +17,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label class="" for="rg">RG <span class="required">*</span>
 			</label>
 			<div class="">
@@ -25,7 +25,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label class="" for="cpf">CPF <span class="required">*</span>
 			</label>
 			<div class="">
@@ -33,33 +33,31 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label class="" for="genero">Gênero <span class="required">*</span>
 			</label>
 			<div class="">
-
 				<select name="genero" id="genero"
-					class="select2_single form-control col-sm-12 col-md-12 col-xs-12">
+					class=" form-control col-sm-12 col-md-12 col-xs-12 select2_single" required>
 					<option value="" selected></option>
 					<c:forEach var="genero" items="${bancoGenero.getBanco() }">
 						<option value="${genero.name() }">${genero.name() }</option>
- 					</c:forEach>
+					</c:forEach>
 				</select>
-
 			</div>
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label class="" for="nascimento">Data de Nascimento <span
 				class="required">*</span>
 			</label>
 			<div class="">
-				<input type="text" name="nascimento" id="nascimento" required
+				<input type="date" name="nascimento" id="nascimento" required
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-5 col-sm-5 col-xs-5">
+		<div class="col-md-5 col-sm-5 col-xs-12">
 			<label class="" for="naturalidade">Naturalidade <span
 				class="required">*</span>
 			</label>
@@ -68,7 +66,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label class="" for="estado-natal">Estado Natal <span
 				class="required">*</span>
 			</label>
@@ -86,7 +84,7 @@
 	</div>
 	<br />
 	<div class="form-group">
-		<div class="col-md-6 col-sm-6 col-xs-6">
+		<div class="col-md-6 col-sm-6 col-xs-12">
 			<label class="col-md-6 col-sm-6 col-xs-12" for="pai">Nome do
 				Pai <span class="required">*</span>
 			</label>
@@ -95,7 +93,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-6 col-sm-6 col-xs-6">
+		<div class="col-md-6 col-sm-6 col-xs-12">
 			<label class="" for="mae">Nome da Mãe <span class="required">*</span>
 			</label>
 			<div class="">
@@ -112,7 +110,7 @@
 	</div>
 	<br />
 	<div class="form-group">
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label class="" for="cep">CEP <span class="required">*</span>
 			</label>
 			<div class="">
@@ -120,7 +118,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-9 col-sm-9 col-xs-9">
+		<div class="col-md-9 col-sm-9 col-xs-12">
 			<label class="" for="rua">Logradouro <span class="required">*</span>
 			</label>
 			<div class="">
@@ -131,7 +129,7 @@
 	</div>
 
 	<div class="form-group">
-		<div class="col-md-5 col-sm-5 col-xs-5">
+		<div class="col-md-5 col-sm-5 col-xs-12">
 			<label for="complemento">Complemento <span class="required">*</span>
 			</label>
 			<div>
@@ -139,15 +137,15 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label for="numero">Número <span class="required">*</span>
 			</label>
 			<div>
-				<input type="number" min="0" max="999999999" name="numero"
-					id="numero" required class="form-control col-md-7 col-xs-12">
+				<input type="number" min=0 max=999999999 name="numero" id="numero" required
+					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label for="bairro">Bairro <span class="required">*</span>
 			</label>
 			<div>
@@ -157,7 +155,7 @@
 		</div>
 	</div>
 	<div class="form-group">
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label for="uf">Estado <span class="required">*</span>
 			</label>
 			<div class="">
@@ -165,7 +163,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label for="cidade">Cidade <span class="required">*</span>
 			</label>
 			<div class="">
@@ -173,7 +171,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-4 col-sm-4 col-xs-4">
+		<div class="col-md-4 col-sm-4 col-xs-12">
 			<label for="pais">País <span class="required">*</span>
 			</label>
 			<div class="">
@@ -190,7 +188,7 @@
 	</div>
 	<br />
 	<div class="form-group">
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label for="email">Email <span class="required">*</span>
 			</label>
 			<div>
@@ -198,7 +196,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label for="fone-residencial">Telefone Residencial <span
 				class="required">*</span>
 			</label>
@@ -207,7 +205,7 @@
 					required class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label for="fone-celular">Telefone Celular <span
 				class="required">*</span>
 			</label>
@@ -216,7 +214,7 @@
 					class="form-control col-md-7 col-xs-12">
 			</div>
 		</div>
-		<div class="col-md-3 col-sm-3 col-xs-3">
+		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label for="fone-3">Telefone 3 <span class="required">*</span>
 			</label>
 			<div>
@@ -237,16 +235,15 @@
 			<label for="disciplina"> Disciplinas</label>
 			<div class="">
 				<select name="disciplina" id="disciplina"
-					class="select2_multiple form-control"
-					required>
-					<option value="" selected></option>
-					<c:forEach var="disciplina" items="${bancoDisciplina.getBanco() }">
+					class="selectpicker form-control" multiple data-selected-text-format="count > 3" data-actions-box="true">
+						<c:forEach var="disciplina" items="${bancoDisciplina.getBanco() }">
 						<option value="${disciplina.getCodigo() }">${disciplina.getNome() }</option>
 					</c:forEach>
-				</select>
+				</select>				
 			</div>
 		</div>
-	</div>
+	</div>	
+	
 	<div class="form-group">
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<label for="coordenador"> <input name="coordenador"
