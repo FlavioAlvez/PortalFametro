@@ -218,7 +218,7 @@ public class Persistencia implements ServletContextListener {
 		alunoExemplo.setResidencial(Telefone.maskToTelefone("(85)3473-7070"));
 		alunoExemplo.setCelular(Telefone.maskToTelefone("(85)97070-7070"));
 		alunoExemplo.setOpcional(Telefone.maskToTelefone("(85)99876-5432"));
-		alunoExemplo.setEmail("secretario@fametro.edu.br");
+		alunoExemplo.setEmail("aluno@fametro.edu.br");
 
 		System.out.println("[ALUNO] Colocando o primeiro elemento no banco...");
 		bancoAluno.adicionar(alunoExemplo);
