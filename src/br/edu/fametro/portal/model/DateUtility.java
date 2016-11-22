@@ -125,7 +125,7 @@ public class DateUtility implements java.io.Serializable {
 
 	public static Date setDataHoraCompleta(String data, String hora) {
 		Calendar dt = Calendar.getInstance();
-		dt.setTime(maskToDate(data));
+		dt.setTime(HtmlToDate(data));
 		dt.set(Calendar.HOUR_OF_DAY, getHoras(hora));
 		dt.set(Calendar.MINUTE, getMinutos(hora));
 		dt.set(Calendar.SECOND, getSegundos(hora));
