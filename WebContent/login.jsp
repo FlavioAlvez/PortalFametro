@@ -45,8 +45,8 @@
 					<p>Insira seu usuário e senha</p>
 					<c:if test="${loginInvalido }">
 						<div class="alert alert-danger" role="alert">
-							<img src="img/exclamação.png">&nbsp; &nbsp; A matrícula ou
-							senha está incorreta!
+							<img src="img/exclamação.png">&nbsp; &nbsp; Matrícula e/ou
+							senha incorreta(s)!
 						</div>
 					</c:if>
 

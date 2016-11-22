@@ -119,7 +119,7 @@
 													</div>
 												</c:if>
 												<c:if test="${sucesso }">
-													<div class="alert alert-sucess" role="alert">
+													<div class="alert alert-success" role="alert">
 														<img src="img/success.png">&nbsp; &nbsp; Cadastro
 														efetivado.
 													</div>
