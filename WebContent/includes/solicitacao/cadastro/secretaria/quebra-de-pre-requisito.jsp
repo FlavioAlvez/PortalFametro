@@ -36,7 +36,7 @@
 	<div class="form-group">
 		<div class="col-md-6 col-sm-6 col-xs-12">
 			<input type="reset" class="btn btn-cancel" value="Redefinir">
-			<input type="submit" class="btn btn-success" value="Registrar">
+			<input type="submit" class="btn btn-success" name="action" value="Registrar">
 		</div>
 	</div>
 </form>

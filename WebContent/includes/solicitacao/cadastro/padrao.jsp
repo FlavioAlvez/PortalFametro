@@ -56,10 +56,14 @@
 		</select>
 	</div>
 	<div class="col-md-3 col-sm-3 col-xs-3">
-		<label class="col-md-12 col-sm-12 col-xs-12" for="tipo-cliente">Tipo
+		<label class="col-md-12 col-sm-12 col-xs-12" for="tipo-cliente">Tipo cliente
 			<span class="required">*</span>
 		</label>
-		<div class="col-md-12 col-sm-12 col-xs-12">
+		<div class="col-md-4 col-sm-4 col-xs-4">
+			<input type="text" id="tipo-cliente-cdg" name="tipo-cliente-cdg"
+				required="required" class="form-control" value="1" readonly>
+		</div>
+		<div class="col-md-8 col-sm-8 col-xs-8">
 			<input type="text" id="tipo-cliente" name="tipo-cliente"
 				required="required" class="form-control" value="Aluno" readonly>
 		</div>
@@ -112,16 +116,16 @@
 
 <div class="form-group">
 	<div class="col-md-12 col-sm-12 col-xs-12">
-		<label class="col-md-12 col-sm-12 col-xs-12" for="nome">Descrição
+		<label class="col-md-12 col-sm-12 col-xs-12" for="descricao">Descrição
 			<span class="required">*</span>
 		</label>
 
 		<div class="col-md-12 col-sm-12 col-xs-12">
-			<textarea id="message" required="required" class="form-control"
-				name="message" data-parsley-trigger="keyup"
+			<textarea id="descricao" class="form-control"
+				name="descricao" data-parsley-trigger="keyup"
 				data-parsley-minlength="5" data-parsley-maxlength="100"
 				data-parsley-minlength-message="Vamos! Você precisa digitar pelo menos um comentário de 5 caracteres.."
-				data-parsley-validation-threshold="10" required></textarea>
+				data-parsley-validation-threshold="10" required="required"></textarea>
 		</div>
 	</div>
 </div>
