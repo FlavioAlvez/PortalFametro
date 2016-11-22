@@ -27,4 +27,8 @@ public enum Disciplina {
 		}
 		return null;
 	}
+
+	public String toString() {
+		return this.name() + "(" + this.getNome() + ", " + this.getCodigo() + ")";
+	}
 }
