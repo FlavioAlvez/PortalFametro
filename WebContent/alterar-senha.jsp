@@ -31,7 +31,7 @@
 
 
 
-<title>Portal Fametro | Perfil</title>
+<title>Portal Fametro | Alterar Senha</title>
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -75,6 +75,18 @@
 
 					<div class="row">
 						<div class="col-md-12 col-sm-12 col-xs-12">
+							<c:if test="${erro }">
+								<div class="alert alert-danger" role="alert">
+									<img src="img/exclamação.png">&nbsp; &nbsp; Houve algum
+									erro e a senha não foi alterada.
+								</div>
+							</c:if>
+							<c:if test="${sucesso }">
+								<div class="alert alert-success" role="alert">
+									<img src="img/success.png">&nbsp; &nbsp; Senha alterada
+									com sucesso.
+								</div>
+							</c:if>
 							<div class="x_panel">
 								<div class="x_title">
 									<c:if
@@ -273,9 +285,8 @@
 												<div class="col-md-6 col-sm-6 col-xs-12">
 													<input type="reset" class="btn btn-warning" name="rest"
 														value="Redefinir"> <input type="submit"
-														class="btn btn-success" id="alterarSenha"
-														name="action" value="Alterar Senha"
-														onClick="validarSenha()">
+														class="btn btn-success" id="alterarSenha" name="action"
+														value="Alterar Senha" onClick="validarSenha()">
 												</div>
 											</div>
 											</form>
