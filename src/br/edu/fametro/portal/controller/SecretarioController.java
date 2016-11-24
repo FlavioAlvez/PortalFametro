@@ -67,6 +67,10 @@ public class SecretarioController extends HttpServlet {
 				System.out.println("[SecretarioController] [doPost] case \"alterar senha\"");
 				alterarSenha(request, response);
 				break;
+			case "imprimir":
+				System.out.println("[SecretarioController] [doPost] case \"imprimir\"");
+				imprimir(request, response);
+				break;
 			default:
 				System.err.println("[SecretárioController] action entrou no default!");
 				System.err.println("[SecretárioController] action = " + (action == null ? "null" : action));
@@ -213,7 +217,7 @@ public class SecretarioController extends HttpServlet {
 	public void alterarPerfil(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
-		
+
 		// Endereço
 		String cep = request.getParameter("cep");
 		String logradouro = request.getParameter("logradouro");
@@ -294,7 +298,7 @@ public class SecretarioController extends HttpServlet {
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Secretario secretario = (Secretario) session.getAttribute("usuarioLogado");
-		
+
 		System.out.println("[SecretarioController][alterarSenha] getParameter");
 		System.out.println(secretario);
 		// Segurança
@@ -342,5 +346,30 @@ public class SecretarioController extends HttpServlet {
 			request.setAttribute("erro", Boolean.TRUE);
 			request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
 		}
+	}
+
+	public void imprimir(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String matricula = request.getParameter("matricula");
+
+		// TESTE
+		System.out.println("----- IDENTIFICAÇÃO -----");
+		System.out.println("Matricula: " + matricula);
+		System.out.println();
+
+		// Resgatando o banco
+		SecretarioBusiness bancoSecretario = (SecretarioBusiness) request.getServletContext()
+				.getAttribute("bancoSecretario");
+
+		// Pesquisando usuario
+		Secretario secretario = bancoSecretario.pesquisaMatricula(matricula);
+
+		// TESTE
+		System.out.println(secretario);
+		System.out.println();
+
+		request.setAttribute("titulo", "Confirmação de Matrícula do Secretário");
+		request.setAttribute("usuario", secretario);
+		request.getRequestDispatcher("imprimir.jsp?acao=CadastroDeUsuario&tipo=Secretario").forward(request, response);
 	}
 }

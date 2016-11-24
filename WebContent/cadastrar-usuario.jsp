@@ -130,11 +130,11 @@
 														<c:choose>
 															<c:when test="${not sucesso }">
 																<%@ include
-																	file="includes/cadastro-usuario/cadastro-aluno.jsp"%>
+																	file="includes/cadastro-usuario/cadastro/aluno.jsp"%>
 															</c:when>
 															<c:otherwise>
 																<%@ include
-																	file="includes/cadastro-usuario/aluno-cadastrado.jsp"%>
+																	file="includes/cadastro-usuario/confirmacao/aluno.jsp"%>
 															</c:otherwise>
 														</c:choose>
 													</c:if>
@@ -142,11 +142,11 @@
 														<c:choose>
 															<c:when test="${not sucesso }">
 																<%@ include
-																	file="includes/cadastro-usuario/cadastro-professor.jsp"%>
+																	file="includes/cadastro-usuario/cadastro/professor.jsp"%>
 															</c:when>
 															<c:otherwise>
 																<%@ include
-																	file="includes/cadastro-usuario/professor-cadastrado.jsp"%>
+																	file="includes/cadastro-usuario/confirmacao/professor.jsp"%>
 															</c:otherwise>
 														</c:choose>
 													</c:if>
@@ -154,11 +154,11 @@
 														<c:choose>
 															<c:when test="${not sucesso }">
 																<%@ include
-																	file="includes/cadastro-usuario/cadastro-secretario.jsp"%>
+																	file="includes/cadastro-usuario/cadastro/secretario.jsp"%>
 															</c:when>
 															<c:otherwise>
 																<%@ include
-																	file="includes/cadastro-usuario/secretario-cadastrado.jsp"%>
+																	file="includes/cadastro-usuario/confirmacao/secretario.jsp"%>
 															</c:otherwise>
 														</c:choose>
 													</c:if>

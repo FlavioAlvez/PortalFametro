@@ -67,6 +67,9 @@ public class AlunoController extends HttpServlet {
 			case "alterar senha":
 				alterarSenha(request, response);
 				break;
+			case "imprimir":
+				imprimir(request, response);
+				break;
 			default:
 				System.err.println("[AlunoController] action entrou no default!");
 				System.err.println("[AlunoController] action = " + (action == null ? "null" : action));
@@ -354,5 +357,30 @@ public class AlunoController extends HttpServlet {
 			request.setAttribute("erro", Boolean.TRUE);
 			request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
 		}
+	}
+	
+	public void imprimir(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String matricula = request.getParameter("matricula");
+
+		// TESTE
+		System.out.println("----- IDENTIFICAÇÃO -----");
+		System.out.println("Matricula: " + matricula);
+		System.out.println();
+
+		// Resgatando o banco
+		AlunoBusiness bancoAluno = (AlunoBusiness) request.getServletContext()
+				.getAttribute("bancoAluno");
+
+		// Pesquisando usuario
+		Aluno aluno = bancoAluno.pesquisaMatricula(matricula);
+
+		// TESTE
+		System.out.println(aluno);
+		System.out.println();
+
+		request.setAttribute("titulo", "Confirmação de Matrícula do Aluno");
+		request.setAttribute("usuario", aluno);
+		request.getRequestDispatcher("imprimir.jsp?acao=CadastroDeUsuario&tipo=Aluno").forward(request, response);
 	}
 }

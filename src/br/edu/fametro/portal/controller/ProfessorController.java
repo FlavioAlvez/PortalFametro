@@ -58,13 +58,20 @@ public class ProfessorController extends HttpServlet {
 
 			switch (action.toLowerCase()) {
 			case "cadastrar":
+				System.out.println("[ProfessorController] [doPost] case \"cadastrar\"");
 				cadastro(request, response);
 				break;
 			case "alterar perfil":
+				System.out.println("[ProfessorController] [doPost] case \"alterar perfil\"");
 				alterarPerfil(request, response);
 				break;
 			case "alterar senha":
+				System.out.println("[ProfessorController] [doPost] case \"alterar senha\"");
 				alterarSenha(request, response);
+				break;
+			case "imprimir":
+				System.out.println("[ProfessorController] [doPost] case \"imprimir\"");
+				imprimir(request, response);
 				break;
 			default:
 				System.err.println("[ProfessorController] action entrou no default!");
@@ -222,7 +229,7 @@ public class ProfessorController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		professor.setCoordenador(coordenador == "on" ? Boolean.TRUE : Boolean.FALSE);
+		professor.setCoordenador(coordenador.equals("on") ? Boolean.TRUE : Boolean.FALSE);
 
 		// Adicionando o objeto ao banco
 		System.out.println("Adicionando o objeto ao banco");
@@ -375,5 +382,30 @@ public class ProfessorController extends HttpServlet {
 			request.setAttribute("erro", Boolean.TRUE);
 			request.getRequestDispatcher("alterar-senha.jsp").forward(request, response);
 		}
+	}
+	
+	public void imprimir(HttpServletRequest request, HttpServletResponse response)
+			throws ServletException, IOException {
+		String matricula = request.getParameter("matricula");
+
+		// TESTE
+		System.out.println("----- IDENTIFICAÇÃO -----");
+		System.out.println("Matricula: " + matricula);
+		System.out.println();
+
+		// Resgatando o banco
+		ProfessorBusiness bancoProfessor = (ProfessorBusiness) request.getServletContext()
+				.getAttribute("bancoProfessor");
+
+		// Pesquisando usuario
+		Professor professor = bancoProfessor.pesquisaMatricula(matricula);
+
+		// TESTE
+		System.out.println(professor);
+		System.out.println();
+
+		request.setAttribute("titulo", "Confirmação de Matrícula do Professor");
+		request.setAttribute("usuario", professor);
+		request.getRequestDispatcher("imprimir.jsp?acao=CadastroDeUsuario&tipo=Professor").forward(request, response);
 	}
 }

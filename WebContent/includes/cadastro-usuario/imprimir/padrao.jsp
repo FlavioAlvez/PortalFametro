@@ -3,19 +3,19 @@
 		<h2>Identificação</h2>
 	</div>
 </div>
-<br />
+
 <div class="form-group">
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label class="" for="nome">Registro Acadêmico <span
 			class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="nome" id="nome" required
+			<input type="text" name="matricula" id="matricula" required
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getMatricula() }">
 		</div>
 	</div>
-	<div class="col-md-9 col-sm-9 col-xs-12">
+	<div class="col-md-9 col-sm-9 col-xs-9">
 		<label class="" for="nome">Nome <span class="required">*</span>
 		</label>
 		<div class="">
@@ -26,7 +26,7 @@
 	</div>
 </div>
 <div class="form-group">
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label class="" for="rg">RG <span class="required">*</span>
 		</label>
 		<div class="">
@@ -34,7 +34,7 @@
 				class="form-control col-md-7 col-xs-12" value="${usuario.getRg() }">
 		</div>
 	</div>
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label class="" for="cpf">CPF <span class="required">*</span>
 		</label>
 		<div class="">
@@ -42,7 +42,7 @@
 				class="form-control col-md-7 col-xs-12" value="${usuario.getCpf() }">
 		</div>
 	</div>
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label class="" for="genero">Gênero <span class="required">*</span>
 		</label>
 		<div class="">
@@ -53,7 +53,7 @@
 	</div>
 </div>
 <div class="form-group">
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label class="" for="nascimento">Data de Nascimento <span
 			class="required">*</span>
 		</label>
@@ -63,7 +63,7 @@
 				value="${DateUtility.DateToMask(usuario.getNascimento()) }">
 		</div>
 	</div>
-	<div class="col-md-5 col-sm-5 col-xs-12">
+	<div class="col-md-5 col-sm-5 col-xs-5">
 		<label class="" for="naturalidade">Naturalidade <span
 			class="required">*</span>
 		</label>
@@ -73,7 +73,7 @@
 				value="${usuario.getNaturalidade() }">
 		</div>
 	</div>
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label class="" for="estado-natal">Estado Natal <span
 			class="required">*</span>
 		</label>
@@ -84,43 +84,42 @@
 		</div>
 	</div>
 </div>
-<br />
+
 <div class="profile_title">
 	<div class="col-md-6">
 		<h2>Filiação</h2>
 	</div>
 </div>
-<br />
+
 <div class="form-group">
-	<div class="col-md-6 col-sm-6 col-xs-12">
-		<label class="col-md-6 col-sm-6 col-xs-12" for="pai">Nome do
+	<div class="col-md-6 col-sm-6 col-xs-6">
+		<label class="" for="pai">Nome do
 			Pai <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="pai" id="pai" required
-				class="form-control col-md-7 col-xs-12"
+			<input type="text" name="pai" id="pai" required class="form-control"
 				value="${usuario.getFiliacao().getPai() }">
 		</div>
 	</div>
-	<div class="col-md-6 col-sm-6 col-xs-12">
-		<label class="" for="mae">Nome da Mãe <span class="required">*</span>
+	<div class="col-md-6 col-sm-6 col-xs-6">
+		<label class="" for="mae">Nome da
+			Mãe <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="mae" id="mae" required
-				class="form-control col-md-7 col-xs-12"
+			<input type="text" name="mae" id="mae" required class="form-control"
 				value="${usuario.getFiliacao().getMae() }">
 		</div>
 	</div>
 </div>
-<br />
+
 <div class="profile_title">
 	<div class="col-md-6">
 		<h2>Endereço</h2>
 	</div>
 </div>
-<br />
+
 <div class="form-group">
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label class="" for="cep">CEP <span class="required">*</span>
 		</label>
 		<div class="">
@@ -129,7 +128,7 @@
 				value="${usuario.getEndereco().getCep() }">
 		</div>
 	</div>
-	<div class="col-md-9 col-sm-9 col-xs-12">
+	<div class="col-md-9 col-sm-9 col-xs-9">
 		<label class="" for="rua">Logradouro <span class="required">*</span>
 		</label>
 		<div class="">
@@ -141,7 +140,7 @@
 </div>
 
 <div class="form-group">
-	<div class="col-md-5 col-sm-5 col-xs-12">
+	<div class="col-md-5 col-sm-5 col-xs-5">
 		<label for="complemento">Complemento <span class="required">*</span>
 		</label>
 		<div>
@@ -150,7 +149,7 @@
 				value="${usuario.getEndereco().getComplemento() }">
 		</div>
 	</div>
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label for="numero">Número <span class="required">*</span>
 		</label>
 		<div>
@@ -159,7 +158,7 @@
 				value="${usuario.getEndereco().getNumero() }">
 		</div>
 	</div>
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label for="bairro">Bairro <span class="required">*</span>
 		</label>
 		<div>
@@ -170,7 +169,7 @@
 	</div>
 </div>
 <div class="form-group">
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label for="uf">Estado <span class="required">*</span>
 		</label>
 		<div class="">
@@ -179,7 +178,7 @@
 				value="${usuario.getEndereco().getEstado() }">
 		</div>
 	</div>
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label for="cidade">Cidade <span class="required">*</span>
 		</label>
 		<div class="">
@@ -188,7 +187,7 @@
 				value="${usuario.getEndereco().getCidade() }">
 		</div>
 	</div>
-	<div class="col-md-4 col-sm-4 col-xs-12">
+	<div class="col-md-4 col-sm-4 col-xs-4">
 		<label for="pais">País <span class="required">*</span>
 		</label>
 		<div class="">
@@ -198,15 +197,15 @@
 		</div>
 	</div>
 </div>
-<br />
+
 <div class="profile_title">
 	<div class="col-md-6">
 		<h2>Contato</h2>
 	</div>
 </div>
-<br />
+
 <div class="form-group">
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label for="email">Email <span class="required">*</span>
 		</label>
 		<div>
@@ -215,7 +214,7 @@
 				value="${usuario.getEmail() }">
 		</div>
 	</div>
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label for="fone-residencial">Telefone Residencial <span
 			class="required">*</span>
 		</label>
@@ -225,7 +224,7 @@
 				value="${usuario.getResidencial() }">
 		</div>
 	</div>
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label for="fone-celular">Telefone Celular <span
 			class="required">*</span>
 		</label>
@@ -235,7 +234,7 @@
 				value="${usuario.getCelular() }">
 		</div>
 	</div>
-	<div class="col-md-3 col-sm-3 col-xs-12">
+	<div class="col-md-3 col-sm-3 col-xs-3">
 		<label for="fone-3">Telefone 3 <span class="required">*</span>
 		</label>
 		<div>

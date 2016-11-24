@@ -1,13 +1,11 @@
 <form id="formularioCadastro" class="form-horizontal form-label-left"
 	method="post" action="ProfessorController.do">
-	<%@ include file="padrao-cadastrado.jsp"%>
-	<br />
+	<%@ include file="padrao.jsp"%>
 	<div class="profile_title">
 		<div class="col-md-6">
 			<h2>Educacional</h2>
 		</div>
 	</div>
-	<br />
 	<c:if test="${usuario.getDisciplinas().size() > 0 }">
 		<div class="form-group">
 			<div class="col-md-12 col-sm-12 col-xs-12">
@@ -22,7 +20,6 @@
 			</div>
 		</div>
 	</c:if>
-
 	<div class="form-group">
 		<div class="col-md-3 col-sm-3 col-xs-12">
 			<label for="coordenador">É coordenador <span class="required">*</span>
@@ -35,10 +32,4 @@
 		</div>
 	</div>
 	<div class="ln_solid"></div>
-	<div class="form-group">
-		<div class="col-md-6 col-sm-6 col-xs-12">
-			<input type="submit" class="btn btn-success" name="action"
-				value="Cadastrar">
-		</div>
-	</div>
 </form>
