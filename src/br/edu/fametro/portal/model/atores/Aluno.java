@@ -18,20 +18,23 @@ public class Aluno extends Pessoa implements AcessaSistema {
 	private Telefone celular;
 	private Telefone opcional;
 	private Usuario usuario;
-	
+
 	public Aluno(long id) {
 		this.id = id;
 		matricula = Sistema.geraMatricula(TipoUsuario.ALUNO, Calendar.getInstance().getTime(), id);
-		usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.ALUNO);	
+		usuario = Sistema.geraPrimeiroAcesso(matricula, TipoUsuario.ALUNO);
 	}
-	
+
 	public long getId() {
 		return id;
 	}
 
-
 	public String getMatricula() {
 		return matricula;
+	}
+
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
 	}
 
 	public Curso getCurso() {
