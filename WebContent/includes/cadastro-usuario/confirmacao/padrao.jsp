@@ -11,7 +11,7 @@
 		</label>
 		<div class="">
 			<input type="text" name="matricula" id="matricula" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getMatricula() }">
 		</div>
 	</div>
@@ -19,7 +19,7 @@
 		<label class="" for="nome">Nome <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="nome" id="nome" required
+			<input type="text" name="nome" id="nome" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getNome() }">
 		</div>
@@ -30,7 +30,7 @@
 		<label class="" for="rg">RG <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="rg" id="rg" required
+			<input type="text" name="rg" id="rg" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12" value="${usuario.getRg() }">
 		</div>
 	</div>
@@ -38,7 +38,7 @@
 		<label class="" for="cpf">CPF <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="cpf" id="cpf" required
+			<input type="text" name="cpf" id="cpf" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12" value="${usuario.getCpf() }">
 		</div>
 	</div>
@@ -47,7 +47,7 @@
 		</label>
 		<div class="">
 			<input type="text" name="genero" id="genero" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getGenero().name() }">
 		</div>
 	</div>
@@ -59,7 +59,7 @@
 		</label>
 		<div class="">
 			<input type="text" name="nascimento" id="nascimento" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${DateUtility.DateToMask(usuario.getNascimento()) }">
 		</div>
 	</div>
@@ -69,7 +69,7 @@
 		</label>
 		<div class="">
 			<input type="text" name="naturalidade" id="naturalidade" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getNaturalidade() }">
 		</div>
 	</div>
@@ -79,7 +79,7 @@
 		</label>
 		<div class="">
 			<input type="text" name="estado-natal" id="estado-natal" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEstadoNatal() }">
 		</div>
 	</div>
@@ -97,7 +97,7 @@
 			Pai <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="pai" id="pai" required
+			<input type="text" name="pai" id="pai" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getFiliacao().getPai() }">
 		</div>
@@ -106,7 +106,7 @@
 		<label class="" for="mae">Nome da Mãe <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="mae" id="mae" required
+			<input type="text" name="mae" id="mae" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getFiliacao().getMae() }">
 		</div>
@@ -124,7 +124,7 @@
 		<label class="" for="cep">CEP <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="cep" id="cep" required
+			<input type="text" name="cep" id="cep" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getCep() }">
 		</div>
@@ -133,7 +133,7 @@
 		<label class="" for="rua">Logradouro <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="rua" id="rua" required
+			<input type="text" name="rua" id="rua" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getLogradouro() }">
 		</div>
@@ -146,7 +146,7 @@
 		</label>
 		<div>
 			<input type="text" name="complemento" id="complemento" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getComplemento() }">
 		</div>
 	</div>
@@ -155,7 +155,7 @@
 		</label>
 		<div>
 			<input type="number" min=0 name="numero" id="numero" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getNumero() }">
 		</div>
 	</div>
@@ -164,7 +164,7 @@
 		</label>
 		<div>
 			<input type="text" name="bairro" id="bairro" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getBairro() }">
 		</div>
 	</div>
@@ -174,7 +174,7 @@
 		<label for="uf">Estado <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="uf" id="uf" required
+			<input type="text" name="uf" id="uf" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getEstado() }">
 		</div>
@@ -184,7 +184,7 @@
 		</label>
 		<div class="">
 			<input type="text" name="cidade" id="cidade" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getCidade() }">
 		</div>
 	</div>
@@ -192,7 +192,7 @@
 		<label for="pais">País <span class="required">*</span>
 		</label>
 		<div class="">
-			<input type="text" name="pais" id="pais" required
+			<input type="text" name="pais" id="pais" required readonly="readonly"
 				class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEndereco().getPais() }">
 		</div>
@@ -211,7 +211,7 @@
 		</label>
 		<div>
 			<input type="email" name="email" id="email" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getEmail() }">
 		</div>
 	</div>
@@ -221,7 +221,7 @@
 		</label>
 		<div>
 			<input type="text" name="fone-residencial" id="fone-residencial"
-				required class="form-control col-md-7 col-xs-12"
+				required readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getResidencial() }">
 		</div>
 	</div>
@@ -231,7 +231,7 @@
 		</label>
 		<div>
 			<input type="text" name="fone-celular" id="fone-celular" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getCelular() }">
 		</div>
 	</div>
@@ -240,7 +240,7 @@
 		</label>
 		<div>
 			<input type="text" name="fone-3" id="fone-3" required
-				class="form-control col-md-7 col-xs-12"
+				readonly="readonly" class="form-control col-md-7 col-xs-12"
 				value="${usuario.getOpcional() }">
 		</div>
 	</div>

@@ -10,7 +10,7 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<label class="" for="curso">Curso</label>
 			<div class="">
-				<input type="text" name="curso" id="curso" required
+				<input type="text" name="curso" id="curso" required readonly="readonly"
 					class="form-control col-md-7 col-xs-12"
 					value="[${usuario.getCurso().getCodigo() }] ${usuario.getCurso().getNome() }">
 			</div>

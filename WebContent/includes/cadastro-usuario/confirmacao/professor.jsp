@@ -11,8 +11,10 @@
 			<div class="col-md-12 col-sm-12 col-xs-12">
 				<label for="disciplina"> Disciplinas</label>
 				<div class="">
-					<c:forEach var="disciplina" items="${usuario.getDisciplinas() }">
-						<input type="text" name="disciplina" id="" required
+					<c:forEach var="disciplina" items="${usuario.getDisciplinas() }"
+						varStatus="status">
+						<input type="text" name="disciplina"
+							id="disciplina${status.index }" required readonly="readonly"
 							class="form-control col-sm-12 col-md-12 col-xs-12"
 							value="[${disciplina.getCodigo() }] ${disciplina.getNome() }">
 					</c:forEach>
@@ -26,7 +28,7 @@
 			</label>
 			<div>
 				<input type="text" name="fone-3" id="fone-3" required
-					class="form-control col-md-7 col-xs-12"
+					readonly="readonly" class="form-control col-md-7 col-xs-12"
 					value="${usuario.isCoordenador() ? 'Sim' : 'Não'}">
 			</div>
 		</div>
@@ -35,8 +37,10 @@
 	<div class="form-group">
 		<div class="col-md-6 col-sm-6 col-xs-12">
 			<input type="button" class="btn btn-primary" name="voltar"
-				value="Voltar" onClick="location.href='cadastrar-usuario.jsp?tipo=Professor'"> <input type="submit"
-				class="btn btn-success" name="action" value="Imprimir">
+				value="Voltar"
+				onClick="location.href='cadastrar-usuario.jsp?tipo=Professor'">
+			<input type="submit" class="btn btn-success" name="action"
+				value="Imprimir">
 		</div>
 	</div>
 </form>
