@@ -89,11 +89,7 @@
 								<!-- /panel header -->
 								<!-- panel content -->
 								<div class="x_content">
-									<p>
-										Add class
-										<code>bulk_action</code>
-										to table for bulk actions options on row select
-									</p>
+
 
 									<div class="table-responsive">
 										<table class="table table-striped jambo_table bulk_action">
@@ -102,13 +98,11 @@
 													<th><input type="checkbox" name="check" id="check"
 														class="flat"></th>
 													<th class="column-title">Código</th>
+													<th class="column-title">Código do cliente</th>
 													<th class="column-title">Assunto</th>
-													<th class="column-title">Etapa atual</th>
+													<th class="column-title">Atendimento</th>
 													<th class="column-title">Abertura</th>
 													<th class="column-title">Fechamento</th>
-													<th class="column-title">Código do cliente</th>
-													<th class="column-title">Tipo</th>
-													<th class="column-title">Status</th>
 													<th class="column-title no-link last"><span
 														class="nobr">Ação</span></th>
 													<th class="bulk-actions" colspan="7"><a class="antoo"
@@ -120,32 +114,22 @@
 											</thead>
 
 											<tbody>
-												<tr class="even pointer">
-													<td class="a-center "><input type="checkbox"
-														class="flat" name="table" id="table"></td>
-													<td class=" ">46001</td>
-													<td class=" ">QUEBRA DE PRÉ-REQUISITO</td>
-													<td class=" ">Quebra Aceita</td>
-													<td class=" ">12/09/2016 10:22</td>
-													<td class=" ">19/09/2016 14:47</td>
-													<td class=" ">2016200001</td>
-													<td class=" ">Aluno</td>
-													<td class=" ">Concluído confirmado</td>
-													<td class=" last"><a href="#">Ver</a></td>
-												</tr>
-												<tr class="odd pointer">
-													<td class="a-center "><input type="checkbox"
-														class="flat" name="table-2" id="table-2"></td>
-													<td class=" ">46001</td>
-													<td class=" ">QUEBRA DE PRÉ-REQUISITO</td>
-													<td class=" ">Quebra Aceita</td>
-													<td class=" ">12/09/2016 10:22</td>
-													<td class=" ">19/09/2016 14:47</td>
-													<td class=" ">2016200001</td>
-													<td class=" ">Aluno</td>
-													<td class=" ">Concluído confirmado</td>
-													<td class=" last"><a href="#">Ver</a></td>
-												</tr>
+												<c:forEach var="solicitacao"
+													items="${bancoSolicitacao.getBanco() }" varStatus="status">
+													<tr
+														class="${status.index mod 2 == 0 ? 'even' : 'odd'} pointer">
+														<td class="a-center "><input type="checkbox"
+															class="flat" name="table" id="table${status.index}"></td>
+														<td class=" "><input type="text" class="" name="codigo"
+															value="${solicitacao.getCodigo() }" readonly="readonly" style="border: 0; background-color: transparent;" size="9"></td>
+														<td class=" ">${solicitacao.getCliente().getMatricula() }</td>
+														<td class=" ">${solicitacao.getAssunto() }</td>
+														<td class=" ">${solicitacao.getTipoAtendimento().getTipo() }</td>
+														<td class=" ">${DateUtility.DateToMask(solicitacao.getAbertura()) }</td>
+														<td class=" ">${solicitacao.getFechamento() != null ? DateUtility.DateToMask(solicitacao.getFechamento()) : ''}</td>
+														<td class="last"><a href="#">Ver</a></td>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 									</div>

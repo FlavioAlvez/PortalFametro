@@ -4,7 +4,7 @@
 		<thead>
 			<tr class="headings">
 				<th class="column-title">Código</th>
-				<th class="column-title">Tipo de Usuário</th>
+				<th class="column-title">Grupo de Atendimento</th>
 				<th class="bulk-actions" colspan="7"><a class="antoo"
 					style="color: #fff; font-weight: 500;">Bulk Actions ( <span
 						class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i>
@@ -13,13 +13,13 @@
 		</thead>
 
 		<tbody>
-			<c:forEach var="tipoUsuario" items="${bancoTipoUsuario.getBanco() }"
-				varStatus="status">
+			<c:forEach var="grupoAtendimento"
+				items="${bancoGrupoAtendimento.getBanco() }" varStatus="status">
 				<tr
 					class="${status.index mod 2 == 0 ? 'even' : 'odd'} pointer cursor-handle"
-					onClick="location.href = 'cadastrar-usuario.jsp?tipo=${tipoUsuario.getNome() }'">
-					<td class=" ">${tipoUsuario.getCodigo() }</td>
-					<td class=" ">${tipoUsuario.getNome() }</td>
+					onClick="location.href = 'cadastrar-solicitacao.jsp?grupo=${grupoAtendimento.getCodigo() }'">
+					<td class=" ">${grupoAtendimento.getCodigo() }</td>
+					<td class=" ">${grupoAtendimento.getGrupo() }</td>
 				</tr>
 			</c:forEach>
 		</tbody>

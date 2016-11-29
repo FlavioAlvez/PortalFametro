@@ -1,3 +1,4 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="table-responsive">
 	<table class="table table-striped jambo_table bulk_action">
 		<thead>
@@ -15,10 +16,10 @@
 		<tbody>
 			<c:forEach var="tipoAtendimento"
 				items="${bancoTipoAtendimento.getBanco() }" varStatus="status">
-				<c:if test="${tipoAtendimento.getGrupo().getCodigo() eq param.grupoAtendimento }">
+				<c:if test="${tipoAtendimento.getGrupo().getCodigo() eq param.grupo }">
 					<tr
 						class="${status.index mod 2 == 0 ? 'even' : 'odd'} pointer cursor-handle"
-						onClick="location.href = 'cadastro-solicitacao.jsp?grupo=${tipoAtendimento.getGrupo().getCodigo() }&tipo=${tipoAtendimento.getCodigo() }'">
+						onClick="location.href = 'cadastrar-solicitacao.jsp?grupo=${tipoAtendimento.getGrupo().getCodigo() }&tipo=${tipoAtendimento.getCodigo() }'">
 						<td class=" ">${tipoAtendimento.getCodigo() }</td>
 						<td class=" ">${tipoAtendimento.getTipo() }</td>
 						<td class=" ">${tipoAtendimento.getGrupo().getCodigo() }&nbsp;-&nbsp;${tipoAtendimento.getGrupo().getGrupo() }</td>

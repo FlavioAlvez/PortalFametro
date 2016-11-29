@@ -23,6 +23,8 @@
 <!-- Custom Theme Style -->
 <link href="css/custom.min.css" rel="stylesheet">
 
+<link href="css/cursor/cursor-handle.css" rel="stylesheet">
+
 <style type="text/css">
 .transparente {
 	opacity: 0;
@@ -134,10 +136,15 @@
 														file="includes/solicitacao/cadastro/secretaria/ouvidoria.jsp"%>
 												</c:when>
 												<c:otherwise>
-
+													<%@ include
+														file="includes/solicitacao/cadastro/grupo-atendimento/secretaria.jsp"%>
 												</c:otherwise>
 											</c:choose>
 										</c:when>
+										<c:otherwise>
+											<%@ include
+												file="includes/solicitacao/cadastro/grupo-atendimento/grupos.jsp"%>
+										</c:otherwise>
 									</c:choose>
 								</div>
 								<!-- /panel content -->

@@ -57,8 +57,8 @@
 		</select>
 	</div>
 	<div class="col-md-3 col-sm-3 col-xs-3">
-		<label class="col-md-12 col-sm-12 col-xs-12" for="tipo-cliente">Tipo cliente
-			<span class="required">*</span>
+		<label class="col-md-12 col-sm-12 col-xs-12" for="tipo-cliente">Tipo
+			cliente <span class="required">*</span>
 		</label>
 		<div class="col-md-4 col-sm-4 col-xs-4">
 			<input type="text" id="tipo-cliente-cdg" name="tipo-cliente-cdg"
@@ -122,9 +122,9 @@
 		</label>
 
 		<div class="col-md-12 col-sm-12 col-xs-12">
-			<textarea id="descricao" class="form-control"
-				name="descricao" data-parsley-trigger="keyup"
-				data-parsley-minlength="5" data-parsley-maxlength="100"
+			<textarea id="descricao" class="form-control" name="descricao"
+				data-parsley-trigger="keyup" data-parsley-minlength="5"
+				data-parsley-maxlength="100"
 				data-parsley-minlength-message="Vamos! Você precisa digitar pelo menos um comentário de 5 caracteres.."
 				data-parsley-validation-threshold="10" required="required"></textarea>
 		</div>
