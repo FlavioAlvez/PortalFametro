@@ -1,8 +1,11 @@
 package br.edu.fametro.portal.model.solicitacoes.secretaria;
 
+import br.edu.fametro.portal.model.Sistema;
 import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.enums.Avaliacao;
 import br.edu.fametro.portal.model.enums.Disciplina;
+import br.edu.fametro.portal.model.enums.GrupoAtendimento;
+import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.solicitacoes.Solicitacao;
 
 public class RevisaoNota extends Solicitacao {
@@ -10,8 +13,11 @@ public class RevisaoNota extends Solicitacao {
 	private Disciplina disciplina;
 	private Avaliacao avaliacao;
 
-	public RevisaoNota() {
-		super();
+	public RevisaoNota(long id) {
+		super(id);
+		setCodigo(Sistema.geraCodigoSolicitacao(GrupoAtendimento.SECRETARIA, TipoAtendimento.REVISAO_DE_NOTA, id));
+		setGrupoAtendimento(GrupoAtendimento.SECRETARIA);
+		setTipoAtendimento(TipoAtendimento.REVISAO_DE_NOTA);
 	}
 
 	public Professor getProfessor() {

@@ -2,8 +2,11 @@ package br.edu.fametro.portal.model.solicitacoes.secretaria;
 
 import java.util.Date;
 
+import br.edu.fametro.portal.model.Sistema;
 import br.edu.fametro.portal.model.atores.Professor;
 import br.edu.fametro.portal.model.enums.Disciplina;
+import br.edu.fametro.portal.model.enums.GrupoAtendimento;
+import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.solicitacoes.Solicitacao;
 
 public class AbonoFalta extends Solicitacao {
@@ -12,8 +15,11 @@ public class AbonoFalta extends Solicitacao {
 	private Date inicioAtestado;
 	private Date fimAtestado;
 
-	public AbonoFalta() {
-		super();
+	public AbonoFalta(long id) {
+		super(id);
+		setCodigo(Sistema.geraCodigoSolicitacao(GrupoAtendimento.SECRETARIA, TipoAtendimento.ABONO_DE_FALTA, id));
+		setGrupoAtendimento(GrupoAtendimento.SECRETARIA);
+		setTipoAtendimento(TipoAtendimento.ABONO_DE_FALTA);
 	}
 
 	public Professor getProfessor() {

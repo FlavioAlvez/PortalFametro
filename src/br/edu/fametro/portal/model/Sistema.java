@@ -3,6 +3,8 @@ package br.edu.fametro.portal.model;
 import java.util.Date;
 
 import br.edu.fametro.portal.model.atores.Usuario;
+import br.edu.fametro.portal.model.enums.GrupoAtendimento;
+import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 public class Sistema {
@@ -34,5 +36,20 @@ public class Sistema {
 
 	public static Usuario geraPrimeiroAcesso(String matricula, TipoUsuario tipo) {
 		return new Usuario(matricula, "123456");
+	}
+	
+	public static String geraCodigoSolicitacao(GrupoAtendimento ga, TipoAtendimento ta, long id){
+		String cdg = new String();
+		String id5 = String.valueOf(id);
+	
+		cdg = ga.getCodigo() + "-" + ta.getCodigo() + "-";
+		
+		while (id5.length() < 5) {
+			id5 = "0".concat(id5);
+		}
+		
+		cdg += id5;
+		
+		return cdg;
 	}
 }

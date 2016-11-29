@@ -8,7 +8,8 @@ import br.edu.fametro.portal.model.enums.TipoAtendimento;
 import br.edu.fametro.portal.model.enums.TipoUsuario;
 
 public abstract class Solicitacao {
-	private long codigo;
+	private long id;
+	private String codigo;
 	private GrupoAtendimento grupoAtendimento;
 	private TipoAtendimento tipoAtendimento;
 	private AcessaSistema cliente;
@@ -20,15 +21,19 @@ public abstract class Solicitacao {
 	private String discussao;
 	private String solucao;
 
-	public Solicitacao() {
-
+	public Solicitacao(long id) {
+		this.id = id;
 	}
 
-	public long getCodigo() {
+	public long getId() {
+		return id;
+	}
+
+	public String getCodigo() {
 		return codigo;
 	}
 
-	public void setCodigo(long codigo) {
+	public void setCodigo(String codigo) {
 		this.codigo = codigo;
 	}
 
@@ -114,9 +119,9 @@ public abstract class Solicitacao {
 
 	@Override
 	public String toString() {
-		return "Solicitacao [codigo=" + codigo + ", grupoAtendimento=" + grupoAtendimento + ", tipoAtendimento="
-				+ tipoAtendimento + ", cliente=" + cliente + ", tipo=" + tipo + ", abertura=" + abertura
-				+ ", fechamento=" + fechamento + ", assunto=" + assunto + ", solicitacao=" + solicitacao
+		return "Solicitacao [id=" + id + ", codigo=" + codigo + ", grupoAtendimento=" + grupoAtendimento
+				+ ", tipoAtendimento=" + tipoAtendimento + ", cliente=" + cliente + ", tipo=" + tipo + ", abertura="
+				+ abertura + ", fechamento=" + fechamento + ", assunto=" + assunto + ", solicitacao=" + solicitacao
 				+ ", discussao=" + discussao + ", solucao=" + solucao + "]";
 	}
 
@@ -124,7 +129,7 @@ public abstract class Solicitacao {
 	public int hashCode() {
 		final int prime = 31;
 		int result = 1;
-		result = prime * result + (int) (codigo ^ (codigo >>> 32));
+		result = prime * result + ((codigo == null) ? 0 : codigo.hashCode());
 		return result;
 	}
 
@@ -140,7 +145,11 @@ public abstract class Solicitacao {
 			return false;
 		}
 		Solicitacao other = (Solicitacao) obj;
-		if (codigo != other.codigo) {
+		if (codigo == null) {
+			if (other.codigo != null) {
+				return false;
+			}
+		} else if (!codigo.equals(other.codigo)) {
 			return false;
 		}
 		return true;
