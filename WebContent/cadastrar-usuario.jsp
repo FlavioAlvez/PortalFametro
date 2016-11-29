@@ -46,6 +46,8 @@
 <!-- consulta do endereço pelo cep -->
 <script type="text/javascript" src="js/cep-consulta/cep-consulta.js"></script>
 
+<link href="css/cursor/cursor-handle.css" rel="stylesheet">
+
 </head>
 
 <body class="nav-md">
@@ -83,15 +85,20 @@
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<c:if test="${param.tipo.equalsIgnoreCase('aluno')}">
-										<h2>Informações do Aluno</h2>
-									</c:if>
-									<c:if test="${param.tipo.equalsIgnoreCase('professor')}">
-										<h2>Informações do Professor</h2>
-									</c:if>
-									<c:if test="${param.tipo.equalsIgnoreCase('secretario')}">
-										<h2>Informações do Secretário</h2>
-									</c:if>
+									<c:choose>
+										<c:when test="${param.tipo.equalsIgnoreCase('aluno')}">
+											<h2>Informações do Aluno</h2>
+										</c:when>
+										<c:when test="${param.tipo.equalsIgnoreCase('professor')}">
+											<h2>Informações do Professor</h2>
+										</c:when>
+										<c:when test="${param.tipo.equalsIgnoreCase('secretario')}">
+											<h2>Informações do Secretário</h2>
+										</c:when>
+										<c:otherwise>
+											<h2>Cadastro de Usuário</h2>
+										</c:otherwise>
+									</c:choose>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i
 												class="fa fa-chevron-up"></i></a></li>
@@ -169,7 +176,10 @@
 											<!-- Script que desabilita campos -->
 										</c:if>
 									</c:when>
-									<c:otherwise>Parâmetro Inválido</c:otherwise>
+									<c:otherwise>
+										<%@ include
+											file="includes/cadastro-usuario/cadastro/usuarios/tipos-usuarios.jsp"%>
+									</c:otherwise>
 								</c:choose>
 							</div>
 						</div>
