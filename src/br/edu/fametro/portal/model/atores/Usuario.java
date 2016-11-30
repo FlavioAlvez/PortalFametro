@@ -23,6 +23,10 @@ public class Usuario {
 	public void setSenha(String senha) {
 		this.senha = encripta(senha);
 	}
+	
+	public void setSenhaEncryptada(String senhaEncryptada){
+		this.senha = senhaEncryptada;
+	}
 
 	public String encripta(String param) {
 		return DigestUtils.sha256Hex(param);

@@ -1,16 +1,19 @@
 package br.edu.fametro.portal.business;
 
-import java.util.ArrayList;
 import java.util.List;
 
+import br.edu.fametro.portal.dao.AlunoDAO;
 import br.edu.fametro.portal.model.atores.Aluno;
 import br.edu.fametro.portal.model.atores.Usuario;
 
 public class AlunoBusiness {
 	private List<Aluno> banco;
+	private AlunoDAO dao; //Adicionado
 
 	public AlunoBusiness() {
-		banco = new ArrayList<Aluno>();
+//		banco = new ArrayList<Aluno>();
+		dao = new AlunoDAO(); //Adicionado
+		banco = dao.listar();
 	}
 
 	public List<Aluno> getBanco() {
@@ -34,6 +37,7 @@ public class AlunoBusiness {
 				return false;
 			}
 		}
+		dao.cadastrar(novo); //Adicionado
 		return banco.add(novo);
 	}
 
@@ -79,6 +83,7 @@ public class AlunoBusiness {
 
 			if (index > -1) {
 				banco.add(index, a);
+				dao.alterar(a); //Adicionado
 				return true;
 			}
 		}
@@ -88,7 +93,9 @@ public class AlunoBusiness {
 	public boolean remover(Aluno a) {
 		if (!isEmpty()) {
 			if (banco.contains(a)) {
-				return banco.remove(a);
+				banco.remove(a); //Modificado
+				dao.deletar(a); //Adicionado
+				return true; //Modificado
 			}
 		}
 		return false;
