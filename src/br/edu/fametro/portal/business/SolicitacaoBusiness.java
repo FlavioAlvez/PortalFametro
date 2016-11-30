@@ -19,9 +19,20 @@ public class SolicitacaoBusiness {
 	public SolicitacaoBusiness() {
 		banco = new ArrayList<Solicitacao>();
 	}
-
+	
 	public List<Solicitacao> getBanco() {
 		return banco;
+	}
+
+	public SolicitacaoBusiness simulaBanco(List<Solicitacao> list) {
+		if(list != null){
+			SolicitacaoBusiness simulador = new SolicitacaoBusiness();
+			for(Solicitacao s : list){
+				simulador.adicionar(s);
+			}
+			return simulador;
+		}
+		return null;
 	}
 
 	public int getSize() {
@@ -54,10 +65,20 @@ public class SolicitacaoBusiness {
 		return null;
 	}
 
-	public Solicitacao pesquisaCodigo(long codigo) {
+	public Solicitacao pesquisaId(long id) {
 		if (!isEmpty()) {
 			for (Solicitacao solicitacao : banco) {
-				if (solicitacao.getCodigo() == codigo)
+				if (solicitacao.getId() == id)
+					return solicitacao;
+			}
+		}
+		return null;
+	}
+	
+	public Solicitacao pesquisaCodigo(String codigo) {
+		if (!isEmpty()) {
+			for (Solicitacao solicitacao : banco) {
+				if (solicitacao.getCodigo().equals(codigo))
 					return solicitacao;
 			}
 		}
@@ -171,35 +192,8 @@ public class SolicitacaoBusiness {
 				}
 			}
 		}
-
 		return result;
 	}
-
-	// public List<Solicitacao> pesquisaDisciplina(Disciplina disciplina) {
-	// List<Solicitacao> result = new ArrayList<Solicitacao>();
-	//
-	// if (!isEmpty()) {
-	// for (Solicitacao solicitacao : banco) {
-	// if (solicitacao.getDisciplina().equals(disciplina))
-	// result.add(solicitacao);
-	// }
-	// }
-	//
-	// return result;
-	// }
-
-	// public List<Solicitacao> pesquisaAvaliacao(Avaliacao avaliacao) {
-	// List<Solicitacao> result = new ArrayList<Solicitacao>();
-	//
-	// if (!isEmpty()) {
-	// for (Solicitacao solicitacao : banco) {
-	// if (solicitacao.getAv().equals(avaliacao))
-	// result.add(solicitacao);
-	// }
-	// }
-	//
-	// return result;
-	// }
 
 	public boolean alterar(Solicitacao solicitacao) {
 		if (!isEmpty()) {
