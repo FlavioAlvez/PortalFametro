@@ -37,6 +37,10 @@ public class Professor extends Pessoa implements AcessaSistema {
 		return matricula;
 	}
 
+	public void setMatricula(String matricula) {
+		this.matricula = matricula;
+	}
+
 	public Endereco getEndereco() {
 		return endereco;
 	}
@@ -106,6 +110,14 @@ public class Professor extends Pessoa implements AcessaSistema {
 
 	public void setUsuario(Usuario usuario) {
 		this.usuario = usuario;
+	}
+
+	public String disciplinasToString() {
+		String buffer = "";
+		for (Disciplina d : this.disciplinas) {
+			buffer += d.getCodigo() + ",";
+		}
+		return buffer.substring(0, buffer.length() - 1);
 	}
 
 	@Override
