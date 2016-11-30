@@ -57,7 +57,7 @@
 		</select>
 	</div>
 	<div class="col-md-3 col-sm-3 col-xs-3">
-		<label class="col-md-12 col-sm-12 col-xs-12" for="tipo-cliente">Tipo cliente
+		<label class="col-md-12 col-sm-12 col-xs-12" for="tipo-cliente">Tipo de cliente
 			<span class="required">*</span>
 		</label>
 		<div class="col-md-4 col-sm-4 col-xs-4">

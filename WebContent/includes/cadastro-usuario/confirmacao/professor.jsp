@@ -39,8 +39,11 @@
 			<input type="button" class="btn btn-primary" name="voltar"
 				value="Voltar"
 				onClick="location.href='cadastrar-usuario.jsp?tipo=Professor'">
-			<input type="submit" class="btn btn-success" name="action"
+
+			<button type="submit" class="btn btn-success" name="action"
 				value="Imprimir">
+				<i class="fa fa-print" aria-hidden="true"></i>&nbsp;Imprimir
+			</button>
 		</div>
 	</div>
 </form>

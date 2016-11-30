@@ -19,15 +19,13 @@
 	<div class="menu_section">
 		<h3>Solicitações</h3>
 		<ul class="nav side-menu">
-			<li><a><i class="fa fa-cog"></i> Solicitação <span
+			<li><a><i class="fa fa-cog"></i> Registrar <span
 					class="fa fa-chevron-down"></span></a>
 				<ul class="nav child_menu">
 					<li><a href="cadastrar-solicitacao.jsp?grupo=1">Secretaria</a></li>
 				</ul></li>
 			<li><a href="acompanhamento.jsp"><i class="fa fa-table"></i>
 					Acompanhamento</a></li>
-			<li><a href="pesquisa.jsp"><i class="fa fa-bar-chart-o"></i>
-					Pesquisa</a></li>
 		</ul>
 	</div>
 </div>

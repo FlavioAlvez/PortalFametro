@@ -10,8 +10,8 @@
 		<div class="col-md-12 col-sm-12 col-xs-12">
 			<label class="" for="curso">Curso</label>
 			<div class="">
-				<input type="text" name="curso" id="curso" required readonly="readonly"
-					class="form-control col-md-7 col-xs-12"
+				<input type="text" name="curso" id="curso" required
+					readonly="readonly" class="form-control col-md-7 col-xs-12"
 					value="[${usuario.getCurso().getCodigo() }] ${usuario.getCurso().getNome() }">
 			</div>
 		</div>
@@ -22,8 +22,11 @@
 			<input type="button" class="btn btn-primary" name="voltar"
 				value="Voltar"
 				onClick="location.href='cadastrar-usuario.jsp?tipo=Aluno'">
-			<input type="submit" class="btn btn-success" name="action"
+
+			<button type="submit" class="btn btn-success" name="action"
 				value="Imprimir">
+				<i class="fa fa-print" aria-hidden="true"></i>&nbsp;Imprimir
+			</button>
 		</div>
 	</div>
 </form>

@@ -12,7 +12,7 @@
 <meta name="author" content="FlavioAlves">
 <link rel="shortcut icon" href="img/favicon.ico">
 
-<title>Portal Fametro | Acompanhamento de Solicitações</title>
+<title>Portal Fametro | Acompanhamento</title>
 
 <!-- Bootstrap -->
 <link href="css/bootstrap.min.css" rel="stylesheet">
@@ -21,6 +21,61 @@
 
 <!-- Custom Theme Style -->
 <link href="css/custom.min.css" rel="stylesheet">
+
+<!-- Select -->
+<link href="css/select/bootstrap-select.css" rel="stylesheet">
+
+<!-- Select2 -->
+<link href="css/select2/select2.min.css" rel="stylesheet">
+
+<script type="text/javascript">
+	function swap(obj) {
+		var search = document.getElementById("parametro");
+		switch (obj.value) {
+		case "codigo":
+			search.setAttribute("type", "search");
+			search.setAttribute("placeholder",
+					"Informe o código...");
+		case "grupo-atendimento":
+			search.setAttribute("type", "search");
+			search.setAttribute("placeholder",
+					"Informe o grupo de atendimento...");
+			break;
+		case "tipo-atendimento":
+			search.setAttribute("type", "search");
+			search.setAttribute("placeholder",
+					"Informe o tipo de atendimento...");
+			break;
+		case "cliente":
+			search.setAttribute("type", "search");
+			search.setAttribute("placeholder",
+					"Informe o número de matrícula do cliente...");
+			break;
+		case "tipo-cliente":
+			search.setAttribute("type", "search");
+			search.setAttribute("placeholder", "Informe o tipo de cliente...");
+			break;
+		case "abertura":
+			search.setAttribute("type", "date");
+			search.setAttribute("placeholder", "Informe a data de abertura...");
+			break;
+		case "fechamento":
+			search.setAttribute("type", "date");
+			search.setAttribute("placeholder",
+					"Informe a data de fechamento...");
+			break;
+		case "assunto":
+			search.setAttribute("type", "search");
+			search.setAttribute("placeholder",
+					"Informe o assunto...");
+			break;
+		default:
+			search.setAttribute("type", "search");
+			search.setAttribute("placeholder", "Pesquisar por...");
+			break;
+		}
+	}
+</script>
 </head>
 
 <body class="nav-md">
@@ -89,50 +144,44 @@
 								<!-- /panel header -->
 								<!-- panel content -->
 								<div class="x_content">
-
-
-									<div class="table-responsive">
-										<table class="table table-striped jambo_table bulk_action">
-											<thead>
-												<tr class="headings">
-													<th><input type="checkbox" name="check" id="check"
-														class="flat"></th>
-													<th class="column-title">Código</th>
-													<th class="column-title">Código do cliente</th>
-													<th class="column-title">Assunto</th>
-													<th class="column-title">Atendimento</th>
-													<th class="column-title">Abertura</th>
-													<th class="column-title">Fechamento</th>
-													<th class="column-title no-link last"><span
-														class="nobr">Ação</span></th>
-													<th class="bulk-actions" colspan="7"><a class="antoo"
-														style="color: #fff; font-weight: 500;">Bulk Actions (
-															<span class="action-cnt"> </span> ) <i
-															class="fa fa-chevron-down"></i>
-													</a></th>
-												</tr>
-											</thead>
-
-											<tbody>
-												<c:forEach var="solicitacao"
-													items="${bancoSolicitacao.getBanco() }" varStatus="status">
-													<tr
-														class="${status.index mod 2 == 0 ? 'even' : 'odd'} pointer">
-														<td class="a-center "><input type="checkbox"
-															class="flat" name="table" id="table${status.index}"></td>
-														<td class=" "><input type="text" class="" name="codigo"
-															value="${solicitacao.getCodigo() }" readonly="readonly" style="border: 0; background-color: transparent;" size="9"></td>
-														<td class=" ">${solicitacao.getCliente().getMatricula() }</td>
-														<td class=" ">${solicitacao.getAssunto() }</td>
-														<td class=" ">${solicitacao.getTipoAtendimento().getTipo() }</td>
-														<td class=" ">${DateUtility.DateToMask(solicitacao.getAbertura()) }</td>
-														<td class=" ">${solicitacao.getFechamento() != null ? DateUtility.DateToMask(solicitacao.getFechamento()) : ''}</td>
-														<td class="last"><a href="#">Ver</a></td>
-													</tr>
-												</c:forEach>
-											</tbody>
-										</table>
-									</div>
+									<form data-parsley-validate
+										class="form-horizontal form-label-left" method="post"
+										action="SolicitacaoController.do">
+										<div class="form-group">
+											<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+											<div class="col-xs-12 col-sm-12 col-md-10 col-lg-10">
+												<div class="col-xs-12 col-sm-12 col-md-4 col-lg-4">
+													<select class="form-control select2_single" id="tipo"
+														name="tipo" onchange="swap(this)" required="required">
+														<option value="" selected>Selecione...</option>
+														<option value="codigo">Código</option>
+														<option value="grupo-atendimento">Grupo de
+															Atendimento</option>
+														<option value="tipo-atendimento">Tipo de
+															Atendimento</option>
+														<option value="cliente">Cliente</option>
+														<option value="tipo-cliente">Tipo de Cliente</option>
+														<option value="abertura">Data de Abertura</option>
+														<option value="fechamento">Data de Fechamento</option>
+														<option value="assunto">Assunto</option>
+													</select>
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-5 col-lg-5">
+													<input type="search" name="parametro" id="parametro"
+														class="form-control" placeholder="Pesquisar por..." required="required">
+												</div>
+												<div class="col-xs-12 col-sm-12 col-md-3 col-lg-3">
+													<button type="submit" class="btn btn-primary" name="action"
+														value="Pesquisar">
+														<i class="fa fa-search"></i> &nbsp;Pesquisar
+													</button>
+												</div>
+											</div>
+											<div class="col-xs-0 col-sm-0 col-md-1 col-lg-1"></div>
+										</div>
+									</form>
+									<div class="ln_solid"></div>
+									<form action=""></form>
 								</div>
 								<!-- /panel content -->
 							</div>
@@ -153,5 +202,19 @@
 	<script src="js/bootstrap.min.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="js/custom.min.js"></script>
+
+	<!-- Select -->
+	<script src="js/select/bootstrap-select.js"></script>
+	<!-- Select2 -->
+	<script src="js/select2/select2.full.min.js"></script>
+
+	<script>
+		$(document).ready(function() {
+			$(".select2_single").select2({});
+			$(".select2_group").select2({});
+			$(".select2_multiple").select2({});
+		});
+	</script>
+	<!--  /Select /Select2 -->
 </body>
 </html>
